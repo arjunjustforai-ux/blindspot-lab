@@ -158,7 +158,7 @@ __pycache__/
 *.egg-info/
 
 # Local data (uploads, model caches)
-data/
+/data/
 !evaluation/results/
 
 # Playwright

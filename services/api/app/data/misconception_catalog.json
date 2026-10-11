@@ -1,0 +1,448 @@
+{
+  "version": 1,
+  "status": "Instructor-reviewable catalogue written by the Blindspot Lab team for the demonstration domain. It is NOT an externally validated psychological or educational diagnostic instrument. Likelihood tables are hand-set design assumptions, not empirically calibrated values.",
+  "hypothesis_keys": {
+    "misconception": "The learner holds the catalogued misconception.",
+    "calculation_error": "The learner knows the right approach but made an arithmetic or execution slip.",
+    "misread_question": "The learner answered a different question than the one asked.",
+    "missing_prerequisite": "The learner lacks a prerequisite skill needed for this problem.",
+    "guess": "No systematic reasoning is evident (guess, or not enough evidence)."
+  },
+  "entries": [
+    {
+      "key": "contribution_vs_revenue",
+      "title": "Preserving revenue instead of contribution",
+      "description": "When analysing a price change, the learner works out the volume needed to keep revenue constant. Because variable cost per unit does not fall with price, contribution per unit falls by the full price cut, so far more volume is needed to keep contribution constant.",
+      "concept_keys": ["contribution_margin"],
+      "detection_cues": ["revenue", "sales", "make up", "compensate", "same revenue", "price reduction", "price drop", "price cut", "makes up for", "offset the discount", "total sales"],
+      "correct_cues": ["variable cost", "per unit contribution", "contribution per unit", "unit contribution", "margin per unit", "40 to 20", "halves"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Compared contributions correctly but made an arithmetic error."},
+        {"key": "misread_question", "label": "Misread the target", "description": "Understands contribution but answered the revenue question by misreading what to preserve."},
+        {"key": "missing_prerequisite", "label": "Cannot compute unit contribution", "description": "Does not yet know how to compute contribution per unit (prerequisite gap)."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "which_quantity",
+          "type": "mcq",
+          "prompt": "When you worked out your answer, which quantity were you trying to keep the same after the price change?",
+          "options": [
+            {"id": "a", "text": "Total revenue (price × units sold)"},
+            {"id": "b", "text": "Total contribution after variable costs ((price − variable cost) × units)"},
+            {"id": "c", "text": "The number of customers"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "calculation_error": 0.10, "misread_question": 0.30, "missing_prerequisite": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.80, "misread_question": 0.55, "missing_prerequisite": 0.20, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.02, "misread_question": 0.05, "missing_prerequisite": 0.10, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.08, "misread_question": 0.10, "missing_prerequisite": 0.40, "guess": 0.25}
+          },
+          "notes": {"a": "Aiming to preserve revenue is the pattern this misconception predicts.", "b": "Aiming at contribution points away from the misconception (towards a slip or misreading).", "c": "Unrelated target; suggests confusion about the goal.", "d": "Uncertainty is consistent with a prerequisite gap."}
+        },
+        {
+          "key": "new_unit_contribution",
+          "type": "numerical",
+          "prompt": "Quick check: after the price change, what is the contribution per unit in ₹ (price minus variable cost)?",
+          "expected_param": "new_cm",
+          "tolerance": 0.01,
+          "likelihoods": {
+            "correct": {"misconception": 0.80, "calculation_error": 0.75, "misread_question": 0.85, "missing_prerequisite": 0.15, "guess": 0.30},
+            "incorrect": {"misconception": 0.20, "calculation_error": 0.25, "misread_question": 0.15, "missing_prerequisite": 0.85, "guess": 0.70}
+          },
+          "notes": {"correct": "Can compute unit contribution, so the error is not a prerequisite gap.", "incorrect": "Struggles to compute unit contribution: a prerequisite gap is more likely."}
+        }
+      ],
+      "repair": {
+        "contrast": "Revenue preservation asks how many units keep price × units unchanged. Contribution preservation asks how many units keep (price − variable cost) × units unchanged. Because the variable cost does not fall when the price falls, every rupee of price cut comes straight out of the contribution per unit, so the volume needed to preserve contribution is much larger than the volume needed to preserve revenue.",
+        "key_rule": "Required volume increase = (old contribution per unit ÷ new contribution per unit) − 1",
+        "worked_example_template": "price_cut_volume",
+        "practice_templates": ["price_cut_volume"],
+        "transfer_templates": ["price_increase_volume_loss", "promo_discount_contribution"]
+      },
+      "support_query": "price cut volume increase needed to preserve contribution variable cost compared with preserving revenue"
+    },
+    {
+      "key": "roas_vs_profitability",
+      "title": "Treating a ROAS above 1 as profitable",
+      "description": "The learner assumes a campaign is profitable whenever attributed revenue exceeds advertising spend, ignoring that revenue must also pay for the variable cost of the goods sold.",
+      "concept_keys": ["roas"],
+      "detection_cues": ["more revenue than", "roas above 1", "roas > 1", "greater than 1", "earned more than it cost", "revenue minus spend", "revenue - spend", "made money"],
+      "correct_cues": ["contribution margin ratio", "break-even roas", "variable cost", "1 / margin", "1 ÷"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Used contribution correctly but made an arithmetic error."},
+        {"key": "misread_question", "label": "Misread the question", "description": "Answered with ROAS or revenue when contribution was asked."},
+        {"key": "missing_prerequisite", "label": "Contribution margin gap", "description": "Does not yet understand contribution margin ratios."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "roas_profit_judgement",
+          "type": "mcq",
+          "prompt": "A campaign spent ₹10,000 and is credited with ₹18,000 of revenue (a ROAS of 1.8). The products have a 40% contribution margin ratio. Did the campaign cover its advertising cost?",
+          "options": [
+            {"id": "a", "text": "Yes, it earned more revenue than it cost"},
+            {"id": "b", "text": "No, its contribution was ₹7,200, which is below the ₹10,000 spend"},
+            {"id": "c", "text": "It broke exactly even"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "calculation_error": 0.10, "misread_question": 0.20, "missing_prerequisite": 0.35, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.75, "misread_question": 0.60, "missing_prerequisite": 0.15, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.10, "misread_question": 0.10, "missing_prerequisite": 0.15, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.05, "misread_question": 0.10, "missing_prerequisite": 0.35, "guess": 0.25}
+          },
+          "notes": {"a": "Judging profit by ROAS > 1 is the predicted misconception.", "b": "Uses contribution, so the misconception is less likely.", "c": "Neither pattern; possible confusion.", "d": "Uncertainty suggests a prerequisite gap."}
+        },
+        {
+          "key": "break_even_roas_check",
+          "type": "numerical",
+          "prompt": "What is the break-even ROAS for a business whose contribution margin ratio is 40%?",
+          "expected_value": 2.5,
+          "tolerance": 0.05,
+          "likelihoods": {
+            "correct": {"misconception": 0.30, "calculation_error": 0.70, "misread_question": 0.80, "missing_prerequisite": 0.15, "guess": 0.10},
+            "incorrect": {"misconception": 0.70, "calculation_error": 0.30, "misread_question": 0.20, "missing_prerequisite": 0.85, "guess": 0.90}
+          },
+          "notes": {"correct": "Knows break-even ROAS, weakening the misconception hypothesis.", "incorrect": "Does not apply 1 ÷ margin ratio."}
+        }
+      ],
+      "repair": {
+        "contrast": "ROAS divides revenue by advertising spend, but each rupee of revenue only leaves the contribution margin ratio as contribution after variable costs. A campaign covers its advertising cost only when revenue × contribution margin ratio exceeds the spend, which means ROAS must exceed 1 ÷ contribution margin ratio, not 1.",
+        "key_rule": "Break-even ROAS = 1 ÷ contribution margin ratio",
+        "worked_example_template": "campaign_contribution",
+        "practice_templates": ["campaign_contribution"],
+        "transfer_templates": ["breakeven_roas", "scenario_contribution"]
+      },
+      "support_query": "ROAS above 1 does not mean profitable break-even ROAS contribution margin ratio advertising"
+    },
+    {
+      "key": "revenue_vs_profit",
+      "title": "Equating revenue growth with profit growth",
+      "description": "The learner treats an increase in revenue as an increase in profit or contribution, ignoring variable costs and changes in contribution per unit.",
+      "concept_keys": ["contribution_margin", "revenue_conversion"],
+      "detection_cues": ["revenue grew", "revenue increased", "more revenue", "higher sales", "sales went up", "revenue is profit"],
+      "correct_cues": ["variable cost", "contribution", "per unit", "margin"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Used contribution but made an arithmetic error."},
+        {"key": "misread_question", "label": "Misread the question", "description": "Reported revenue where contribution was asked."},
+        {"key": "missing_prerequisite", "label": "Contribution margin gap", "description": "Has not yet learned contribution margin."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "discount_revenue_growth",
+          "type": "mcq",
+          "prompt": "After a 15% discount, a shop's revenue rose by 8%. Its variable cost per unit did not change. What can you conclude about total contribution?",
+          "options": [
+            {"id": "a", "text": "Contribution rose, because revenue rose"},
+            {"id": "b", "text": "Contribution may have fallen: it depends on contribution per unit and on volume"},
+            {"id": "c", "text": "Contribution rose by 8% as well"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.45, "calculation_error": 0.10, "misread_question": 0.15, "missing_prerequisite": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.70, "misread_question": 0.60, "missing_prerequisite": 0.15, "guess": 0.25},
+            "c": {"misconception": 0.35, "calculation_error": 0.10, "misread_question": 0.15, "missing_prerequisite": 0.20, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.10, "misread_question": 0.10, "missing_prerequisite": 0.35, "guess": 0.25}
+          },
+          "notes": {"a": "Equates revenue growth with contribution growth.", "b": "Recognises the role of contribution per unit.", "c": "Equates revenue growth with contribution growth.", "d": "Uncertainty suggests a prerequisite gap."}
+        }
+      ],
+      "repair": {
+        "contrast": "Revenue counts every rupee customers pay; contribution counts only what is left after variable costs. A discount lowers the contribution of every unit, so revenue can rise while contribution falls if the extra volume is not large enough.",
+        "key_rule": "Total contribution = (price − variable cost) × units sold",
+        "worked_example_template": "promo_discount_contribution",
+        "practice_templates": ["promo_discount_contribution"],
+        "transfer_templates": ["break_even_volume", "scenario_contribution"]
+      },
+      "support_query": "revenue growth is not profit growth variable costs contribution discount"
+    },
+    {
+      "key": "correlation_vs_causation",
+      "title": "Reading correlation as causation",
+      "description": "The learner concludes that one variable causes another because they move together, without considering confounders or the need for a randomised comparison.",
+      "concept_keys": ["correlation_causation"],
+      "detection_cues": ["causes", "caused", "because of the app", "leads to", "makes customers", "proves", "so the app works"],
+      "correct_cues": ["confounder", "randomi", "experiment", "control group", "self-select", "selection"],
+      "competing_interpretations": [
+        {"key": "misread_question", "label": "Misread the question", "description": "Described the association correctly but answered a different question."},
+        {"key": "missing_prerequisite", "label": "Unfamiliar with experiments", "description": "Has not yet learned how experiments isolate causal effects."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "best_design",
+          "type": "mcq",
+          "prompt": "Which study design would best estimate whether a loyalty app causes customers to spend more?",
+          "options": [
+            {"id": "a", "text": "Compare the spending of current app users with non-users"},
+            {"id": "b", "text": "Randomly offer the app promotion to half of customers and compare the two groups"},
+            {"id": "c", "text": "Ask customers whether the app changed their spending"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.65, "misread_question": 0.15, "missing_prerequisite": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.15, "misread_question": 0.70, "missing_prerequisite": 0.20, "guess": 0.25},
+            "c": {"misconception": 0.10, "misread_question": 0.05, "missing_prerequisite": 0.20, "guess": 0.25},
+            "d": {"misconception": 0.10, "misread_question": 0.10, "missing_prerequisite": 0.30, "guess": 0.25}
+          },
+          "notes": {"a": "An observational comparison inherits the self-selection confounder.", "b": "Randomisation balances confounders.", "c": "Self-reports are weak causal evidence.", "d": "Uncertainty suggests unfamiliarity with experiments."}
+        }
+      ],
+      "repair": {
+        "contrast": "A correlation says two things move together. A causal claim says changing one would change the other. Confounders (such as customer loyalty driving both app installs and spending) can create correlations without causation; randomising who receives the treatment balances confounders on average.",
+        "key_rule": "Randomised comparison groups are needed before claiming a causal effect",
+        "practice_tags": ["correlation_causation"],
+        "transfer_tags": ["correlation_causation"]
+      },
+      "support_query": "correlation does not show causation confounder randomised experiment control group"
+    },
+    {
+      "key": "conversion_rate_vs_absolute",
+      "title": "Judging channels by conversion rate alone",
+      "description": "The learner prefers the option with the higher conversion rate even when another option produces more conversions (or more value) because it reaches more people.",
+      "concept_keys": ["revenue_conversion"],
+      "detection_cues": ["higher conversion rate", "higher rate", "converts better", "better rate", "percentage is higher"],
+      "correct_cues": ["visitors", "absolute", "number of customers", "multiply", "×"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Multiplied rates and volumes but made an arithmetic error."},
+        {"key": "misread_question", "label": "Misread the question", "description": "Answered which page converts better rather than which produces more customers."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "pages_customers",
+          "type": "mcq",
+          "prompt": "Page A converts 6% of 900 visitors. Page B converts 2.5% of 3,000 visitors. Which page produced more customers?",
+          "options": [
+            {"id": "a", "text": "Page A, because its conversion rate is higher"},
+            {"id": "b", "text": "Page B: 75 customers compared with 54"},
+            {"id": "c", "text": "They produced the same number"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "calculation_error": 0.15, "misread_question": 0.45, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.65, "misread_question": 0.40, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.15, "misread_question": 0.05, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.05, "misread_question": 0.10, "guess": 0.25}
+          },
+          "notes": {"a": "Choosing by rate alone is the predicted pattern.", "b": "Multiplies rate by volume correctly.", "c": "Possible arithmetic confusion.", "d": "Not enough evidence either way."}
+        }
+      ],
+      "repair": {
+        "contrast": "A conversion rate is a ratio; the number of customers is the rate multiplied by the number of visitors. A page with a lower rate but far more visitors can produce more customers, so investment decisions should look at absolute conversions and their value, not only the rate.",
+        "key_rule": "Conversions = visitors × conversion rate",
+        "worked_example_template": "rate_vs_absolute",
+        "practice_templates": ["rate_vs_absolute"],
+        "transfer_templates": ["channel_revenue_compare"]
+      },
+      "support_query": "high conversion rate does not guarantee large number of conversions absolute conversions visitors"
+    },
+    {
+      "key": "pp_vs_percent_change",
+      "title": "Confusing percentage points with percent change",
+      "description": "The learner treats the difference between two percentages as a percent change (or vice versa), for example calling a move from 4% to 5% a '1% increase'.",
+      "concept_keys": ["revenue_conversion"],
+      "detection_cues": ["1% increase", "increased by 1%", "same thing", "percentage points are percent"],
+      "correct_cues": ["percentage point", "relative", "divided by the starting", "÷ 4"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Knows the distinction but divided incorrectly."},
+        {"key": "misread_question", "label": "Misread which measure was asked", "description": "Gave the other (valid) measure by misreading the question."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "pp_describe",
+          "type": "mcq",
+          "prompt": "A conversion rate rises from 4% to 5%. Which description is correct?",
+          "options": [
+            {"id": "a", "text": "It rose by 1 percentage point, which is a 25% increase"},
+            {"id": "b", "text": "It rose by 25 percentage points"},
+            {"id": "c", "text": "It rose by 1%, which is the same as 1 percentage point"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.15, "calculation_error": 0.70, "misread_question": 0.70, "guess": 0.25},
+            "b": {"misconception": 0.35, "calculation_error": 0.10, "misread_question": 0.10, "guess": 0.25},
+            "c": {"misconception": 0.40, "calculation_error": 0.10, "misread_question": 0.10, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.10, "misread_question": 0.10, "guess": 0.25}
+          },
+          "notes": {"a": "Distinguishes the two measures.", "b": "Mixes the two measures.", "c": "Mixes the two measures.", "d": "Not enough evidence either way."}
+        }
+      ],
+      "repair": {
+        "contrast": "A percentage-point change is the simple difference between two percentages (5% − 4% = 1 point). A percent change is that difference relative to the starting value (1 ÷ 4 = 25%). Both are valid, but they answer different questions and must be labelled.",
+        "key_rule": "Percent change = (new − old) ÷ old; percentage-point change = new − old",
+        "worked_example_template": "conversion_change_pct",
+        "practice_templates": ["conversion_change_pct"],
+        "transfer_templates": ["conversion_change_pp"]
+      },
+      "support_query": "percentage point change versus percent change conversion rate rises from 2% to 3%"
+    },
+    {
+      "key": "mean_vs_median",
+      "title": "Using the mean as 'typical' for skewed data",
+      "description": "The learner describes a typical value with the mean even when a few extreme values pull the mean far from most observations.",
+      "concept_keys": ["decision_assumptions"],
+      "detection_cues": ["average", "mean", "add them up and divide", "sum divided"],
+      "correct_cues": ["median", "middle", "outlier", "skew"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Chose the median but sorted or counted incorrectly."},
+        {"key": "misread_question", "label": "Misread the question", "description": "Gave the mean when asked for totals-related reasoning."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "typical_order",
+          "type": "mcq",
+          "prompt": "Five orders were worth ₹500, ₹600, ₹700, ₹800 and ₹6,400. Which number best describes a typical order?",
+          "options": [
+            {"id": "a", "text": "₹1,800, the mean"},
+            {"id": "b", "text": "₹700, the median"},
+            {"id": "c", "text": "₹6,400, the largest order"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "calculation_error": 0.10, "misread_question": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.75, "misread_question": 0.55, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.05, "misread_question": 0.05, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.10, "misread_question": 0.10, "guess": 0.25}
+          },
+          "notes": {"a": "Treats the mean as typical despite the outlier.", "b": "Uses the median for skewed data.", "c": "Unrelated choice.", "d": "Not enough evidence either way."}
+        }
+      ],
+      "repair": {
+        "contrast": "The mean adds everything up and divides by the count, so a single very large value pulls it upwards. The median is the middle value once the data are sorted, so it describes a typical observation in skewed data. Use the mean when you need totals (mean × count = total).",
+        "key_rule": "For skewed data, the median describes a typical value; the mean supports totals",
+        "worked_example_template": "mean_median",
+        "practice_templates": ["mean_median"],
+        "transfer_templates": ["mean_median_total"]
+      },
+      "support_query": "mean versus median skewed order values typical order large order"
+    },
+    {
+      "key": "cac_vs_clv",
+      "title": "Judging acquisition by CAC alone or by revenue-based lifetime value",
+      "description": "The learner treats a low customer acquisition cost as automatically good, or computes lifetime value from revenue rather than contribution, overstating the value of customers.",
+      "concept_keys": ["cac_clv"],
+      "detection_cues": ["lower cac", "cheaper", "revenue per month", "monthly revenue times", "cac is lower"],
+      "correct_cues": ["contribution", "margin", "lifetime", "churn", "payback"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Used contribution but made an arithmetic error."},
+        {"key": "missing_prerequisite", "label": "Contribution margin gap", "description": "Does not yet understand contribution margin ratios."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "channel_value",
+          "type": "mcq",
+          "prompt": "Channel X acquires customers for ₹200 who stay 3 months; channel Y acquires customers for ₹600 who stay 24 months. Each customer generates ₹150 of contribution per month. Which channel creates more value per customer acquired?",
+          "options": [
+            {"id": "a", "text": "Channel X, because its acquisition cost is lower"},
+            {"id": "b", "text": "Channel Y: ₹3,600 − ₹600 = ₹3,000 per customer, versus ₹450 − ₹200 = ₹250 for X"},
+            {"id": "c", "text": "They create the same value"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.70, "calculation_error": 0.10, "missing_prerequisite": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.15, "calculation_error": 0.70, "missing_prerequisite": 0.20, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.15, "missing_prerequisite": 0.15, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.05, "missing_prerequisite": 0.35, "guess": 0.25}
+          },
+          "notes": {"a": "Judges acquisition by CAC alone.", "b": "Compares lifetime contribution with CAC.", "c": "Possible arithmetic confusion.", "d": "Uncertainty suggests a prerequisite gap."}
+        }
+      ],
+      "repair": {
+        "contrast": "CAC is only half of the comparison. Lifetime value should be built from contribution (revenue × contribution margin ratio) over the expected lifetime, and only then compared with CAC. Cheap customers who leave quickly can be worth far less than expensive customers who stay.",
+        "key_rule": "CLV = monthly contribution per customer × expected lifetime in months; compare CLV with CAC",
+        "worked_example_template": "clv_contribution",
+        "practice_templates": ["clv_contribution"],
+        "transfer_templates": ["payback_months"]
+      },
+      "support_query": "customer lifetime value based on contribution not revenue CAC payback period low CAC not automatically good"
+    },
+    {
+      "key": "statistical_vs_practical",
+      "title": "Equating statistical significance with practical importance",
+      "description": "The learner assumes that a statistically significant result is large or important enough to act on, ignoring effect size and costs.",
+      "concept_keys": ["correlation_causation"],
+      "detection_cues": ["significant so", "statistically significant means", "p-value", "significant, so worth"],
+      "correct_cues": ["effect size", "practical", "cost", "worth", "small"],
+      "competing_interpretations": [
+        {"key": "misread_question", "label": "Misread the question", "description": "Answered whether the effect is real rather than whether it matters."},
+        {"key": "missing_prerequisite", "label": "Unfamiliar with significance", "description": "Has not yet learned what significance measures."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "significant_small_lift",
+          "type": "mcq",
+          "prompt": "An A/B test on 2 million visitors finds a statistically significant lift in conversion from 3.00% to 3.05%. The change would cost ₹4,00,000 to build. What should you conclude?",
+          "options": [
+            {"id": "a", "text": "It is significant, so it is worth building"},
+            {"id": "b", "text": "The effect is probably real but small; whether to build depends on the value of the extra conversions versus the cost"},
+            {"id": "c", "text": "The result is not significant"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "misread_question": 0.20, "missing_prerequisite": 0.30, "guess": 0.25},
+            "b": {"misconception": 0.10, "misread_question": 0.65, "missing_prerequisite": 0.20, "guess": 0.25},
+            "c": {"misconception": 0.05, "misread_question": 0.05, "missing_prerequisite": 0.20, "guess": 0.25},
+            "d": {"misconception": 0.10, "misread_question": 0.10, "missing_prerequisite": 0.30, "guess": 0.25}
+          },
+          "notes": {"a": "Treats significance as importance.", "b": "Separates significance from practical value.", "c": "Misunderstands the result.", "d": "Not enough evidence either way."}
+        }
+      ],
+      "repair": {
+        "contrast": "Statistical significance says an effect is unlikely to be zero; it does not say the effect is large. With very large samples even tiny lifts become significant. Practical significance asks whether the size of the effect, and its value, justifies the cost and risk of acting.",
+        "key_rule": "Significance answers 'is it real?'; practical significance answers 'is it worth it?'",
+        "practice_tags": ["correlation_causation"],
+        "transfer_tags": ["correlation_causation"]
+      },
+      "support_query": "statistically significant practical significance large samples small lift worth the cost"
+    },
+    {
+      "key": "total_vs_marginal_cost",
+      "title": "Using average total cost for incremental decisions",
+      "description": "The learner rejects (or prices) an incremental order using average total cost per unit, including fixed costs that will be paid regardless of the decision.",
+      "concept_keys": ["contribution_margin"],
+      "detection_cues": ["average cost", "average total cost", "below cost", "loses money per unit", "full cost", "including rent"],
+      "correct_cues": ["marginal", "incremental", "variable cost", "fixed costs are paid anyway", "spare capacity"],
+      "competing_interpretations": [
+        {"key": "calculation_error", "label": "Arithmetic slip", "description": "Used variable cost but made an arithmetic error."},
+        {"key": "misread_question", "label": "Misread the situation", "description": "Assumed capacity was full or fixed costs would change."},
+        {"key": "guess", "label": "No systematic reasoning", "description": "Guess or insufficient engagement."}
+      ],
+      "diagnostic_probes": [
+        {
+          "key": "spare_capacity_order",
+          "type": "mcq",
+          "prompt": "A workshop has spare capacity. Its variable cost is ₹200 per unit and its average total cost (including rent) is ₹260. A one-off order offers ₹230 per unit and fixed costs will not change. Does accepting the order add to profit?",
+          "options": [
+            {"id": "a", "text": "No, because ₹230 is below the ₹260 average cost"},
+            {"id": "b", "text": "Yes, each unit adds ₹30 of contribution because the rent is paid anyway"},
+            {"id": "c", "text": "It exactly breaks even"},
+            {"id": "d", "text": "I'm not sure"}
+          ],
+          "likelihoods": {
+            "a": {"misconception": 0.75, "calculation_error": 0.10, "misread_question": 0.40, "guess": 0.25},
+            "b": {"misconception": 0.10, "calculation_error": 0.70, "misread_question": 0.45, "guess": 0.25},
+            "c": {"misconception": 0.05, "calculation_error": 0.15, "misread_question": 0.05, "guess": 0.25},
+            "d": {"misconception": 0.10, "calculation_error": 0.05, "misread_question": 0.10, "guess": 0.25}
+          },
+          "notes": {"a": "Uses average total cost for an incremental decision.", "b": "Uses marginal (variable) cost.", "c": "Possible arithmetic confusion.", "d": "Not enough evidence either way."}
+        }
+      ],
+      "repair": {
+        "contrast": "For a one-off decision with spare capacity, only the costs that change because of the decision matter. Fixed costs such as rent are paid either way, so the relevant comparison is price versus marginal (variable) cost, not price versus average total cost.",
+        "key_rule": "Incremental contribution = (offer price − variable cost) × units",
+        "worked_example_template": "special_order",
+        "practice_templates": ["special_order"],
+        "transfer_templates": ["break_even_volume"]
+      },
+      "support_query": "marginal incremental cost one-off order average total cost spare capacity fixed costs paid anyway"
+    }
+  ]
+}
