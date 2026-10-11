@@ -1,0 +1,77 @@
+{
+  "title": "Lecture 3: Why Price Cuts Need More Volume Than You Think",
+  "voice": "Piper TTS en_US-lessac-medium (synthesized speech)",
+  "note": "Planned segment timings; ground truth for evaluation only. The application derives its own timestamps by transcribing the MP4.",
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 14.5,
+      "frame_text": "Lecture 3\nWhy Price Cuts Need More Volume\nThan You Think",
+      "narration": "Welcome to lecture three of the Blindspot Lab demo unit. This short lecture uses synthetic examples to explain why a price cut usually needs much more extra volume than people expect. The narration is computer generated."
+    },
+    {
+      "index": 1,
+      "start": 14.5,
+      "end": 28.12,
+      "frame_text": "Contribution margin\n= price - variable cost",
+      "narration": "Start with contribution margin. Contribution margin per unit is the selling price minus the variable cost of producing and delivering one unit. It is the money each sale contributes towards fixed costs and profit."
+    },
+    {
+      "index": 2,
+      "start": 28.12,
+      "end": 37.03,
+      "frame_text": "Coffee pods\nPrice ₹40 · Variable cost ₹25\nContribution ₹15 per pod",
+      "narration": "Imagine a coffee pod sold for forty rupees, with a variable cost of twenty five rupees. Each pod contributes fifteen rupees."
+    },
+    {
+      "index": 3,
+      "start": 37.03,
+      "end": 52.62,
+      "frame_text": "Cut price to ₹35\nContribution falls to ₹10 per pod",
+      "narration": "Now the marketing team proposes cutting the price to thirty five rupees. The variable cost does not change, so the contribution per pod falls from fifteen rupees to ten rupees. A twelve and a half percent price cut has removed one third of the contribution per unit."
+    },
+    {
+      "index": 4,
+      "start": 52.62,
+      "end": 63.16,
+      "frame_text": "Preserve contribution\n15 ÷ 10 - 1 = +50% volume",
+      "narration": "To earn the same total contribution, the business must sell fifteen divided by ten, which is one and a half times as many pods. That is a fifty percent increase in volume."
+    },
+    {
+      "index": 5,
+      "start": 63.16,
+      "end": 74.85,
+      "frame_text": "Preserve revenue\n40 ÷ 35 - 1 = +14.3% volume",
+      "narration": "If you only try to keep revenue constant, you would aim for about fourteen percent more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before."
+    },
+    {
+      "index": 6,
+      "start": 74.85,
+      "end": 87.22,
+      "frame_text": "Revenue preservation\nis not\ncontribution preservation",
+      "narration": "So always ask which quantity you are trying to preserve. Revenue preservation and contribution preservation are different goals, and for pricing decisions, contribution is usually the one that matters."
+    },
+    {
+      "index": 7,
+      "start": 87.22,
+      "end": 103.13,
+      "frame_text": "Break-even ROAS\n= 1 ÷ contribution margin ratio",
+      "narration": "The same logic applies to advertising. A return on advertising spend above one does not mean a campaign is profitable. With a contribution margin ratio of thirty seven point five percent, as in our coffee example, the break-even ROAS is about two point seven."
+    },
+    {
+      "index": 8,
+      "start": 103.13,
+      "end": 118.44,
+      "frame_text": "Correlation is not causation\nUse a randomised control group",
+      "narration": "Finally, be careful with evidence. If customers who received a discount bought more, that correlation does not prove the discount caused the extra purchases. A randomised experiment with a control group is the cleanest way to measure the causal effect."
+    },
+    {
+      "index": 9,
+      "start": 118.44,
+      "end": 132.14,
+      "frame_text": "Summary\nCompare contribution, not revenue\nCheck break-even ROAS\nLook for experimental evidence",
+      "narration": "To summarise: compare contribution, not revenue. Compute the break-even ROAS before celebrating a campaign. And look for experimental evidence before claiming that a marketing action caused a result. Thanks for watching."
+    }
+  ]
+}
