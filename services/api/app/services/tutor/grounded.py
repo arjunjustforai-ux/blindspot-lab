@@ -27,13 +27,21 @@ from app.services.ai import llm
 from app.services.ai.oplog import BudgetExceeded, log_operation
 from app.services.ai.reranker import get_reranker, sigmoid
 from app.services.ai.text import content_terms, lexical_overlap, normalize_ws, split_sentences
-from app.services.retrieval.hybrid import Hit, RetrievalResult, query_coverage, retrieve
+from app.services.retrieval.hybrid import (
+    MODALITY_HINT_BONUS,
+    Hit,
+    RetrievalResult,
+    modality_hints,
+    query_coverage,
+    retrieve,
+)
 from app.services.tutor.citations import build_citation, validate_citation_ids
 
 ANSWER_PROMPT_VERSION = "grounded-answer-v1"
 GATE_LOGIT = -0.85          # ~0.30 relevance probability for the best unit
 GATE_COVERAGE = 0.34        # share of query content terms present in top units
 SENTENCE_MIN_LOGIT = -1.0   # a quoted sentence must itself be relevant
+SENTENCE_RELATIVE_CUT = 5.0  # ...and within this many logits of the best sentence (drops tangents)
 MAX_SENTENCES = 4
 
 PRONOUN_FOLLOWUP = re.compile(r"\b(it|this|that|they|those|these|its|their|above|same)\b", re.IGNORECASE)
@@ -178,16 +186,22 @@ def _answer_extractive(db: Session, question: str, res: RetrievalResult) -> Tuto
     if not cands:
         return _refusal(question, res, "No passage contains a usable answer.", "extractive")
     if reranker:
-        logits = reranker.score(question, [((c.hit.unit.heading + ": ") if c.structured and c.hit.unit.heading
-                                            else "") + c.text for c in cands])
+        # Sentences are scored with their section heading as context, but quoted without it.
+        logits = reranker.score(question, [((c.hit.unit.heading + ": ") if c.hit.unit.heading else "") + c.text
+                                           for c in cands])
     else:
         logits = [lexical_overlap(question, c.text) * 10 - 5 for c in cands]
-    # A structured unit is judged by the better of its unit-level and span-level relevance.
-    logits = [max(lg, c.hit.rerank_logit or -99) if c.structured else lg for c, lg in zip(cands, logits)]
+    # A structured unit is judged by the better of its unit-level and span-level relevance
+    # (the unit-level score already includes any source-type hint bonus).
+    hinted = modality_hints(question)
+    logits = [max(lg, c.hit.rerank_logit or -99) if c.structured
+              else lg + (MODALITY_HINT_BONUS if c.hit.source.modality in hinted else 0.0)
+              for c, lg in zip(cands, logits)]
     scored = sorted(zip(cands, logits), key=lambda x: x[1], reverse=True)
     picked: list[tuple[_Cand, float]] = []
+    floor = max(SENTENCE_MIN_LOGIT, scored[0][1] - SENTENCE_RELATIVE_CUT) if scored else SENTENCE_MIN_LOGIT
     for c, lg in scored:
-        if lg < SENTENCE_MIN_LOGIT or len(picked) >= MAX_SENTENCES:
+        if lg < floor or len(picked) >= MAX_SENTENCES:
             break
         st = set(content_terms(c.text))
         if any(len(st & set(content_terms(p.text))) / max(len(st), 1) > 0.6 for p, _ in picked):
@@ -219,7 +233,7 @@ def _answer_extractive(db: Session, question: str, res: RetrievalResult) -> Tuto
                                         start_override=cs[0].start))
     for h in res.hits[:4]:
         if h.unit.modality in ("pdf_figure", "slide_figure", "slide_chart") and h.unit.id not in cid_of and \
-                (h.rerank_logit or -99) >= 0:
+                (h.rerank_logit or -99) >= max(0.0, floor):
             cid = f"S{len(cid_of) + 1}"
             cid_of[h.unit.id] = cid
             citations.append(build_citation(cid, h.unit, h.source, support=h.support))

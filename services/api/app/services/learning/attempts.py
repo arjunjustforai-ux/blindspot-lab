@@ -32,7 +32,10 @@ from app.services.learner import mastery
 from app.services.learner.recommender import READY, prerequisite_map
 from app.services.tutor.citations import build_citation
 
-SIGNATURE_LR = 3.0       # assessment-context signature match (no probing yet)
+# Likelihood ratios for assessment-context evidence (no probing yet). An exact numeric match to the
+# value a misconception predicts is far more specific than picking one of three wrong MCQ options.
+SIGNATURE_LR_NUMERIC = 6.0
+SIGNATURE_LR_MCQ = 2.5
 CUE_ONLY_LR = 1.6
 AVOIDED_TRAP_LR = 0.5    # correct answer on a question carrying a signature for an existing hypothesis
 
@@ -157,7 +160,10 @@ def _hypothesis_evidence(db: Session, user: User, course_id: uuid.UUID, q: Quest
         top = cls.candidates[0]
         md = definition(db, top["misconception_key"])
         if md is not None:
-            lr = SIGNATURE_LR if top["pattern"] == "signature" else CUE_ONLY_LR
+            if top["pattern"] == "signature":
+                lr = SIGNATURE_LR_NUMERIC if q.question_type == "numerical" else SIGNATURE_LR_MCQ
+            else:
+                lr = CUE_ONLY_LR
             h, _ = record_evidence(
                 db, user_id=user.id, course_id=course_id, md=md, concept_id=q.concept_id,
                 kind="signature_match" if top["pattern"] == "signature" else "reasoning_cue",

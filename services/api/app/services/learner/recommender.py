@@ -25,6 +25,8 @@ from app.models import Concept, ConceptPrerequisite, MisconceptionDefinition, Mi
 from app.services.learner.mastery import concept_view, states_for
 
 READY = 0.6
+INVESTIGATE_P = 0.5
+INTERLEAVE_AFTER = 12  # scored answers on other concepts before a proficient concept is re-checked
 
 
 def target_difficulty(p: float | None) -> int:
@@ -61,6 +63,40 @@ def active_hypotheses(db: Session, user_id: uuid.UUID, course_id: uuid.UUID) -> 
     return out
 
 
+def _attempts_since_last_seen(db: Session, user_id: uuid.UUID, course_id: uuid.UUID) -> dict[uuid.UUID, int]:
+    """For each concept: number of scored attempts on other concepts since it was last observed."""
+    from app.models import Question, QuestionAttempt
+
+    rows = db.execute(
+        select(Question.concept_id).join(QuestionAttempt, QuestionAttempt.question_id == Question.id)
+        .where(QuestionAttempt.user_id == user_id, QuestionAttempt.course_id == course_id,
+               QuestionAttempt.is_correct.is_not(None))
+        .order_by(QuestionAttempt.created_at)
+    ).all()
+    out: dict[uuid.UUID, int] = {}
+    for (cid,) in rows:
+        for k in out:
+            out[k] += 1
+        out[cid] = 0
+    return out
+
+
+def _last_investigations(db: Session, user_id: uuid.UUID, course_id: uuid.UUID) -> dict[str, str]:
+    """misconception key -> ISO time the most recent investigation of it was completed or last advanced."""
+    from app.models import DiagnosticSession
+
+    out: dict[str, str] = {}
+    for s in db.scalars(select(DiagnosticSession).where(DiagnosticSession.user_id == user_id,
+                                                        DiagnosticSession.course_id == course_id)):
+        if not s.hypotheses:
+            continue
+        key = s.hypotheses[0].get("misconception_key")
+        t = (s.completed_at or s.updated_at).isoformat()
+        if key and (key not in out or t > out[key]):
+            out[key] = t
+    return out
+
+
 def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int = 5) -> list[dict[str, Any]]:
     now = datetime.now(UTC)
     concepts = list(db.scalars(select(Concept).where(Concept.course_id == course_id, Concept.kind == "concept",
@@ -82,10 +118,16 @@ def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int 
             "first observations.", "concept_ids": [str(c.id) for c in concepts], "difficulty": 2,
         }]
 
+    last_investigation = _last_investigations(db, user_id, course_id)
     for h in active_hypotheses(db, user_id, course_id):
-        if h["status"] in ("suspected", "supported", "unresolved") or (
-                h["status"] == "resolving" and h["revisit_at"] and h["revisit_at"] <= now.isoformat()):
-            pr = {"supported": 95, "suspected": 90, "unresolved": 80, "resolving": 70}[h["status"]]
+        due_revisit = h["status"] == "resolving" and h["revisit_at"] and h["revisit_at"] <= now.isoformat()
+        # Automatic recommendations need a posterior of at least 0.5; weaker hypotheses are probed
+        # cheaply by targeted practice questions first (see assessment.selection).
+        if (h["status"] in ("suspected", "supported") and h["posterior"] >= INVESTIGATE_P) or due_revisit:
+            done_at = last_investigation.get(h["misconception_key"])
+            if done_at and not due_revisit and h["updated_at"] <= done_at:
+                continue  # already investigated, and no new evidence since
+            pr = {"supported": 95, "suspected": 90, "resolving": 70}[h["status"]]
             what = "revisit" if h["status"] == "resolving" else "investigate"
             recs.append({
                 "type": "blindspot_session", "priority": pr, "title": f"{what.title()}: {h['title']}",
@@ -123,14 +165,17 @@ def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int 
                 "concept_ids": [str(c.id)], "difficulty": target_difficulty(p),
             })
 
+    since = _attempts_since_last_seen(db, user_id, course_id)
     for c in concepts:
         v = views[c.id]
-        if v["p_mastery"] is not None and (v["review_due"] or v["stale"]) and v["p_mastery"] >= READY:
+        interleave_due = since.get(c.id, 0) >= INTERLEAVE_AFTER
+        if v["p_mastery"] is not None and (v["review_due"] or v["stale"] or interleave_due) and v["p_mastery"] >= READY:
             recs.append({
                 "type": "review", "priority": 50, "title": f"Spaced review: {c.name}",
-                "rationale": "The last reliable demonstration is due for review "
-                f"({'stale evidence' if v['stale'] else 'review interval reached'}); a quick retrieval check guards "
-                "against forgetting, which BKT itself does not model.",
+                "rationale": "The last reliable demonstration is due for review ("
+                + ("stale evidence" if v["stale"] else "review interval reached" if v["review_due"]
+                   else f"{since.get(c.id, 0)} answers on other concepts since the last check") + "); a quick "
+                "interleaved retrieval check guards against forgetting, which BKT itself does not model.",
                 "concept_ids": [str(c.id)], "difficulty": target_difficulty(v["p_mastery"]),
             })
         if v["p_mastery"] is None:

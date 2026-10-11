@@ -1,0 +1,260 @@
+{
+ "version": "v1",
+ "numerical": [
+  {
+   "key": "G01",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "100",
+   "expect": true
+  },
+  {
+   "key": "G02",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "100%",
+   "expect": true
+  },
+  {
+   "key": "G03",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "1.0",
+   "expect": true,
+   "note": "fraction form"
+  },
+  {
+   "key": "G04",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "100.4",
+   "expect": true
+  },
+  {
+   "key": "G05",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "99",
+   "expect": false
+  },
+  {
+   "key": "G06",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "25%",
+   "expect": false
+  },
+  {
+   "key": "G07",
+   "answer": 100,
+   "unit": "%",
+   "tolerance": 0.6,
+   "response": "two times",
+   "expect": null,
+   "note": "unreadable: should not be graded"
+  },
+  {
+   "key": "G08",
+   "answer": 4000,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "₹4,000",
+   "expect": true
+  },
+  {
+   "key": "G09",
+   "answer": 4000,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "4k",
+   "expect": true
+  },
+  {
+   "key": "G10",
+   "answer": -11700,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "-11700",
+   "expect": true
+  },
+  {
+   "key": "G11",
+   "answer": -11700,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "−₹11,700",
+   "expect": true
+  },
+  {
+   "key": "G12",
+   "answer": -11700,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "11700",
+   "expect": false,
+   "note": "sign error"
+  },
+  {
+   "key": "G13",
+   "answer": 1.667,
+   "unit": "x",
+   "tolerance": 0.05,
+   "response": "1.67x",
+   "expect": true
+  },
+  {
+   "key": "G14",
+   "answer": 1.667,
+   "unit": "x",
+   "tolerance": 0.05,
+   "response": "2",
+   "expect": false
+  },
+  {
+   "key": "G15",
+   "answer": 125000,
+   "unit": "₹",
+   "tolerance": 1,
+   "response": "1.25 lakh",
+   "expect": true
+  },
+  {
+   "key": "G16",
+   "answer": 4.5,
+   "unit": "months",
+   "tolerance": 0.05,
+   "response": "4.5 months",
+   "expect": true
+  },
+  {
+   "key": "G17",
+   "answer": 4.5,
+   "unit": "months",
+   "tolerance": 0.05,
+   "response": "four and a half",
+   "expect": true,
+   "note": "number words are not parsed (known limitation)"
+  },
+  {
+   "key": "G18",
+   "answer": 300,
+   "unit": "units",
+   "tolerance": 0.5,
+   "response": "300 units",
+   "expect": true
+  }
+ ],
+ "short_answer": [
+  {
+   "key": "SA01",
+   "bank_key": "CM4",
+   "label": "good",
+   "expect": true,
+   "response": "Preserving revenue keeps price times units the same, but preserving contribution keeps price minus variable cost times units the same. Since the variable cost does not fall, contribution per unit drops by the whole price cut, so a much larger volume increase is needed to preserve contribution."
+  },
+  {
+   "key": "SA02",
+   "bank_key": "CM4",
+   "label": "partial",
+   "expect": false,
+   "response": "Revenue is price times units while contribution subtracts variable costs."
+  },
+  {
+   "key": "SA03",
+   "bank_key": "CM4",
+   "label": "wrong",
+   "expect": false,
+   "response": "They are the same thing because more sales always make up for a lower price."
+  },
+  {
+   "key": "SA04",
+   "bank_key": "RO4",
+   "label": "good",
+   "expect": true,
+   "response": "ROAS only compares revenue with ad spend, not profit. The revenue still has to cover the variable costs of the products sold, so a campaign needs a ROAS above the break-even ROAS, which is 1 divided by the contribution margin ratio."
+  },
+  {
+   "key": "SA05",
+   "bank_key": "RO4",
+   "label": "partial",
+   "expect": false,
+   "response": "Because revenue is not profit."
+  },
+  {
+   "key": "SA06",
+   "bank_key": "RO4",
+   "label": "wrong",
+   "expect": false,
+   "response": "A ROAS above 1 means you earned more than you spent, so it is always profitable."
+  },
+  {
+   "key": "SA07",
+   "bank_key": "CO5",
+   "label": "good",
+   "expect": true,
+   "response": "Statistical significance means the result would be unlikely if there were truly no effect. Practical significance asks whether the effect is large enough to be worth acting on given the costs."
+  },
+  {
+   "key": "SA08",
+   "bank_key": "CO5",
+   "label": "partial",
+   "expect": false,
+   "response": "Statistical significance means the result is probably real."
+  },
+  {
+   "key": "SA09",
+   "bank_key": "CO5",
+   "label": "wrong",
+   "expect": false,
+   "response": "They mean exactly the same thing."
+  },
+  {
+   "key": "SA10",
+   "bank_key": "RC4",
+   "label": "good",
+   "expect": true,
+   "response": "The number of customers equals visitors multiplied by the conversion rate, so a page with many more visitors can produce more customers even if its conversion rate is lower."
+  },
+  {
+   "key": "SA11",
+   "bank_key": "RC4",
+   "label": "partial",
+   "expect": false,
+   "response": "The other page might get more traffic."
+  },
+  {
+   "key": "SA12",
+   "bank_key": "RC4",
+   "label": "wrong",
+   "expect": false,
+   "response": "A higher conversion rate always produces more customers."
+  },
+  {
+   "key": "SA13",
+   "bank_key": "DA5",
+   "label": "good",
+   "expect": true,
+   "response": "Campaign results depend on uncertain assumptions such as conversion rate, order value and margin, so scenario analysis changes several of them together to show pessimistic, expected and optimistic outcomes."
+  },
+  {
+   "key": "SA14",
+   "bank_key": "DA5",
+   "label": "partial",
+   "expect": false,
+   "response": "It helps you plan better."
+  },
+  {
+   "key": "SA15",
+   "bank_key": "DA5",
+   "label": "wrong",
+   "expect": false,
+   "response": "It removes all uncertainty from the plan."
+  }
+ ]
+}

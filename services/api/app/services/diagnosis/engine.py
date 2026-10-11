@@ -171,6 +171,18 @@ def answer_question(db: Session, user: User, s: DiagnosticSession, response: dic
            response=response, reasoning=reasoning, confidence=confidence, feedback=res.feedback)
     cls = res.classification
     catalog = catalog_by_key()
+    if res.grade.is_correct:
+        # Avoiding the trap a misconception predicts is evidence against it.
+        for sig in q.misconception_signatures:
+            mk = sig.get("misconception_key")
+            md0 = definition(db, mk) if mk else None
+            h0 = get_hypothesis(db, user.id, s.course_id, md0) if md0 else None
+            if h0 is not None and h0.status not in ("rejected", "resolved"):
+                record_evidence(db, user_id=user.id, course_id=s.course_id, md=md0, concept_id=s.concept_id,
+                                kind="avoided_trap", summary="Answered the investigation question correctly, avoiding "
+                                "the answer this misconception predicts.", likelihood_ratio=0.4, session_id=s.id,
+                                attempt_id=res.attempt.id,
+                                status_override="resolved" if h0.status == "resolving" else None)
     if cls.category == "correct_supported":
         s.outcome = "no_blindspot_detected"
         _event(s, "note", text="Correct answer with consistent reasoning. To check that this understanding transfers, "

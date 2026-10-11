@@ -13,7 +13,7 @@ from app.models import CourseMisconception, MisconceptionDefinition, Misconcepti
 from app.services.diagnosis.hypotheses import status_for
 from app.services.knowledge.catalog import misconception_catalog
 
-BASE_RATE = 0.25  # prior that a learner holds a given catalogued misconception (assumption)
+BASE_RATE = 0.20  # prior that a learner holds a given catalogued misconception (assumption)
 
 
 def _odds(p: float) -> float:

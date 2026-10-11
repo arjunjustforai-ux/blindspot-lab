@@ -25,9 +25,21 @@ from app.config import get_settings
 from app.models import ContentUnit, SourceFile
 from app.services.ai.embeddings import get_embedder
 from app.services.ai.reranker import get_reranker, sigmoid
-from app.services.ai.text import STOPWORDS, content_terms, lexical_overlap, tokens
+from app.services.ai.text import STOPWORDS, content_terms, tokens
 
 RRF_K = 60
+MODALITY_HINT_BONUS = 1.5  # logit bonus when the question names a source type ("in the lecture ...")
+HINTS = {
+    "video": re.compile(r"\b(lecture|video|recording|narrat\w*|speaker said|in the talk)\b", re.I),
+    "pptx": re.compile(r"\b(slides?|deck|presentation|speaker notes)\b", re.I),
+    "pdf": re.compile(r"\b(primer|textbook|chapter|pdf|reading|handout)\b", re.I),
+}
+META_TERMS = frozenset({"course", "material", "say", "according", "lecture", "slide", "primer", "deck", "video",
+                        "chapter", "explain", "describe", "mention", "show", "note", "speaker", "text", "listed"})
+
+
+def modality_hints(query: str) -> set[str]:
+    return {m for m, rx in HINTS.items() if rx.search(query)}
 
 
 @dataclass
@@ -164,19 +176,24 @@ def retrieve(
         t0 = time.perf_counter()
         docs = [((h.unit.heading + ". ") if h.unit.heading else "") + h.unit.content for h in hits]
         logits = reranker.score(query, docs)
+        hinted = modality_hints(query)
         for h, lg in zip(hits, logits):
-            h.rerank_logit = lg
+            h.rerank_logit = lg + (MODALITY_HINT_BONUS if h.source.modality in hinted else 0.0)
         hits.sort(key=lambda h: (h.rerank_logit or -99.0), reverse=True)
         timings["rerank"] = int((time.perf_counter() - t0) * 1000)
     return RetrievalResult(query=query, hits=hits[:k], candidates=len(fused), timings_ms=timings)
 
 
 def query_coverage(query: str, hits: list[Hit], top: int = 3) -> float:
-    """Fraction of the query's content terms that appear in the top retrieved units."""
+    """Fraction of the query's content terms (ignoring meta words such as 'course', 'lecture')
+    that appear in the top retrieved units."""
     if not hits:
         return 0.0
-    joined = " ".join(((h.unit.heading or "") + " " + h.unit.content) for h in hits[:top])
-    return lexical_overlap(query, joined)
+    terms = {t for t in content_terms(query) if t not in META_TERMS}
+    if not terms:
+        return 1.0
+    joined = set(content_terms(" ".join(((h.unit.heading or "") + " " + h.unit.content) for h in hits[:top])))
+    return len(terms & joined) / len(terms)
 
 
 def key_terms(query: str) -> list[str]:
