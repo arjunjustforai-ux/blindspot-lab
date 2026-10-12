@@ -29,4 +29,4 @@ Status as of this commit. "Done" items were verified in the repository; items ne
 - [ ] Demo video URL works in a private/incognito window
 - [ ] Devpost text, video link, repository link, Track D, all team members added
 - [ ] Optional: generative mode tried with a key (`LLM_PROVIDER=openai`) and, if so, a fresh evaluation run recorded with the RAGAS LLM-judge metrics
-- [ ] No secrets committed (`.env` is git-ignored; check `git log -p` for keys before making the repo public)
+- [x] No secrets committed: full history scanned on 2026-10-12 (only `.env.example` with placeholders; no API keys, tokens or private keys). `.env` stays git-ignored; re-check before adding any key-dependent config
