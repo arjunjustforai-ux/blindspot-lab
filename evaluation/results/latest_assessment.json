@@ -1,0 +1,108 @@
+{
+ "id": "3eb45a8b-4a40-4cb6-b984-760694283f39",
+ "kind": "assessment",
+ "dataset": "question_verification+grading",
+ "dataset_version": "v1",
+ "model_info": {
+  "llm": null,
+  "python": "3.13.16",
+  "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+  "embedding": "local:BAAI/bge-small-en-v1.5",
+  "llm_provider": "local",
+  "transcription": "local:base.en"
+ },
+ "prompt_version": null,
+ "seed": 7,
+ "started_at": "2026-10-12T00:51:44.166791+00:00",
+ "finished_at": "2026-10-12T00:51:48.543285+00:00",
+ "config": {
+  "course_id": "40caee01-beb3-4574-8d61-a16a57e0beef"
+ },
+ "summary": {
+  "pool": {
+   "total": 97,
+   "verified": 97,
+   "valid_question_rate": 1.0,
+   "by_origin": {
+    "template": {
+     "verified": 64,
+     "rejected": 0
+    },
+    "bank": {
+     "verified": 33,
+     "rejected": 0
+    }
+   },
+   "by_type": {
+    "numerical": 63,
+    "mcq": 29,
+    "short_answer": 5
+   },
+   "by_difficulty": {
+    "1": 25,
+    "2": 54,
+    "3": 18
+   },
+   "by_concept": {
+    "Customer acquisition cost and lifetime value": 14,
+    "Return on advertising spend (ROAS)": 15,
+    "Revenue and conversion metrics": 17,
+    "Decisions under changing assumptions": 14,
+    "Contribution margin": 31,
+    "Correlation, causation and experiments": 6
+   }
+  },
+  "answer_keys": {
+   "template_questions": 64,
+   "plug_back_pass_rate": 1.0,
+   "note": "Bank items carry author keys (instructor-reviewable); they are covered by the verifier and grading checks rather than an automatic oracle."
+  },
+  "verifier": {
+   "n": 18,
+   "flawed": 12,
+   "sound": 6,
+   "flaw_detection_rate": 1.0,
+   "false_rejection_rate": 0.0,
+   "accuracy": 1.0
+  },
+  "source_tags": {
+   "verified_with_sources": 1.0,
+   "source_concept_agreement": 0.9897,
+   "definition": "a cited source unit is tagged to the question's concept or a sub-concept"
+  },
+  "numeric_grading": {
+   "n": 18,
+   "accuracy": 0.9444
+  },
+  "short_answer_grading": {
+   "n": 15,
+   "accuracy": 0.9333,
+   "flagged_for_review": 0.2,
+   "confusion": {
+    "good->pass": 5,
+    "partial->pass": 1,
+    "wrong->fail": 3,
+    "partial->fail": 3,
+    "partial->fail+review": 1,
+    "wrong->fail+review": 2
+   },
+   "grader": "local rubric (keywords + embedding similarity)"
+  },
+  "repetition": {
+   "sessions": 6,
+   "questions_per_session": 6,
+   "delivered": 34,
+   "adaptive_exact_repeat_rate": 0.0,
+   "adaptive_family_repeat_rate": 0.3235,
+   "random_exact_repeat_rate": 0.1765,
+   "random_family_repeat_rate": 0.2647,
+   "note": "Family = template or bank item family; template families legitimately recur with new numbers once a concept's families are exhausted (evidence from repeats is down-weighted in BKT)."
+  }
+ },
+ "limitations": [
+  "Bank answer keys are author-provided; the adversarial set tests the verifier's checks, not every key.",
+  "Short-answer grading in local mode is a transparent keyword + embedding rubric scorer; it is weaker than an LLM or human grader and flags borderline answers for review.",
+  "Repetition is measured for one simulated learner over six assessments."
+ ],
+ "results_file": "assessment_20261012T005148.json"
+}

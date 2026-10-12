@@ -219,8 +219,38 @@ function RagTab({ run }: { run: EvalRun }) {
           </Card>
         )}
       </div>
+      {s.ingestion && <IngestionCard ing={s.ingestion} />}
       <Cases runId={run.id} kind="rag" />
     </div>
+  );
+}
+
+function IngestionCard({ ing }: { ing: any }) {
+  const rows: [string, string, string][] = [];
+  Object.entries(ing.sources as Record<string, any>).forEach(([file, info]) => {
+    if (info.page_coverage !== undefined) rows.push([file, "Pages with extracted units", pct(info.page_coverage, 1)]);
+    if (info.slide_coverage !== undefined) rows.push([file, "Slides with extracted units", pct(info.slide_coverage, 1)]);
+    if (info.video_span_coverage !== undefined) rows.push([file, "Narration segments covered by transcript units", pct(info.video_span_coverage, 1)]);
+    if (info.asr_wer !== undefined) rows.push([file, `Speech-to-text word error rate vs narration script (${info.transcription_model}, ${info.asr_reference_words} words)`, pct(info.asr_wer, 1)]);
+  });
+  rows.push(["All sources", "Units with a page, slide or timestamp anchor", pct(ing.units_with_provenance, 1)]);
+  return (
+    <Card className="mt-4">
+      <CardHeader>
+        <CardTitle>Ingestion quality</CardTitle>
+        <CardDescription>Measured against the demo pack&apos;s ground truth in the same run.</CardDescription>
+      </CardHeader>
+      <CardContent className="divide-y divide-line text-sm">
+        {rows.map(([f, k, v]) => (
+          <div key={f + k} className="flex items-center justify-between gap-3 py-1.5">
+            <span className="min-w-0 truncate text-muted">
+              <span className="font-mono text-xs text-subtle">{f}</span> · {k}
+            </span>
+            <span className="font-mono">{v}</span>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
   );
 }
 

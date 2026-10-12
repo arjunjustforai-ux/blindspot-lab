@@ -83,3 +83,16 @@ def test_production_refuses_default_or_short_jwt_secret():
     with pytest.raises(ValidationError):
         Settings(environment="production", jwt_secret="short")
     assert Settings(environment="production", jwt_secret="x" * 40).environment == "production"
+
+
+def test_whisper_words_are_split_into_sentence_segments():
+    from app.services.ai.transcription import sentence_segments
+
+    words = [(0.0, 0.4, " Start", 0.9), (0.4, 0.9, " here.", 0.8), (31.2, 31.6, " Then", 0.9),
+             (31.6, 32.0, " 50%", 0.7), (32.0, 32.5, " more?", 0.9), (40.0, 40.5, " Trailing", 0.5)]
+    segs = sentence_segments(words)
+    assert [s.text for s in segs] == ["Start here.", "Then 50% more?", "Trailing"]
+    assert (segs[1].start, segs[1].end) == (31.2, 32.5)
+    assert segs[0].confidence == pytest.approx(0.85)
+    long = [(float(i), i + 0.9, f" w{i}", None) for i in range(45)]
+    assert all(s.end - s.start <= 21 for s in sentence_segments(long))

@@ -15,6 +15,7 @@ from app.schemas import ConversationIn, KnowledgeCheckIn, MessageIn
 from app.services.assessment.sessions import view as assessment_view
 from app.services.learning.attempts import record_exposure
 from app.services.tutor.grounded import answer
+from app.services.tutor.learner_context import learner_context
 
 router = APIRouter(prefix="/api", tags=["tutor"])
 
@@ -23,7 +24,7 @@ def _msg(m: TutorMessage) -> dict[str, Any]:
     return {"id": str(m.id), "role": m.role, "content": m.content, "grounding_status": m.grounding_status,
             "answer_mode": m.answer_mode, "allow_external": m.allow_external, "citations": m.citations,
             "external_content": m.external_content, "concept_ids": m.concept_ids, "support_score": m.support_score,
-            "created_at": m.created_at.isoformat()}
+            "learner_context": m.learner_context or {}, "created_at": m.created_at.isoformat()}
 
 
 def _conv(db: DB, user: CurrentUser, conversation_id: uuid.UUID) -> Conversation:
@@ -85,6 +86,8 @@ def send_message(conversation_id: uuid.UUID, body: MessageIn, db: DB, user: Curr
                       answer_mode=a.mode, allow_external=body.allow_external,
                       citations=a.citations + [{**n, "nearest_only": True} for n in a.nearest],
                       external_content=a.external_content, concept_ids=a.concept_ids, support_score=a.support_score,
+                      learner_context=learner_context(db, user.id, c.course_id, a.concept_ids)
+                      if a.status == "grounded" else {},
                       ai_log_id=a.log_id)
     db.add(am)
     db.commit()

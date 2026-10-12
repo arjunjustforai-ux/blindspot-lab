@@ -50,7 +50,7 @@ jobs:
           uv venv .venv
           uv pip install --python .venv/bin/python -e ".[dev]"
       - name: Lint
-        run: .venv/bin/ruff check app tests
+        run: .venv/bin/ruff check app tests && .venv/bin/ruff check --config pyproject.toml ../../evaluation/scripts
       - name: Unit tests
         run: .venv/bin/python -m pytest tests/unit -p no:logging
       - name: Cache local models

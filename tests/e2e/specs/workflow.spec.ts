@@ -49,6 +49,8 @@ test.describe.serial("Blindspot Lab learner workflow", () => {
     const answer = page.getByTestId("assistant-message").first();
     await expect(answer.getByTestId("citation-chip").first()).toBeVisible({ timeout: 60_000 });
     await expect(answer.getByTestId("refusal-badge")).toHaveCount(0);
+    // The learner model's view of the concepts discussed is shown beside the answer
+    await expect(answer.getByTestId("learner-context")).toContainText("Your learner model");
     await shot(page, "05-tutor-grounded");
 
     await page.getByTestId("tutor-input").fill("How do I set up conversion tracking in Google Analytics 4?");

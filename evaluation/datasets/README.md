@@ -23,8 +23,10 @@ measure this pipeline on this course, not general performance.
 
 ## Held-out set
 
-`rag_holdout_v1.jsonl` (15 cases, 4 off-material) was written **after** the tutor pipeline was frozen
-and is evaluated only in the final recorded run. During development we iterated on three generic
+`rag_holdout_v1.jsonl` (15 cases, 4 off-material) was written **after** the tutor pipeline was frozen.
+The evaluation runner scores it in every RAG run, so it was seen in a preliminary run, in the run after
+the code freeze and in the final run; the changes made between those runs were generic (see the run
+history in `docs/EVALUATION.md`) and none targeted its cases. During development we iterated on three generic
 failure modes observed on `rag_benchmark_v1` (heading-aware sentence scoring, honouring explicit
 source-type requests such as "in the lecture", and a relative relevance cut for extra citations), so
 `rag_benchmark_v1` numbers may be optimistic; the held-out numbers are the less biased estimate.

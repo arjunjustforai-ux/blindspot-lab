@@ -349,7 +349,15 @@ export interface TutorMessage {
   external_content: string | null;
   concept_ids: string[];
   support_score: number | null;
+  learner_context: LearnerContext;
   created_at: string;
+}
+
+export interface LearnerContext {
+  concepts?: { concept_id: string; name: string; p_mastery: number | null; label: MasteryView["label"]; evidence_quality: string }[];
+  hypotheses?: { misconception_key: string; title: string; status: string; posterior: number; concept_id: string }[];
+  weak_prerequisites?: { concept_id: string; name: string; p_mastery: number }[];
+  suggestion?: { type: "blindspot_session" | "practice" | "knowledge_check"; text: string; misconception_key?: string; concept_id?: string };
 }
 
 export interface Conversation {

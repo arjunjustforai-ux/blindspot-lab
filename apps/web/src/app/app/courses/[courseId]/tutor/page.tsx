@@ -2,6 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { BadgeCheck, Ban, Brain, Globe, MessageSquarePlus, Quote, Send, Trash2 } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 import { toast } from "sonner";
 import { FeedbackPanel } from "@/components/learning/feedback";
@@ -18,8 +19,8 @@ import { Switch } from "@/components/ui/switch";
 import { Tip } from "@/components/ui/tooltip";
 import { api, errorMessage } from "@/lib/api";
 import { useCourse, useCourseId } from "@/lib/hooks";
-import type { Assessment, Conversation, Feedback, TutorMessage } from "@/lib/types";
-import { cn, timeAgo } from "@/lib/utils";
+import type { Assessment, Conversation, Feedback, LearnerContext, TutorMessage } from "@/lib/types";
+import { cn, HYPOTHESIS_STYLE, masteryColor, pct, timeAgo } from "@/lib/utils";
 
 const STARTERS = [
   "Why can a price cut need more extra volume than people expect?",
@@ -153,7 +154,7 @@ function Chat({ conversationId, isDemo }: { conversationId: string; isDemo: bool
             </div>
           </div>
         )}
-        {c.messages.map((m) => (m.role === "user" ? <UserBubble key={m.id} m={m} /> : <AssistantBubble key={m.id} m={m} conversationId={conversationId} />))}
+        {c.messages.map((m) => (m.role === "user" ? <UserBubble key={m.id} m={m} /> : <AssistantBubble key={m.id} m={m} conversationId={conversationId} courseId={c.course_id} />))}
         {send.isPending && <div className="animate-pulse text-sm text-muted">Retrieving sources and checking support…</div>}
         <div ref={end} />
       </div>
@@ -194,7 +195,7 @@ function UserBubble({ m }: { m: TutorMessage }) {
   );
 }
 
-function AssistantBubble({ m, conversationId }: { m: TutorMessage; conversationId: string }) {
+function AssistantBubble({ m, conversationId, courseId }: { m: TutorMessage; conversationId: string; courseId: string }) {
   const cites = m.citations.filter((c) => !c.nearest_only);
   const nearest = m.citations.filter((c) => c.nearest_only);
   const [check, setCheck] = React.useState<Assessment | null>(null);
@@ -253,6 +254,9 @@ function AssistantBubble({ m, conversationId }: { m: TutorMessage; conversationI
             <Markdown text={m.external_content} />
           </div>
         )}
+        {m.learner_context?.concepts?.length ? (
+          <LearnerContextStrip ctx={m.learner_context} courseId={courseId} />
+        ) : null}
         {m.grounding_status === "grounded" && m.concept_ids.length > 0 && !check && (
           <Button variant="outline" size="sm" onClick={() => start.mutate()} disabled={start.isPending} data-testid="knowledge-check">
             <Brain /> Check my understanding
@@ -268,6 +272,44 @@ function AssistantBubble({ m, conversationId }: { m: TutorMessage; conversationI
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+function LearnerContextStrip({ ctx, courseId }: { ctx: LearnerContext; courseId: string }) {
+  const s = ctx.suggestion;
+  return (
+    <div className="space-y-2 rounded-xl border border-line bg-surface/70 p-3 text-xs" data-testid="learner-context">
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="font-semibold uppercase tracking-wider text-subtle">Your learner model</span>
+        {ctx.concepts?.map((c) => (
+          <span key={c.concept_id} className="inline-flex items-center gap-1.5 rounded-full border border-line-strong px-2 py-0.5">
+            <span className="size-2 rounded-full" style={{ background: masteryColor(c.label) }} />
+            {c.name}: {c.p_mastery === null ? "unassessed" : pct(c.p_mastery)}
+          </span>
+        ))}
+      </div>
+      {ctx.hypotheses?.map((h) => (
+        <div key={h.misconception_key} className="flex flex-wrap items-center gap-2 text-muted">
+          <span className={cn("rounded-full border px-2 py-0.5 text-[10px]", HYPOTHESIS_STYLE[h.status]?.cls)}>{HYPOTHESIS_STYLE[h.status]?.label ?? h.status}</span>
+          {h.title} (posterior {pct(h.posterior)})
+        </div>
+      ))}
+      {s && (
+        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line pt-2">
+          <span className="text-muted">{s.text}</span>
+          {s.type === "blindspot_session" && (
+            <Button size="sm" variant="warn" asChild>
+              <Link href={`/app/courses/${courseId}/lab?misconception=${s.misconception_key ?? ""}`}>Investigate</Link>
+            </Button>
+          )}
+          {s.type === "practice" && (
+            <Button size="sm" variant="outline" asChild>
+              <Link href={`/app/courses/${courseId}/assess?kind=practice&concepts=${s.concept_id ?? ""}`}>Practise prerequisite</Link>
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 }

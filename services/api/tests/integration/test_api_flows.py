@@ -206,3 +206,25 @@ def test_evaluation_run_is_persisted_once(demo_course_id):
     assert run.status == "succeeded" and run.summary["pool"]["total"] > 0 and run.limitations
     assert n == distinct == len(out["results"]) > 0
     assert verified > 0
+
+
+def test_tutor_responds_to_learner_state(client, demo_course_id, demo_learner):
+    conv = client.post(f"/api/courses/{demo_course_id}/conversations", json={}, headers=demo_learner).json()
+    q = {"content": "Why can a price cut need more extra volume than people expect?"}
+    fresh = client.post(f"/api/conversations/{conv['id']}/messages", headers=demo_learner, json=q).json()
+    ctx = fresh["assistant_message"]["learner_context"]
+    assert ctx["concepts"] and all(c["p_mastery"] is None for c in ctx["concepts"])
+    assert ctx["suggestion"]["type"] == "knowledge_check"
+
+    # The scripted 25% answer opens a misconception hypothesis; the tutor now points to an investigation.
+    s = client.post(f"/api/courses/{demo_course_id}/diagnostics", json={"scenario": "contribution_price_cut"},
+                    headers=demo_learner).json()
+    sc = s["scenario"]
+    client.post(f"/api/diagnostics/{s['id']}/answer", headers=demo_learner,
+                json={"response": sc["scripted_answer"], "reasoning": sc["scripted_reasoning"], "confidence": 4})
+    after = client.post(f"/api/conversations/{conv['id']}/messages", headers=demo_learner, json=q).json()
+    ctx = after["assistant_message"]["learner_context"]
+    assert ctx["hypotheses"] and ctx["hypotheses"][0]["misconception_key"] == "contribution_vs_revenue"
+    assert ctx["suggestion"]["type"] == "blindspot_session"
+    # Grounding is unchanged by learner state: same sources, same answer text
+    assert after["assistant_message"]["content"] == fresh["assistant_message"]["content"]

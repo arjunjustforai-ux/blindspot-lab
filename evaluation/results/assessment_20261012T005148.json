@@ -1,0 +1,1404 @@
+{
+ "id": "3eb45a8b-4a40-4cb6-b984-760694283f39",
+ "kind": "assessment",
+ "dataset": "question_verification+grading",
+ "dataset_version": "v1",
+ "model_info": {
+  "llm": null,
+  "python": "3.13.16",
+  "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+  "embedding": "local:BAAI/bge-small-en-v1.5",
+  "llm_provider": "local",
+  "transcription": "local:base.en"
+ },
+ "prompt_version": null,
+ "seed": 7,
+ "started_at": "2026-10-12T00:51:44.166791+00:00",
+ "finished_at": "2026-10-12T00:51:48.543285+00:00",
+ "config": {
+  "course_id": "40caee01-beb3-4574-8d61-a16a57e0beef"
+ },
+ "summary": {
+  "pool": {
+   "total": 97,
+   "verified": 97,
+   "valid_question_rate": 1.0,
+   "by_origin": {
+    "template": {
+     "verified": 64,
+     "rejected": 0
+    },
+    "bank": {
+     "verified": 33,
+     "rejected": 0
+    }
+   },
+   "by_type": {
+    "numerical": 63,
+    "mcq": 29,
+    "short_answer": 5
+   },
+   "by_difficulty": {
+    "1": 25,
+    "2": 54,
+    "3": 18
+   },
+   "by_concept": {
+    "Customer acquisition cost and lifetime value": 14,
+    "Return on advertising spend (ROAS)": 15,
+    "Revenue and conversion metrics": 17,
+    "Decisions under changing assumptions": 14,
+    "Contribution margin": 31,
+    "Correlation, causation and experiments": 6
+   }
+  },
+  "answer_keys": {
+   "template_questions": 64,
+   "plug_back_pass_rate": 1.0,
+   "note": "Bank items carry author keys (instructor-reviewable); they are covered by the verifier and grading checks rather than an automatic oracle."
+  },
+  "verifier": {
+   "n": 18,
+   "flawed": 12,
+   "sound": 6,
+   "flaw_detection_rate": 1.0,
+   "false_rejection_rate": 0.0,
+   "accuracy": 1.0
+  },
+  "source_tags": {
+   "verified_with_sources": 1.0,
+   "source_concept_agreement": 0.9897,
+   "definition": "a cited source unit is tagged to the question's concept or a sub-concept"
+  },
+  "numeric_grading": {
+   "n": 18,
+   "accuracy": 0.9444
+  },
+  "short_answer_grading": {
+   "n": 15,
+   "accuracy": 0.9333,
+   "flagged_for_review": 0.2,
+   "confusion": {
+    "good->pass": 5,
+    "partial->pass": 1,
+    "wrong->fail": 3,
+    "partial->fail": 3,
+    "partial->fail+review": 1,
+    "wrong->fail+review": 2
+   },
+   "grader": "local rubric (keywords + embedding similarity)"
+  },
+  "repetition": {
+   "sessions": 6,
+   "questions_per_session": 6,
+   "delivered": 34,
+   "adaptive_exact_repeat_rate": 0.0,
+   "adaptive_family_repeat_rate": 0.3235,
+   "random_exact_repeat_rate": 0.1765,
+   "random_family_repeat_rate": 0.2647,
+   "note": "Family = template or bank item family; template families legitimately recur with new numbers once a concept's families are exhausted (evidence from repeats is down-weighted in BKT)."
+  }
+ },
+ "limitations": [
+  "Bank answer keys are author-provided; the adversarial set tests the verifier's checks, not every key.",
+  "Short-answer grading in local mode is a transparent keyword + embedding rubric scorer; it is weaker than an LLM or human grader and flags borderline answers for review.",
+  "Repetition is measured for one simulated learner over six assessments."
+ ],
+ "results": [
+  {
+   "case_key": "VS1",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "An electronics store sells a pair of earbuds for ₹1,200. The variable cost is ₹600 per unit. Management proposes reducing the selling price to ₹1,020 while the variable cost stays unchanged. By what percentage must sales volume increase to keep total contribution the same as before?",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VS2",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "A neighbourhood café spent ₹30,000 on social ads credited with ₹60,000 of revenue (ROAS 2.0). Its contribution margin ratio is 50%. What is the campaign's contribution after advertising, in rupees? (Use a negative number for a loss.)",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VS3",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "Five recent orders at an electronics store were worth ₹9,600, ₹1,300, ₹800, ₹600, ₹1,200. What value best describes a typical order, in rupees?",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VS4",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "Which formula gives the break-even ROAS?",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VS5",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "Explain why a correlation between app usage and spending does not prove the app causes higher spending.",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VS6",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "verified",
+    "got": "verified"
+   },
+   "output": {
+    "flaw": null,
+    "stem": "A campaign spends ₹20,000 and is credited with ₹70,000 of revenue. What is its ROAS?",
+    "failed_checks": []
+   }
+  },
+  {
+   "case_key": "VF1",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "wrong numeric key (revenue-preservation value)",
+    "stem": "A fitness studio sells a class pass for ₹100. The variable cost is ₹50 per unit. Management proposes reducing the selling price to ₹90 while the variable cost stays unchanged. By what percentage must sales volume increase to keep total contribution the same as before?",
+    "failed_checks": [
+     {
+      "check": "answer_key",
+      "passed": false,
+      "detail": "independent plug-back check FAILED"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF2",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "wrong numeric key (+10%)",
+    "stem": "An online bookstore has monthly fixed costs of ₹2,00,000. Its hardcover book sells for ₹1,000 with a variable cost of ₹500 per unit. How many books must it sell each month to break even?",
+    "failed_checks": [
+     {
+      "check": "answer_key",
+      "passed": false,
+      "detail": "independent plug-back check FAILED"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF3",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "wrong numeric key (revenue-based CLV)",
+    "stem": "A learner of an online language course pays ₹1,000 per month, the contribution margin ratio is 50%, and the expected lifetime is 6 months. What is the contribution-based customer lifetime value (CLV) in rupees?",
+    "failed_checks": [
+     {
+      "check": "answer_key",
+      "passed": false,
+      "detail": "independent plug-back check FAILED"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF4",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "duplicate options",
+    "stem": "How is the conversion rate calculated?",
+    "failed_checks": [
+     {
+      "check": "options_distinct",
+      "passed": false,
+      "detail": "near-identical options: 'conversions ÷ visitors' / 'conversions ÷ visitors'"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF5",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "keyed answer not among options",
+    "stem": "What does CAC stand for in the course materials?",
+    "failed_checks": [
+     {
+      "check": "schema",
+      "passed": false,
+      "detail": "4 options, key=e"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF6",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "premise not supported by the sources (NPS)",
+    "stem": "How is Net Promoter Score calculated?",
+    "failed_checks": [
+     {
+      "check": "source_support",
+      "passed": false,
+      "detail": "0/1 anchor phrases found verbatim in course sources"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF7",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "cites a source unit that does not exist",
+    "stem": "What ROAS did the Display channel achieve in the 2025 campaign report?",
+    "failed_checks": [
+     {
+      "check": "source_support",
+      "passed": false,
+      "detail": "0 cited source unit(s) exist in this course"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF8",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "exact duplicate of an existing bank question",
+    "stem": "Which formula defines the conversion rate?",
+    "failed_checks": [
+     {
+      "check": "duplicate_exact",
+      "passed": false,
+      "detail": "same as f838b7b9-6663-4a60-a9a4-f4f9727d8fd4"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF9",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "unclear stem",
+    "stem": "ROAS",
+    "failed_checks": [
+     {
+      "check": "clarity",
+      "passed": false,
+      "detail": "1 words"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF10",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "numerical question without a tolerance",
+    "stem": "A product sells for ₹500 with a ₹300 variable cost. What is its contribution margin per unit in rupees?",
+    "failed_checks": [
+     {
+      "check": "schema",
+      "passed": false,
+      "detail": "answer=200 ±0 "
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF11",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "MCQ with only two options",
+    "stem": "Which statistic is pulled upwards by a single very large order?",
+    "failed_checks": [
+     {
+      "check": "schema",
+      "passed": false,
+      "detail": "2 options, key=a"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "VF12",
+   "category": "verifier",
+   "passed": true,
+   "metrics": {
+    "expected": "rejected",
+    "got": "rejected"
+   },
+   "output": {
+    "flaw": "off-topic premise with no supporting source",
+    "stem": "Which pigment absorbs light energy during photosynthesis?",
+    "failed_checks": [
+     {
+      "check": "source_support",
+      "passed": false,
+      "detail": "best supporting unit rerank logit -10.95 (threshold -4.0)"
+     }
+    ]
+   }
+  },
+  {
+   "case_key": "G01",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "100",
+    "answer": 100,
+    "detail": {
+     "parsed": 100.0,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "normalized": 100.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G02",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "100%",
+    "answer": 100,
+    "detail": {
+     "parsed": 100.0,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "normalized": 100.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G03",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "1.0",
+    "answer": 100,
+    "detail": {
+     "parsed": 1.0,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "interpreted_as_fraction": true,
+     "normalized": 100.0
+    },
+    "note": "fraction form"
+   }
+  },
+  {
+   "case_key": "G04",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "100.4",
+    "answer": 100,
+    "detail": {
+     "parsed": 100.4,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "normalized": 100.4
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G05",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false
+   },
+   "output": {
+    "response": "99",
+    "answer": 100,
+    "detail": {
+     "parsed": 99.0,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "normalized": 99.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G06",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false
+   },
+   "output": {
+    "response": "25%",
+    "answer": 100,
+    "detail": {
+     "parsed": 25.0,
+     "expected": 100,
+     "tolerance": 0.6,
+     "tolerance_mode": "abs",
+     "unit": "%",
+     "normalized": 25.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G07",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": null,
+    "got": null
+   },
+   "output": {
+    "response": "two times",
+    "answer": 100,
+    "detail": {
+     "error": "could not read a number",
+     "raw": "two times"
+    },
+    "note": "unreadable: should not be graded"
+   }
+  },
+  {
+   "case_key": "G08",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "₹4,000",
+    "answer": 4000,
+    "detail": {
+     "parsed": 4000.0,
+     "expected": 4000,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": 4000.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G09",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "4k",
+    "answer": 4000,
+    "detail": {
+     "parsed": 4000.0,
+     "expected": 4000,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": 4000.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G10",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "-11700",
+    "answer": -11700,
+    "detail": {
+     "parsed": -11700.0,
+     "expected": -11700,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": -11700.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G11",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "−₹11,700",
+    "answer": -11700,
+    "detail": {
+     "parsed": -11700.0,
+     "expected": -11700,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": -11700.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G12",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false
+   },
+   "output": {
+    "response": "11700",
+    "answer": -11700,
+    "detail": {
+     "parsed": 11700.0,
+     "expected": -11700,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": 11700.0
+    },
+    "note": "sign error"
+   }
+  },
+  {
+   "case_key": "G13",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "1.67x",
+    "answer": 1.667,
+    "detail": {
+     "parsed": 1.67,
+     "expected": 1.667,
+     "tolerance": 0.05,
+     "tolerance_mode": "abs",
+     "unit": "x",
+     "normalized": 1.67
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G14",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false
+   },
+   "output": {
+    "response": "2",
+    "answer": 1.667,
+    "detail": {
+     "parsed": 2.0,
+     "expected": 1.667,
+     "tolerance": 0.05,
+     "tolerance_mode": "abs",
+     "unit": "x",
+     "normalized": 2.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G15",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "1.25 lakh",
+    "answer": 125000,
+    "detail": {
+     "parsed": 125000.0,
+     "expected": 125000,
+     "tolerance": 1,
+     "tolerance_mode": "abs",
+     "unit": "₹",
+     "normalized": 125000.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G16",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "4.5 months",
+    "answer": 4.5,
+    "detail": {
+     "parsed": 4.5,
+     "expected": 4.5,
+     "tolerance": 0.05,
+     "tolerance_mode": "abs",
+     "unit": "months",
+     "normalized": 4.5
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "G17",
+   "category": "numeric_grading",
+   "passed": false,
+   "metrics": {
+    "expected": true,
+    "got": null
+   },
+   "output": {
+    "response": "four and a half",
+    "answer": 4.5,
+    "detail": {
+     "error": "could not read a number",
+     "raw": "four and a half"
+    },
+    "note": "number words are not parsed (known limitation)"
+   }
+  },
+  {
+   "case_key": "G18",
+   "category": "numeric_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true
+   },
+   "output": {
+    "response": "300 units",
+    "answer": 300,
+    "detail": {
+     "parsed": 300.0,
+     "expected": 300,
+     "tolerance": 0.5,
+     "tolerance_mode": "abs",
+     "unit": "units",
+     "normalized": 300.0
+    },
+    "note": null
+   }
+  },
+  {
+   "case_key": "SA01",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true,
+    "score": 1.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "good",
+    "response": "Preserving revenue keeps price times units the same, but preserving contribution keeps price minus variable cost times units the same. Since the variable cost does not fall, contribution per unit drops by the whole price cut, so a much larger volume increase is needed to preserve contribution.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Preserving revenue keeps price multiplied by units constant.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.813,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "Preserving contribution keeps (price minus variable cost) multiplied by units constant.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.867,
+       "credit": 1.0
+      },
+      {
+       "id": "k3",
+       "text": "Because the variable cost does not fall, contribution per unit falls by the whole price cut, so a larger volume increase is needed to preserve contribution.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.817,
+       "credit": 1.0
+      }
+     ],
+     "threshold": 0.67,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA02",
+   "category": "short_answer_grading",
+   "passed": false,
+   "metrics": {
+    "expected": false,
+    "got": true,
+    "score": 0.833,
+    "needs_review": false
+   },
+   "output": {
+    "label": "partial",
+    "response": "Revenue is price times units while contribution subtracts variable costs.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Preserving revenue keeps price multiplied by units constant.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.749,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "Preserving contribution keeps (price minus variable cost) multiplied by units constant.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.785,
+       "credit": 1.0
+      },
+      {
+       "id": "k3",
+       "text": "Because the variable cost does not fall, contribution per unit falls by the whole price cut, so a larger volume increase is needed to preserve contribution.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.76,
+       "credit": 0.5
+      }
+     ],
+     "threshold": 0.67,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA03",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.3,
+    "needs_review": false
+   },
+   "output": {
+    "label": "wrong",
+    "response": "They are the same thing because more sales always make up for a lower price.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Preserving revenue keeps price multiplied by units constant.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.673,
+       "credit": 0.5
+      },
+      {
+       "id": "k2",
+       "text": "Preserving contribution keeps (price minus variable cost) multiplied by units constant.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.602,
+       "credit": 0.0
+      },
+      {
+       "id": "k3",
+       "text": "Because the variable cost does not fall, contribution per unit falls by the whole price cut, so a larger volume increase is needed to preserve contribution.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.618,
+       "credit": 0.5
+      }
+     ],
+     "threshold": 0.67,
+     "contradiction": true,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA04",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true,
+    "score": 1.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "good",
+    "response": "ROAS only compares revenue with ad spend, not profit. The revenue still has to cover the variable costs of the products sold, so a campaign needs a ROAS above the break-even ROAS, which is 1 divided by the contribution margin ratio.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "ROAS compares revenue, not profit, with advertising spend.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.837,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "The revenue must also pay for the variable costs of the products sold.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.703,
+       "credit": 1.0
+      },
+      {
+       "id": "k3",
+       "text": "The break-even ROAS is 1 divided by the contribution margin ratio, which is above 1.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.731,
+       "credit": 1.0
+      }
+     ],
+     "threshold": 0.66,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA05",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.333,
+    "needs_review": false
+   },
+   "output": {
+    "label": "partial",
+    "response": "Because revenue is not profit.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "ROAS compares revenue, not profit, with advertising spend.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.689,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "The revenue must also pay for the variable costs of the products sold.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.729,
+       "credit": 0.0
+      },
+      {
+       "id": "k3",
+       "text": "The break-even ROAS is 1 divided by the contribution margin ratio, which is above 1.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.519,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.66,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA06",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "wrong",
+    "response": "A ROAS above 1 means you earned more than you spent, so it is always profitable.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "ROAS compares revenue, not profit, with advertising spend.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.691,
+       "credit": 0.0
+      },
+      {
+       "id": "k2",
+       "text": "The revenue must also pay for the variable costs of the products sold.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.6,
+       "credit": 0.0
+      },
+      {
+       "id": "k3",
+       "text": "The break-even ROAS is 1 divided by the contribution margin ratio, which is above 1.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.708,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.66,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA07",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true,
+    "score": 1.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "good",
+    "response": "Statistical significance means the result would be unlikely if there were truly no effect. Practical significance asks whether the effect is large enough to be worth acting on given the costs.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "A statistically significant result would be unlikely if there were truly no effect.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.815,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "Practical significance asks whether the size of the effect is large enough to be worth acting on, given costs and risks.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.773,
+       "credit": 1.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA08",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.25,
+    "needs_review": false
+   },
+   "output": {
+    "label": "partial",
+    "response": "Statistical significance means the result is probably real.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "A statistically significant result would be unlikely if there were truly no effect.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.74,
+       "credit": 0.5
+      },
+      {
+       "id": "k2",
+       "text": "Practical significance asks whether the size of the effect is large enough to be worth acting on, given costs and risks.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.696,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA09",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "wrong",
+    "response": "They mean exactly the same thing.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "A statistically significant result would be unlikely if there were truly no effect.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.418,
+       "credit": 0.0
+      },
+      {
+       "id": "k2",
+       "text": "Practical significance asks whether the size of the effect is large enough to be worth acting on, given costs and risks.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.396,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA10",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true,
+    "score": 1.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "good",
+    "response": "The number of customers equals visitors multiplied by the conversion rate, so a page with many more visitors can produce more customers even if its conversion rate is lower.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "The number of customers equals the number of visitors multiplied by the conversion rate.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.905,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "A page with many more visitors can produce more customers even with a lower conversion rate.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.913,
+       "credit": 1.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA11",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.5,
+    "needs_review": true
+   },
+   "output": {
+    "label": "partial",
+    "response": "The other page might get more traffic.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "The number of customers equals the number of visitors multiplied by the conversion rate.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.62,
+       "credit": 0.5
+      },
+      {
+       "id": "k2",
+       "text": "A page with many more visitors can produce more customers even with a lower conversion rate.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.803,
+       "credit": 0.5
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA12",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.5,
+    "needs_review": true
+   },
+   "output": {
+    "label": "wrong",
+    "response": "A higher conversion rate always produces more customers.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "The number of customers equals the number of visitors multiplied by the conversion rate.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.709,
+       "credit": 0.5
+      },
+      {
+       "id": "k2",
+       "text": "A page with many more visitors can produce more customers even with a lower conversion rate.",
+       "keyword_evidence": 0.5,
+       "similarity": 0.725,
+       "credit": 0.5
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA13",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": true,
+    "got": true,
+    "score": 1.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "good",
+    "response": "Campaign results depend on uncertain assumptions such as conversion rate, order value and margin, so scenario analysis changes several of them together to show pessimistic, expected and optimistic outcomes.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Business cases depend on uncertain assumptions such as conversion rate, order value and margin.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.793,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "Scenario analysis changes several assumptions together to show pessimistic, expected and optimistic outcomes.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.884,
+       "credit": 1.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA14",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.0,
+    "needs_review": false
+   },
+   "output": {
+    "label": "partial",
+    "response": "It helps you plan better.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Business cases depend on uncertain assumptions such as conversion rate, order value and margin.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.522,
+       "credit": 0.0
+      },
+      {
+       "id": "k2",
+       "text": "Scenario analysis changes several assumptions together to show pessimistic, expected and optimistic outcomes.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.561,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  },
+  {
+   "case_key": "SA15",
+   "category": "short_answer_grading",
+   "passed": true,
+   "metrics": {
+    "expected": false,
+    "got": false,
+    "score": 0.5,
+    "needs_review": true
+   },
+   "output": {
+    "label": "wrong",
+    "response": "It removes all uncertainty from the plan.",
+    "detail": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Business cases depend on uncertain assumptions such as conversion rate, order value and margin.",
+       "keyword_evidence": 1.0,
+       "similarity": 0.541,
+       "credit": 1.0
+      },
+      {
+       "id": "k2",
+       "text": "Scenario analysis changes several assumptions together to show pessimistic, expected and optimistic outcomes.",
+       "keyword_evidence": 0.0,
+       "similarity": 0.57,
+       "credit": 0.0
+      }
+     ],
+     "threshold": 0.7,
+     "contradiction": false,
+     "note": "Local rubric scoring (keywords + embedding similarity). Borderline scores are flagged for review."
+    }
+   }
+  }
+ ]
+}

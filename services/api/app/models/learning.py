@@ -18,6 +18,7 @@ from sqlalchemy import (
     String,
     Text,
     UniqueConstraint,
+    text,
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
@@ -49,6 +50,8 @@ class TutorMessage(UUIDPk, Timestamped, Base):
     citations: Mapped[list[dict[str, Any]]] = mapped_column(JSONB, nullable=False, default=list)
     external_content: Mapped[str | None] = mapped_column(Text)
     concept_ids: Mapped[list[str]] = mapped_column(JSONB, nullable=False, default=list)
+    learner_context: Mapped[dict[str, Any]] = mapped_column(JSONB, nullable=False, default=dict,
+                                                            server_default=text("'{}'::jsonb"))
     support_score: Mapped[float | None] = mapped_column(Float)
     ai_log_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("ai_operation_logs.id", ondelete="SET NULL"))
 
