@@ -96,3 +96,12 @@ def test_whisper_words_are_split_into_sentence_segments():
     assert segs[0].confidence == pytest.approx(0.85)
     long = [(float(i), i + 0.9, f" w{i}", None) for i in range(45)]
     assert all(s.end - s.start <= 21 for s in sentence_segments(long))
+
+
+def test_cors_origins_accept_comma_separated_env(monkeypatch):
+    from app.config import Settings
+
+    monkeypatch.setenv("CORS_ORIGINS", "http://localhost:3000, https://blindspot.example.com")
+    assert Settings().cors_origins == ["http://localhost:3000", "https://blindspot.example.com"]
+    monkeypatch.setenv("CORS_ORIGINS", '["https://a.example"]')
+    assert Settings().cors_origins == ["https://a.example"]

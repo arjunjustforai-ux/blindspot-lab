@@ -6,12 +6,13 @@ Nothing in this module should ever contain a real credential.
 
 from __future__ import annotations
 
+import json
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
+from typing import Annotated, Literal
 
 from pydantic import Field, field_validator, model_validator
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DEV_JWT_SECRET = "dev-only-change-me-please-0123456789abcdef"
@@ -90,7 +91,9 @@ class Settings(BaseSettings):
     grounding_min_score: float = 0.30
 
     # --- Runtime ----------------------------------------------------------
-    cors_origins: list[str] = Field(default_factory=lambda: ["http://localhost:3000", "http://127.0.0.1:3000"])
+    # NoDecode: accept "a,b" from the environment instead of requiring a JSON array
+    cors_origins: Annotated[list[str], NoDecode] = Field(
+        default_factory=lambda: ["http://localhost:3000", "http://127.0.0.1:3000"])
     run_worker_in_process: bool = True
     worker_poll_seconds: float = 2.0
     demo_enabled: bool = True
@@ -115,7 +118,9 @@ class Settings(BaseSettings):
     @field_validator("cors_origins", mode="before")
     @classmethod
     def _split_origins(cls, v: object) -> object:
-        if isinstance(v, str) and not v.strip().startswith("["):
+        if isinstance(v, str):
+            if v.strip().startswith("["):
+                return json.loads(v)
             return [o.strip() for o in v.split(",") if o.strip()]
         return v
 

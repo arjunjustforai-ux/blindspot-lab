@@ -36,7 +36,7 @@ scripts/setup.sh                # venv, deps, migrations, model download, demo c
 scripts/start_dev.sh            # API :8000 (worker in-process) + web :3000
 ```
 
-Database migrations at any time: `cd services/api && .venv/bin/alembic upgrade head`.
+Database migrations at any time: `cd services/api && .venv/bin/alembic upgrade head`. The first migration runs `CREATE EXTENSION IF NOT EXISTS vector`; if the application's database role is not allowed to create extensions, run that statement once as a superuser (or enable *vector* in the provider's dashboard) before migrating.
 
 ## Docker Compose
 
