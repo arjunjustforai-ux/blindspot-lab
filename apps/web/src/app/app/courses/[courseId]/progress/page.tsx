@@ -26,6 +26,7 @@ export default function ProgressPage() {
   const a = q.data!;
   const names = Object.fromEntries(a.concepts.map((c) => [c.concept_id, c.name]));
   const active = a.hypotheses.filter((h) => ["suspected", "supported", "unresolved"].includes(h.status)).length;
+  const repairing = a.hypotheses.filter((h) => h.status === "resolving").length;
 
   // Mastery trajectory: one row per observation, carrying forward each concept's latest estimate.
   const events = Object.entries(a.history)
@@ -54,7 +55,7 @@ export default function ProgressPage() {
             <Kpi label="Concepts assessed" value={`${a.totals.assessed_concepts}/${a.totals.concepts}`} />
             <Kpi label="Scored answers" value={String(a.totals.attempts)} />
             <Kpi label="Accuracy" value={pct(a.totals.correct / Math.max(1, a.totals.attempts))} />
-            <Kpi label="Open misconception hypotheses" value={String(active)} tone={active ? "warn" : undefined} />
+            <Kpi label="Open misconception hypotheses" value={String(active)} tone={active ? "warn" : undefined} hint={repairing ? `${repairing} repaired, revisit pending` : undefined} />
           </div>
 
           <div className="grid gap-4 lg:grid-cols-[1fr_1.2fr]">
@@ -257,11 +258,12 @@ export default function ProgressPage() {
               <div className="mb-1 flex items-center gap-1 text-fg">
                 <Sigma className="size-3.5" /> Update after an answer
               </div>
-              P(L|correct) = P(L)(1−S) / [P(L)(1−S) + (1−P(L))G]
+              P(L|correct) = P(L)(1−S)ʷ / [P(L)(1−S)ʷ + (1−P(L))Gʷ]
               <br />
-              P(L|wrong) = P(L)S / [P(L)S + (1−P(L))(1−G)]
+              P(L|wrong) = P(L)Sʷ / [P(L)Sʷ + (1−P(L))(1−G)ʷ]
               <br />
               P(L′) = P(L|obs) + (1 − P(L|obs))·T·w
+              <div className="mt-1 font-sans text-[11px] text-subtle">With w = 1 this is standard BKT; w &lt; 1 tempers weak evidence.</div>
             </div>
             <ul className="space-y-1 text-xs text-muted">
               <li>
@@ -292,12 +294,13 @@ export default function ProgressPage() {
   );
 }
 
-function Kpi({ label, value, tone }: { label: string; value: string; tone?: "warn" }) {
+function Kpi({ label, value, tone, hint }: { label: string; value: string; tone?: "warn"; hint?: string }) {
   return (
     <Card>
       <CardContent className="p-4">
         <div className="text-[11px] uppercase tracking-wider text-subtle">{label}</div>
         <div className={cn("mt-1 font-mono text-2xl font-semibold", tone === "warn" ? "text-warn" : "text-fg")}>{value}</div>
+        {hint && <div className="mt-0.5 text-[11px] text-accent">{hint}</div>}
       </CardContent>
     </Card>
   );

@@ -25,6 +25,7 @@ from app.models import EvaluationRun, IngestionJob
 log = logging.getLogger("blindspot.worker")
 WORKER_ID = f"{socket.gethostname()}:{os.getpid()}"
 STALE_AFTER = timedelta(minutes=45)
+EVAL_STALE_AFTER = timedelta(hours=4)
 
 
 def _now() -> datetime:
@@ -78,6 +79,14 @@ def requeue_stale() -> None:
                 "WHERE status='running' AND locked_at < :c"
             ),
             {"c": cutoff},
+        )
+        # An evaluation run whose process died never finishes; fail it so a new run of that kind can be queued.
+        db.execute(
+            text(
+                "UPDATE evaluation_runs SET status='failed', error='Run did not finish (its process stopped)', "
+                "finished_at=now() WHERE status='running' AND started_at < :c"
+            ),
+            {"c": _now() - EVAL_STALE_AFTER},
         )
         db.commit()
 

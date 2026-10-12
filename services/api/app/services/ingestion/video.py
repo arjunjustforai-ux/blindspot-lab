@@ -117,19 +117,23 @@ def extract_video(path: Path, *, course_id: uuid.UUID | None, progress: Progress
         except subprocess.SubprocessError as e:
             raise ExtractionError(f"Audio extraction failed: {e}") from e
 
-        progress("Transcribing speech (Whisper)", 0.15)
+        progress("Detecting keyframes", 0.1)
+        frames_dir = tmpd / "frames"
+        frames_dir.mkdir()
+        frames = _scene_frames(path, frames_dir, duration)
+
+        # Terms shown on screen (slide titles, acronyms) bias the speech recogniser toward the lecture's vocabulary.
+        screen_text = " ".join(vision.ocr_image(Image.open(f)).text for _, f in frames[:20])
+        prompt = vocabulary_prompt(title, screen_text)
+
+        progress("Transcribing speech (Whisper)", 0.2)
         transcriber = get_transcriber()
-        transcript = transcriber.transcribe(wav)
+        transcript = transcriber.transcribe(wav, prompt=prompt)
         if not transcript.segments:
             raise ExtractionError("No speech was detected in the video")
 
         spoken = " ".join(sg.text.lower() for sg in transcript.segments)
         currency = "₹" if "rupee" in spoken else "€" if "euro" in spoken else "£" if "pound" in spoken else None
-
-        progress("Detecting keyframes", 0.6)
-        frames_dir = tmpd / "frames"
-        frames_dir.mkdir()
-        frames = _scene_frames(path, frames_dir, duration)
         frame_units: list[ExtractedUnit] = []
         seen: list[str] = []
         for i, (t, f) in enumerate(frames):
@@ -182,8 +186,21 @@ def extract_video(path: Path, *, course_id: uuid.UUID | None, progress: Progress
     return ExtractionResult(
         units=units, duration_seconds=round(duration, 2), warnings=warnings,
         metadata={"title": title, "transcription_model": transcript.model, "language": transcript.language,
-                  "segments": len(transcript.segments), "keyframes": len(frames), "frame_units": len(frame_units)},
+                  "segments": len(transcript.segments), "keyframes": len(frames), "frame_units": len(frame_units),
+                  "asr_vocabulary_prompt": prompt},
     )
+
+
+def vocabulary_prompt(title: str, screen_text: str, max_chars: int = 600) -> str | None:
+    """Whisper initial prompt: the video title plus distinctive on-screen terms (acronyms, capitalised phrases)."""
+    terms: list[str] = []
+    for m in re.finditer(r"\b[A-Z]{2,6}s?\b|\b[A-Z][a-z]+(?:[- ][a-z]+){0,2}\b", screen_text):
+        t = m.group(0).strip()
+        if len(t) > 2 and t.lower() not in {x.lower() for x in terms}:
+            terms.append(t)
+    if not terms:
+        return f"{title}." if title else None
+    return f"{title}. {', '.join(terms)}."[:max_chars]
 
 
 def _ts(t: float) -> str:

@@ -37,6 +37,11 @@ SUBSCRIPTION_CONTEXTS = [
 ]
 
 
+def num(x: float, places: int = 2) -> str:
+    """Round for display without trailing zeros: 2.000 -> "2", 1.3333 -> "1.333"."""
+    return f"{x:.{places}f}".rstrip("0").rstrip(".")
+
+
 def inr(x: float) -> str:
     """Format rupees with Indian digit grouping (e.g. ₹1,25,000)."""
     neg = x < 0
@@ -148,9 +153,9 @@ def _price_cut_volume(rng: random.Random, o: dict[str, Any] | None) -> Generated
     steps = [
         f"Original contribution per unit = {inr(price)} − {inr(vc)} = {inr(old_cm)}.",
         f"New contribution per unit = {inr(new_price)} − {inr(vc)} = {inr(new_cm)}.",
-        f"Required volume = old ÷ new contribution per unit = {old_cm} ÷ {new_cm} = {old_cm / new_cm:.3f}× the "
+        f"Required volume = old ÷ new contribution per unit = {old_cm} ÷ {new_cm} = {num(old_cm / new_cm, 3)}× the "
         f"original volume.",
-        f"Required increase = {old_cm / new_cm:.3f} − 1 = {ans:.1f}%.",
+        f"Required increase = ({num(old_cm / new_cm, 3)} − 1) × 100 = {num(ans, 1)}%.",
     ]
     return _g(
         "price_cut_volume", stem=stem, explanation=" ".join(steps)
@@ -161,7 +166,7 @@ def _price_cut_volume(rng: random.Random, o: dict[str, Any] | None) -> Generated
                 "context": [business, product, units], "price_cut_pct": round(cut, 2)},
         signatures=[
             {"misconception_key": "contribution_vs_revenue", "value": round(rev, 2), "tolerance": 0.6,
-             "label": f"{rev:.1f}% keeps revenue (price × units) constant, not contribution"},
+             "label": f"{num(rev, 1)}% keeps revenue (price × units) constant, not contribution"},
             {"misconception_key": None, "hypothesis": "proportional_reasoning", "value": round(cut, 2),
              "tolerance": 0.6, "label": f"{cut:.1f}% simply mirrors the size of the price cut"},
         ],
@@ -186,8 +191,8 @@ def _price_increase(rng: random.Random, o: dict[str, Any] | None) -> Generated:
     )
     steps = [
         f"Contribution per unit rises from {inr(old_cm)} to {inr(new_cm)}.",
-        f"Volume can fall to {old_cm} ÷ {new_cm} = {old_cm / new_cm:.3f} of the original level.",
-        f"Maximum acceptable fall = 1 − {old_cm / new_cm:.3f} = {ans:.1f}%.",
+        f"Volume can fall to {old_cm} ÷ {new_cm} = {num(old_cm / new_cm, 3)} of the original level.",
+        f"Maximum acceptable fall = (1 − {num(old_cm / new_cm, 3)}) × 100 = {num(ans, 1)}%.",
     ]
     return _g(
         "price_increase_volume_loss", stem=stem,
@@ -197,7 +202,7 @@ def _price_increase(rng: random.Random, o: dict[str, Any] | None) -> Generated:
         params={"price": price, "var_cost": vc, "new_price": new_price, "old_cm": old_cm, "new_cm": new_cm,
                 "context": [business, product, units]},
         signatures=[{"misconception_key": "contribution_vs_revenue", "value": round(rev, 2), "tolerance": 0.6,
-                     "label": f"{rev:.1f}% keeps revenue constant rather than contribution"}],
+                     "label": f"{num(rev, 1)}% keeps revenue constant rather than contribution"}],
     )
 
 

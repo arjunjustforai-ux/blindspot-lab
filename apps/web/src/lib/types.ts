@@ -313,6 +313,7 @@ export interface DiagnosticSession {
     scripted_reasoning: string;
     scripted_confidence: number;
     scripted_probe_answers: Record<string, Record<string, string>>;
+    scripted_followup: null | { value?: string; option_id?: string; reasoning: string };
     label: string;
   };
   hypotheses: { misconception_key: string; title: string; labels: Record<string, string>; distribution: Record<string, number>; asked: string[]; adjustments: string[] }[];

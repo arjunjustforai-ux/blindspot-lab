@@ -11,9 +11,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   if (!ready || !user) return <LoadingState label="Checking your session…" />;
   return (
     <div className="min-h-screen lg:grid lg:grid-cols-[260px_1fr]">
-      <aside className="sticky top-0 hidden h-screen border-r border-line bg-surface/60 lg:block">
-        <Sidebar />
-      </aside>
+      <div className="hidden border-r border-line bg-surface/60 lg:block">
+        <aside className="sticky top-0 h-screen">
+          <Sidebar />
+        </aside>
+      </div>
       <MobileTopbar onMenu={() => setOpen(true)} />
       {open && (
         <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal>

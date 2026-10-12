@@ -66,7 +66,7 @@ function ViewerInner() {
         <div>
           {src.modality === "pdf" && <PdfViewer url={mediaUrl(v.file_url)!} page={page} onPage={(p) => setAnchor("page", p)} highlight={cited && cited.page === page ? cited.content : null} />}
           {src.modality === "pptx" && <SlideViewer previews={v.slide_previews} count={src.slide_count ?? 1} slide={slide} onSlide={(n) => setAnchor("slide", n)} />}
-          {src.modality === "video" && <VideoViewer url={mediaUrl(v.file_url)!} start={t} units={all} />}
+          {src.modality === "video" && <VideoViewer url={mediaUrl(v.file_url)!} start={t} units={all} citedUnitId={unitParam} />}
         </div>
 
         <Card className="h-fit">
@@ -157,7 +157,7 @@ function SlideViewer({ previews, count, slide, onSlide }: { previews: Record<str
   );
 }
 
-function VideoViewer({ url, start, units }: { url: string; start: number | null; units: Unit[] }) {
+function VideoViewer({ url, start, units, citedUnitId }: { url: string; start: number | null; units: Unit[]; citedUnitId: string | null }) {
   const ref = React.useRef<HTMLVideoElement>(null);
   const [time, setTime] = React.useState(start ?? 0);
   const segs = units
@@ -173,7 +173,7 @@ function VideoViewer({ url, start, units }: { url: string; start: number | null;
     <div className="space-y-3">
       <video
         ref={ref}
-        src={url}
+        src={start !== null ? `${url}#t=${start}` : url}
         controls
         preload="metadata"
         className="w-full rounded-xl border border-line bg-black"
@@ -195,8 +195,15 @@ function VideoViewer({ url, start, units }: { url: string; start: number | null;
         <CardContent className="max-h-80 space-y-1 overflow-y-auto">
           {segs.map((s) => {
             const active = time >= s.start && time < s.end;
+            // The segment the citation points at: inside the cited unit, starting at the cited timestamp.
+            const cited = s.unit === citedUnitId && start !== null && Math.abs(s.start - start) < 0.5;
             return (
-              <button key={`${s.unit}-${s.start}`} onClick={() => seek(s.start)} className={cn("flex w-full gap-3 rounded-md px-2 py-1 text-left text-sm", active ? "bg-brand/15 text-fg" : "text-muted hover:bg-surface-3")}>
+              <button
+                key={`${s.unit}-${s.start}`}
+                onClick={() => seek(s.start)}
+                data-testid={cited ? "cited-unit" : undefined}
+                className={cn("flex w-full gap-3 rounded-md px-2 py-1 text-left text-sm", active ? "bg-brand/15 text-fg" : "text-muted hover:bg-surface-3", cited && "ring-1 ring-warn/60")}
+              >
                 <span className="w-12 shrink-0 font-mono text-xs text-brand-soft">{fmtTs(s.start)}</span>
                 <span className="flex-1">{s.text}</span>
                 {s.confidence !== null && <span className="text-[10px] text-subtle">{Math.round(s.confidence * 100)}%</span>}

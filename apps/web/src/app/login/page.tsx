@@ -12,7 +12,6 @@ import { Logo } from "@/components/shell/logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { errorMessage } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
@@ -130,11 +129,11 @@ function LoginInner() {
 
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
-    <div className="space-y-1.5">
-      <Label>{label}</Label>
+    <label className="block space-y-1.5">
+      <span className="text-xs font-medium text-muted">{label}</span>
       {children}
       {error && <p className="text-xs text-bad">{error}</p>}
-    </div>
+    </label>
   );
 }
 

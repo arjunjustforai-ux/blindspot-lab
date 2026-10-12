@@ -15,7 +15,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from sqlalchemy import select
+from sqlalchemy import delete, select
 
 from app.config import REPO_ROOT, get_settings
 from app.db import SessionLocal
@@ -79,6 +79,7 @@ def _progress(run_id: uuid.UUID):  # noqa: ANN202
 
 def execute_run(run_id: uuid.UUID, *, learners_per_profile: int = 15, export: bool = True) -> dict[str, Any]:
     from app.services.evaluation import assessment as assess_eval
+    from app.services.evaluation import ingestion as ingest_eval
     from app.services.evaluation import personalization as pers_eval
     from app.services.evaluation import rag as rag_eval
 
@@ -107,6 +108,7 @@ def execute_run(run_id: uuid.UUID, *, learners_per_profile: int = 15, export: bo
                     r["category"] = "holdout:" + r["category"]
                 results += hr
                 extra["holdout"] = hs
+            extra["ingestion"] = ingest_eval.evaluate(db, course_id)
             dataset, version, prompt_version, seed = "rag_benchmark", "v1", rag_eval.ANSWER_PROMPT_VERSION, None
         elif kind == "assessment":
             summary, results = assess_eval.evaluate(db, course_id)
@@ -126,6 +128,7 @@ def execute_run(run_id: uuid.UUID, *, learners_per_profile: int = 15, export: bo
         run.config = {"course_id": str(course_id), **({"learners_per_profile": learners_per_profile}
                                                         if kind == "personalization" else {})}
         run.limitations = LIMITATIONS[kind]
+        db.execute(delete(EvaluationResult).where(EvaluationResult.run_id == run_id))  # idempotent on retry
         for r in results:
             db.add(EvaluationResult(run_id=run_id, case_key=r["case_key"], category=r.get("category"),
                                     metrics=_jsonable(r.get("metrics", {})), output=_jsonable(r.get("output", {})),
@@ -160,7 +163,8 @@ def export_run(out: dict[str, Any]) -> Path:
 def create_and_execute(kind: str, *, learners_per_profile: int = 15) -> dict[str, Any]:
     with SessionLocal() as db:
         c = db.scalar(select(Course).where(Course.is_demo.is_(True)))
-        r = EvaluationRun(kind=kind, status="queued", course_id=c.id if c else None)
+        # Created as already running so a background worker never claims the same run concurrently.
+        r = EvaluationRun(kind=kind, status="running", locked_by="cli", started_at=_now(), course_id=c.id if c else None)
         db.add(r)
         db.commit()
         rid = r.id

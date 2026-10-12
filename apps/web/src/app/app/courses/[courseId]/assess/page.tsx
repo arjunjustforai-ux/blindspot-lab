@@ -237,7 +237,13 @@ function Runner({ courseId, assessmentId, onExit }: { courseId: string; assessme
               <p className="text-[15px] leading-relaxed">{item.question.stem}</p>
               <FeedbackPanel f={item.attempt.feedback} />
               {cur < a.items.length - 1 ? (
-                <Button onClick={() => setIdx(cur + 1)} data-testid="next-question">
+                <Button
+                  onClick={() => {
+                    const nextOpen = a.items.findIndex((it, i) => i > cur && !it.attempt);
+                    setIdx(nextOpen === -1 ? cur + 1 : nextOpen);
+                  }}
+                  data-testid="next-question"
+                >
                   Next question <ArrowRight />
                 </Button>
               ) : (
@@ -247,7 +253,14 @@ function Runner({ courseId, assessmentId, onExit }: { courseId: string; assessme
               )}
             </>
           ) : (
-            <QuestionForm q={item.question} pending={answer.isPending} onSubmit={(p) => answer.mutate({ question_id: item.question.id, ...p })} />
+            <QuestionForm
+              q={item.question}
+              pending={answer.isPending}
+              onSubmit={(p) => {
+                setIdx(cur); // stay on this question so its feedback is shown before moving on
+                answer.mutate({ question_id: item.question.id, ...p });
+              }}
+            />
           )}
         </CardContent>
       </Card>

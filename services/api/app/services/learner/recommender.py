@@ -131,7 +131,7 @@ def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int 
             what = "revisit" if h["status"] == "resolving" else "investigate"
             recs.append({
                 "type": "blindspot_session", "priority": pr, "title": f"{what.title()}: {h['title']}",
-                "rationale": f"A '{h['title']}' hypothesis is {h['status']} (model posterior {h['posterior']:.2f} from "
+                "rationale": f"A '{h['title']}' hypothesis is {h['status']} (model posterior {h['posterior']:.0%} from "
                 f"{h['evidence_count']} piece(s) of evidence). Focused conceptual practice is more useful than harder "
                 "questions until it is resolved.",
                 "concept_ids": [h["concept_id"]] if h["concept_id"] else [], "misconception_key": h["misconception_key"],
@@ -148,11 +148,11 @@ def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int 
         if weak_pre:
             for pid in weak_pre:
                 pv = views[pid]
-                pre_state = "unassessed" if pv["p_mastery"] is None else f"at {pv['p_mastery']:.2f}"
+                pre_state = "unassessed" if pv["p_mastery"] is None else f"at {pv['p_mastery']:.0%}"
                 recs.append({
                     "type": "practice", "priority": 75 - (pv["p_mastery"] or 0) * 10,
                     "title": f"Strengthen the prerequisite: {name[pid]}",
-                    "rationale": f"'{c.name}' is at {p:.2f} and depends on '{name[pid]}', which is "
+                    "rationale": f"'{c.name}' is at {p:.0%} and depends on '{name[pid]}', which is "
                     f"{pre_state}. Building the "
                     "prerequisite first should make later practice more effective.",
                     "concept_ids": [str(pid)], "difficulty": target_difficulty(pv["p_mastery"]),
@@ -160,7 +160,7 @@ def recommend(db: Session, user_id: uuid.UUID, course_id: uuid.UUID, limit: int 
         else:
             recs.append({
                 "type": "practice", "priority": 70 - p * 20, "title": f"Targeted practice: {c.name}",
-                "rationale": f"Estimated mastery {p:.2f} ({v['label']}, {v['evidence_quality']} evidence). Its "
+                "rationale": f"Estimated mastery {p:.0%} ({v['label']}, {v['evidence_quality']} evidence). Its "
                 "prerequisites look ready, so practice at a matched difficulty is the next step.",
                 "concept_ids": [str(c.id)], "difficulty": target_difficulty(p),
             })

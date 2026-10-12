@@ -94,7 +94,7 @@ function layout(nodes: GraphNode[], edges: GraphEdge[]) {
   const cols: Record<number, GraphNode[]> = {};
   concepts.sort((a, b) => a.order_index - b.order_index).forEach((c) => (cols[depth[c.concept_id]] ??= []).push(c));
   const pos: Record<string, { x: number; y: number }> = {};
-  Object.entries(cols).forEach(([col, list]) => list.forEach((c, i) => (pos[c.concept_id] = { x: Number(col) * 300, y: i * 175 + (Number(col) % 2) * 60 })));
+  Object.entries(cols).forEach(([col, list]) => list.forEach((c, i) => (pos[c.concept_id] = { x: Number(col) * 265, y: i * 165 + (Number(col) % 2) * 50 })));
   return pos;
 }
 
@@ -152,7 +152,8 @@ export default function KnowledgePage() {
                 edges={flow.edges}
                 nodeTypes={nodeTypes}
                 fitView
-                fitViewOptions={{ padding: 0.2 }}
+                fitViewOptions={{ padding: 0.08, maxZoom: 1.25 }}
+                style={{ background: "transparent" }}
                 proOptions={{ hideAttribution: true }}
                 nodesDraggable
                 onNodeClick={(_, n) => setSel(n.id)}

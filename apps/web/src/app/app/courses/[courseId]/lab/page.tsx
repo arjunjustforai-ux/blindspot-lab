@@ -296,10 +296,19 @@ function SessionView({ courseId, sessionId, onExit }: { courseId: string; sessio
               </CardHeader>
               <CardContent>
                 <ScriptedForm
+                  key={pendingQ.id}
                   q={pendingQ}
                   onSubmit={(p) => answer.mutate(p)}
                   pending={answer.isPending}
-                  scripted={isMain && scripted ? { value: scripted.scripted_answer.value, option_id: scripted.scripted_answer.option_id, reasoning: scripted.scripted_reasoning, confidence: scripted.scripted_confidence } : undefined}
+                  scripted={
+                    !scripted
+                      ? undefined
+                      : isMain
+                        ? { value: scripted.scripted_answer.value, option_id: scripted.scripted_answer.option_id, reasoning: scripted.scripted_reasoning, confidence: scripted.scripted_confidence }
+                        : scripted.scripted_followup
+                          ? { value: scripted.scripted_followup.value, option_id: scripted.scripted_followup.option_id, reasoning: scripted.scripted_followup.reasoning, confidence: 4 }
+                          : undefined
+                  }
                 />
               </CardContent>
             </Card>
@@ -587,7 +596,7 @@ function TimelineCard({ e, s, onContinue, busy }: { e: TimelineEvent; s: Diagnos
                 <div className="rounded-xl border border-warn/30 bg-warn/5 p-3">
                   <div className="mb-1 text-xs font-semibold text-warn">What the misconception computes</div>
                   <p className="text-sm">
-                    <span className="font-mono">{c.worked_example.contrast.misconception_answer}{c.worked_example.unit === "%" ? "%" : ""}</span>: {c.worked_example.contrast.label}.
+                    {c.worked_example.contrast.label}.
                   </p>
                 </div>
               )}

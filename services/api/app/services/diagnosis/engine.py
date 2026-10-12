@@ -624,9 +624,20 @@ def view(db: Session, s: DiagnosticSession) -> dict[str, Any]:
     scenario = None
     if s.is_demo_script:
         sc = DEMO_SCENARIO["contribution_price_cut"]
+        # After the repair the scripted learner answers practice/transfer items correctly, so a recorded demo can
+        # show the full loop. Only demo-script sessions expose this; it is shown in the UI as a scripted response.
+        followup = None
+        pq = db.get(Question, s.practice_question_id) if s.stage == "practice" and s.practice_question_id else None
+        tq = db.get(Question, s.transfer_question_id) if s.stage == "transfer" and s.transfer_question_id else None
+        fq = pq or tq
+        if fq is not None and fq.question_type in ("numerical", "mcq"):
+            followup = ({"value": f"{fq.numeric_answer:g}"} if fq.question_type == "numerical"
+                        else {"option_id": fq.correct_option_id})
+            followup["reasoning"] = ("Kept contribution, not revenue, constant: compared contribution per unit "
+                                     "before and after the change.")
         scenario = {"key": "contribution_price_cut", "scripted_answer": sc["scripted_answer"],
                     "scripted_reasoning": sc["scripted_reasoning"], "scripted_confidence": sc["scripted_confidence"],
-                    "scripted_probe_answers": sc["scripted_probe_answers"],
+                    "scripted_probe_answers": sc["scripted_probe_answers"], "scripted_followup": followup,
                     "label": "Scripted demonstration learner: responses are pre-written, all grading, probing, "
                     "retrieval and mastery updates are computed live."}
     return {

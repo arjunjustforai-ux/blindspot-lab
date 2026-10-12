@@ -317,9 +317,9 @@ const PERS_METRICS: [string, string, boolean][] = [
 
 function PersTab({ run }: { run: EvalRun }) {
   const s = run.summary;
-  const profiles = Object.keys(s.by_profile);
+  const profiles = Object.keys(s.by_profile).sort(); // JSONB does not preserve key order
   const chart = (key: string) =>
-    profiles.map((p) => ({ name: p.split("_")[0], adaptive: s.by_profile[p].adaptive?.[key]?.mean ?? null, baseline: s.by_profile[p].baseline?.[key]?.mean ?? null }));
+    profiles.map((p) => ({ name: p.replace(/_/g, " "), adaptive: s.by_profile[p].adaptive?.[key]?.mean ?? null, baseline: s.by_profile[p].baseline?.[key]?.mean ?? null }));
   return (
     <div>
       <RunMeta run={run} />
@@ -424,6 +424,8 @@ function PersTab({ run }: { run: EvalRun }) {
 function Cases({ runId, kind }: { runId: string; kind: string }) {
   const [cat, setCat] = React.useState("");
   const [onlyFail, setOnlyFail] = React.useState(false);
+  const [shown, setShown] = React.useState(20);
+  React.useEffect(() => setShown(20), [cat, onlyFail]);
   const q = useQuery({
     queryKey: ["eval-results", runId, cat, onlyFail],
     queryFn: () => api<{ total: number; results: EvalResult[] }>(`/api/evaluation/runs/${runId}/results?limit=500${cat ? `&category=${cat}` : ""}${onlyFail ? "&passed=false" : ""}`),
@@ -452,7 +454,8 @@ function Cases({ runId, kind }: { runId: string; kind: string }) {
       </CardHeader>
       <CardContent className="space-y-1.5">
         {q.isLoading && <LoadingState />}
-        {q.data?.results.map((r) => (
+        {q.data?.results.length === 0 && <p className="text-sm text-muted">No cases match this filter.</p>}
+        {q.data?.results.slice(0, shown).map((r) => (
           <details key={r.id} className="group rounded-lg border border-line bg-surface-2/40 px-3 py-2" data-testid="eval-case">
             <summary className="flex cursor-pointer list-none items-center gap-2 text-sm">
               {r.passed === true ? <CheckCircle2 className="size-4 text-ok" /> : r.passed === false ? <XCircle className="size-4 text-bad" /> : <span className="size-4" />}
@@ -464,6 +467,11 @@ function Cases({ runId, kind }: { runId: string; kind: string }) {
             <CaseDetail r={r} kind={kind} />
           </details>
         ))}
+        {q.data && q.data.results.length > shown && (
+          <Button variant="ghost" size="sm" onClick={() => setShown((n) => n + 40)}>
+            Show more ({q.data.results.length - shown} remaining)
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

@@ -181,6 +181,9 @@ def _answer_extractive(db: Session, question: str, res: RetrievalResult) -> Tuto
             continue
         for c in _unit_candidates(h):
             c.text = normalize_ws(c.text) if not c.structured else c.text.strip()
+            heading = (h.unit.heading or "").strip().rstrip(":.").lower()
+            if not c.structured and heading and c.text.rstrip(":.").lower() == heading:
+                continue  # a bare title is context, not an answer
             if c.structured or 4 <= len(c.text.split()) <= 70:
                 cands.append(c)
     if not cands:

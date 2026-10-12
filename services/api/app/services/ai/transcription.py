@@ -55,10 +55,11 @@ class LocalWhisper:
         self._m = WhisperModel(model, device="cpu", compute_type="int8", download_root=cache_dir)
         self._lock = threading.Lock()
 
-    def transcribe(self, audio_path: Path) -> Transcript:
+    def transcribe(self, audio_path: Path, prompt: str | None = None) -> Transcript:
         audio = _read_wav_16k_mono(audio_path)
         with self._lock:
-            segs, info = self._m.transcribe(audio, beam_size=5, vad_filter=True, word_timestamps=False)
+            segs, info = self._m.transcribe(audio, beam_size=5, vad_filter=True, word_timestamps=False,
+                                            initial_prompt=prompt or None)
             out = [
                 Segment(
                     start=round(s.start, 2),
@@ -80,12 +81,15 @@ class OpenAITranscriber:
         self.url = base_url.rstrip("/") + "/audio/transcriptions"
         self.headers = {"Authorization": f"Bearer {api_key}"}
 
-    def transcribe(self, audio_path: Path) -> Transcript:
+    def transcribe(self, audio_path: Path, prompt: str | None = None) -> Transcript:
+        data = {"model": self.model, "response_format": "verbose_json", "timestamp_granularities[]": "segment"}
+        if prompt:
+            data["prompt"] = prompt
         with audio_path.open("rb") as f:
             r = httpx.post(
                 self.url,
                 headers=self.headers,
-                data={"model": self.model, "response_format": "verbose_json", "timestamp_granularities[]": "segment"},
+                data=data,
                 files={"file": (audio_path.name, f, "audio/mpeg")},
                 timeout=600,
             )
