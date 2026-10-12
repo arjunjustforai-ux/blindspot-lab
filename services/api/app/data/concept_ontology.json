@@ -1,0 +1,98 @@
+{
+  "domain": "Marketing and Business Analytics",
+  "version": 1,
+  "status": "Authored by the Blindspot Lab team for the demonstration domain. Instructor-reviewable; not externally validated.",
+  "activation_rule": "A concept is activated for a course only if at least two content units (or one heading) in that course contain one of its strong aliases.",
+  "topics": [
+    {"key": "measuring_performance", "name": "Measuring Marketing Performance", "description": "Metrics that describe the scale and efficiency of marketing activity."},
+    {"key": "unit_economics", "name": "Unit Economics", "description": "How price, variable cost and volume combine into contribution and profit."},
+    {"key": "evidence_decisions", "name": "Evidence and Decision-Making", "description": "Judging evidence and making decisions when assumptions change."}
+  ],
+  "concepts": [
+    {
+      "key": "revenue_conversion",
+      "name": "Revenue and conversion metrics",
+      "topic": "measuring_performance",
+      "order": 1,
+      "description": "Revenue is price multiplied by units sold; the conversion rate is conversions divided by visitors. Rates and absolute counts answer different questions, and percentage-point changes differ from percent changes.",
+      "aliases": ["revenue", "conversion rate", "conversions", "funnel", "percentage point", "percent change"],
+      "strong_aliases": ["conversion rate", "percentage point", "absolute conversions", "funnel"],
+      "prerequisites": [],
+      "subconcepts": [
+        {"key": "pp_vs_percent", "name": "Percentage points vs percent change", "aliases": ["percentage point", "percent change"]},
+        {"key": "rate_vs_absolute", "name": "Conversion rate vs absolute conversions", "aliases": ["absolute conversions", "conversion rate"]}
+      ]
+    },
+    {
+      "key": "contribution_margin",
+      "name": "Contribution margin",
+      "topic": "unit_economics",
+      "order": 2,
+      "description": "Contribution margin per unit is price minus variable cost per unit; total contribution covers fixed costs before becoming profit. Price changes alter contribution per unit by the full amount of the change.",
+      "aliases": ["contribution margin", "contribution per unit", "unit contribution", "variable cost", "fixed costs", "break-even volume", "marginal cost"],
+      "strong_aliases": ["contribution margin", "contribution per unit", "unit contribution"],
+      "prerequisites": ["revenue_conversion"],
+      "subconcepts": [
+        {"key": "price_volume", "name": "Price changes and required volume", "aliases": ["price cut", "volume increase", "required volume"]},
+        {"key": "break_even", "name": "Break-even volume", "aliases": ["break-even volume", "break even"]},
+        {"key": "marginal_cost", "name": "Total cost vs marginal cost", "aliases": ["marginal cost", "incremental cost", "average total cost"]}
+      ]
+    },
+    {
+      "key": "roas",
+      "name": "Return on advertising spend (ROAS)",
+      "topic": "measuring_performance",
+      "order": 3,
+      "description": "ROAS is attributed revenue divided by advertising spend. It is not a profit measure: the break-even ROAS equals 1 divided by the contribution margin ratio.",
+      "aliases": ["roas", "return on advertising spend", "return on ad spend", "break-even roas", "advertising spend", "attribution"],
+      "strong_aliases": ["roas", "return on advertising spend", "return on ad spend"],
+      "prerequisites": ["revenue_conversion", "contribution_margin"],
+      "subconcepts": [
+        {"key": "break_even_roas", "name": "Break-even ROAS", "aliases": ["break-even roas"]},
+        {"key": "attribution", "name": "Attribution and incrementality", "aliases": ["attribution", "incrementality", "incremental"]}
+      ]
+    },
+    {
+      "key": "cac_clv",
+      "name": "Customer acquisition cost and lifetime value",
+      "topic": "measuring_performance",
+      "order": 4,
+      "description": "CAC is sales and marketing spend divided by new customers. CLV estimates contribution (not revenue) over the customer relationship; CLV-to-CAC and payback compare the two.",
+      "aliases": ["customer acquisition cost", "cac", "lifetime value", "clv", "payback period", "churn"],
+      "strong_aliases": ["customer acquisition cost", "lifetime value", "clv", "cac"],
+      "prerequisites": ["contribution_margin"],
+      "subconcepts": [
+        {"key": "payback", "name": "Payback period", "aliases": ["payback period", "payback"]},
+        {"key": "clv_cac_ratio", "name": "CLV-to-CAC ratio", "aliases": ["clv-to-cac", "clv to cac"]}
+      ]
+    },
+    {
+      "key": "correlation_causation",
+      "name": "Correlation, causation and experiments",
+      "topic": "evidence_decisions",
+      "order": 5,
+      "description": "Correlation does not establish causation; confounders can create associations. Randomised experiments estimate causal effects, and statistical significance differs from practical significance.",
+      "aliases": ["correlation", "causation", "confounder", "a/b test", "randomised", "randomized", "experiment", "statistically significant", "practical significance"],
+      "strong_aliases": ["correlation", "causation", "confounder", "randomised", "randomized", "a/b test"],
+      "prerequisites": [],
+      "subconcepts": [
+        {"key": "experiments", "name": "Randomised experiments (A/B tests)", "aliases": ["a/b test", "randomised", "randomized", "control group"]},
+        {"key": "significance", "name": "Statistical vs practical significance", "aliases": ["statistically significant", "practical significance"]}
+      ]
+    },
+    {
+      "key": "decision_assumptions",
+      "name": "Decisions under changing assumptions",
+      "topic": "evidence_decisions",
+      "order": 6,
+      "description": "Sensitivity and scenario analysis test how conclusions depend on assumptions; the median describes typical values in skewed data while the mean supports totals.",
+      "aliases": ["sensitivity analysis", "scenario analysis", "scenario", "assumption", "median", "mean", "skewed"],
+      "strong_aliases": ["sensitivity analysis", "scenario analysis", "median"],
+      "prerequisites": ["contribution_margin", "correlation_causation"],
+      "subconcepts": [
+        {"key": "sensitivity", "name": "Sensitivity and scenario analysis", "aliases": ["sensitivity analysis", "scenario analysis"]},
+        {"key": "mean_median", "name": "Mean vs median", "aliases": ["median", "mean", "skewed"]}
+      ]
+    }
+  ]
+}

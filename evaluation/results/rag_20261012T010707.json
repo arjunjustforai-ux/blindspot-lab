@@ -1,0 +1,6049 @@
+{
+ "id": "bc8674bc-c881-4f05-9d41-725cf4e0391c",
+ "kind": "rag",
+ "dataset": "rag_benchmark",
+ "dataset_version": "v1",
+ "model_info": {
+  "llm": null,
+  "python": "3.13.16",
+  "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+  "embedding": "local:BAAI/bge-small-en-v1.5",
+  "llm_provider": "local",
+  "transcription": "local:base.en"
+ },
+ "prompt_version": "grounded-answer-v1",
+ "seed": null,
+ "started_at": "2026-10-12T01:05:59.405578+00:00",
+ "finished_at": "2026-10-12T01:07:07.440470+00:00",
+ "config": {
+  "course_id": "40caee01-beb3-4574-8d61-a16a57e0beef"
+ },
+ "summary": {
+  "dataset": "rag_benchmark_v1.jsonl",
+  "n_cases": 49,
+  "n_answerable": 37,
+  "n_unsupported": 12,
+  "metrics": {
+   "context_precision": {
+    "value": 0.9103,
+    "framework": "RAGAS 0.4.3",
+    "variant": "NonLLMContextPrecisionWithReference"
+   },
+   "context_recall": {
+    "value": 0.6791,
+    "framework": "RAGAS 0.4.3",
+    "variant": "NonLLMContextRecall"
+   },
+   "faithfulness": {
+    "value": null,
+    "framework": "RAGAS",
+    "variant": "Faithfulness (LLM judge)",
+    "unavailable_reason": "No judge LLM configured (LLM_PROVIDER=local)"
+   },
+   "answer_relevancy": {
+    "value": null,
+    "framework": "RAGAS",
+    "variant": "ResponseRelevancy (LLM judge)",
+    "unavailable_reason": "No judge LLM configured (LLM_PROVIDER=local)"
+   },
+   "faithfulness_nli": {
+    "value": 0.9932,
+    "variant": "share of answer statements entailed by cited contexts (local NLI cross-encoder, threshold 0.5)",
+    "n": 37
+   },
+   "answer_relevancy_embed": {
+    "value": 0.798,
+    "variant": "cosine(question, answer) with bge-small embeddings",
+    "n": 37
+   },
+   "retrieval_hit_rate": {
+    "value": 1.0,
+    "k": 6
+   },
+   "mrr": {
+    "value": 1.0,
+    "k": 6
+   },
+   "source_recall": {
+    "value": 0.9932,
+    "k": 6
+   },
+   "citation_location_accuracy": {
+    "value": 0.8378,
+    "definition": "share of citations in grounded answers whose page/slide/timestamp matches an annotated location"
+   },
+   "answer_with_correct_citation": {
+    "value": 1.0
+   },
+   "supported_answer_coverage": {
+    "value": 1.0
+   },
+   "false_refusal_rate": {
+    "value": 0.0
+   },
+   "unsupported_refusal_accuracy": {
+    "value": 1.0
+   }
+  },
+  "by_category": {
+   "citation_challenge": {
+    "n": 4,
+    "passed": 4
+   },
+   "diagram": {
+    "n": 6,
+    "passed": 6
+   },
+   "factual": {
+    "n": 17,
+    "passed": 17
+   },
+   "multi_source": {
+    "n": 4,
+    "passed": 4
+   },
+   "numerical": {
+    "n": 6,
+    "passed": 6
+   },
+   "unsupported": {
+    "n": 12,
+    "passed": 12
+   }
+  },
+  "config": {
+   "k": 6,
+   "gate_logit": -0.85,
+   "gate_coverage": 0.34,
+   "answer_mode": "extractive",
+   "prompt_version": "grounded-answer-v1",
+   "video_tolerance_s": 3.0
+  },
+  "models": {
+   "embedding": "local:BAAI/bge-small-en-v1.5",
+   "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+   "nli": "local:cross-encoder/nli-deberta-v3-xsmall",
+   "llm": null
+  },
+  "holdout": {
+   "dataset": "rag_holdout_v1.jsonl",
+   "n_cases": 15,
+   "n_answerable": 11,
+   "n_unsupported": 4,
+   "metrics": {
+    "context_precision": {
+     "value": 0.864,
+     "framework": "RAGAS 0.4.3",
+     "variant": "NonLLMContextPrecisionWithReference"
+    },
+    "context_recall": {
+     "value": 0.6849,
+     "framework": "RAGAS 0.4.3",
+     "variant": "NonLLMContextRecall"
+    },
+    "faithfulness": {
+     "value": null,
+     "framework": "RAGAS",
+     "variant": "Faithfulness (LLM judge)",
+     "unavailable_reason": "No judge LLM configured (LLM_PROVIDER=local)"
+    },
+    "answer_relevancy": {
+     "value": null,
+     "framework": "RAGAS",
+     "variant": "ResponseRelevancy (LLM judge)",
+     "unavailable_reason": "No judge LLM configured (LLM_PROVIDER=local)"
+    },
+    "faithfulness_nli": {
+     "value": 1.0,
+     "variant": "share of answer statements entailed by cited contexts (local NLI cross-encoder, threshold 0.5)",
+     "n": 10
+    },
+    "answer_relevancy_embed": {
+     "value": 0.8048,
+     "variant": "cosine(question, answer) with bge-small embeddings",
+     "n": 10
+    },
+    "retrieval_hit_rate": {
+     "value": 1.0,
+     "k": 6
+    },
+    "mrr": {
+     "value": 1.0,
+     "k": 6
+    },
+    "source_recall": {
+     "value": 1.0,
+     "k": 6
+    },
+    "citation_location_accuracy": {
+     "value": 0.8833,
+     "definition": "share of citations in grounded answers whose page/slide/timestamp matches an annotated location"
+    },
+    "answer_with_correct_citation": {
+     "value": 0.9091
+    },
+    "supported_answer_coverage": {
+     "value": 0.9091
+    },
+    "false_refusal_rate": {
+     "value": 0.0909
+    },
+    "unsupported_refusal_accuracy": {
+     "value": 1.0
+    }
+   },
+   "by_category": {
+    "diagram": {
+     "n": 3,
+     "passed": 2
+    },
+    "factual": {
+     "n": 7,
+     "passed": 7
+    },
+    "numerical": {
+     "n": 1,
+     "passed": 1
+    },
+    "unsupported": {
+     "n": 4,
+     "passed": 4
+    }
+   },
+   "config": {
+    "k": 6,
+    "gate_logit": -0.85,
+    "gate_coverage": 0.34,
+    "answer_mode": "extractive",
+    "prompt_version": "grounded-answer-v1",
+    "video_tolerance_s": 3.0
+   },
+   "models": {
+    "embedding": "local:BAAI/bge-small-en-v1.5",
+    "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+    "nli": "local:cross-encoder/nli-deberta-v3-xsmall",
+    "llm": null
+   }
+  },
+  "ingestion": {
+   "sources": {
+    "Unit_Economics_for_Marketers.pptx": {
+     "modality": "pptx",
+     "units": 25,
+     "slide_coverage": 1.0
+    },
+    "Lecture_03_Price_Cuts.mp4": {
+     "modality": "video",
+     "units": 14,
+     "transcription_model": "faster-whisper:base.en",
+     "asr_wer": 0.0912,
+     "asr_reference_words": 351,
+     "video_span_coverage": 1.0,
+     "transcript_units": 4,
+     "frame_units": 10
+    },
+    "Marketing_Analytics_Primer.pdf": {
+     "modality": "pdf",
+     "units": 28,
+     "page_coverage": 1.0
+    }
+   },
+   "units_total": 67,
+   "units_with_provenance": 1.0
+  }
+ },
+ "limitations": [
+  "Small, self-authored benchmark on a self-authored synthetic course; results describe this pipeline on this material, not general performance.",
+  "RAGAS LLM-judge metrics (faithfulness, answer relevancy) need a configured judge model; in local mode they are reported as unavailable and judge-free substitutes are shown and labelled as such.",
+  "Faithfulness of the local extractive answer mode is high by construction (answers are verbatim quotes); the NLI check verifies that, it does not show that the selected quotes fully answer the question.",
+  "rag_benchmark_v1 was used while fixing pipeline issues; rag_holdout_v1 was written after freezing the pipeline and is the less biased estimate.",
+  "Video locations are annotated from the planned narration timing (±3 s tolerance), not hand-checked against every Whisper segment."
+ ],
+ "results": [
+  {
+   "case_key": "F01",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 3.791,
+    "coverage": 0.5,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.25,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9846,
+    "answer_relevancy_embed": 0.7601
+   },
+   "passed": true,
+   "output": {
+    "question": "How is revenue defined in the primer?",
+    "answer": "From your course materials (quoted directly):\n\n> Revenue is the money a business takes in from sales before any costs are deducted. [S1]\n\n> This short primer introduces six connected ideas that marketing and business analysts use to make decisions: revenue and conversion metrics, contribution margin, return on advertising spend, customer acquisition cost and lifetime value, correlation versus causation, and decision-making under changing assumptions. [S2]\n\n> Revenue is a measure of scale, not of profit: a business can grow revenue while losing money on every sale. [S1]\n\n> For a single product, revenue equals the selling price multiplied by the number of units sold. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 2",
+      "unit_id": "68d5044b-7d23-4057-978f-ce9cd745ef36",
+      "page": 2,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 1",
+      "unit_id": "1964997a-e785-42e1-87dd-dae0ab2a0861",
+      "page": 1,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.791
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.909
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -1.552
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.704
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.417
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -5.645
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 2
+     }
+    ],
+    "reference_answer": "Revenue is the money a business takes in from sales before any costs are deducted; for a single product it equals selling price times units sold.",
+    "cited_contexts": [
+     "Revenue is the money a business takes in from sales before any costs are deducted. For a single product, revenue equals the selling price multiplied by the number of units sold. Revenue is a measure of scale, not of profit: a business can grow revenue while losing money on every sale.\nRevenue = selling price × units sold",
+     "This short primer introduces six connected ideas that marketing and business analysts use to make decisions: revenue and conversion metrics, contribution margin, return on advertising spend, customer acquisition cost and lifetime value, correlation versus causation, and decision-making under changing assumptions. Each chapter builds on the previous ones.\nSynthetic teaching material created for the Blindspot Lab demonstration. All companies, prices and results are fictional."
+    ]
+   }
+  },
+  {
+   "case_key": "F02",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.943,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.7,
+    "context_recall": 0.5,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9864,
+    "answer_relevancy_embed": 0.9324
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the difference between a percentage-point change and a percent change?",
+    "answer": "From your course materials (quoted directly):\n\n> A percentage-point change is the simple difference between two percentages: a conversion rate that rises from 2% to 3% has increased by 1 percentage point. [S1]\n\n> A percent change is the difference relative to the starting value: the same move from 2% to 3% is a 50% increase. [S1]\n\n> Reports should state which measure they use, because confusing the two can make a small change look large or a large change look small. [S1]\n\n> When a rate changes, there are two different ways to describe the change. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 2",
+      "unit_id": "b29805e8-cbe8-4251-bd87-c7dabbe8dd4e",
+      "page": 2,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 9.943
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.435
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.091
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": -6.723
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -7.315
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -8.122
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 2
+     }
+    ],
+    "reference_answer": "A percentage-point change is the simple difference between two percentages; a percent change is that difference relative to the starting value (2% to 3% is +1 point but a 50% increase).",
+    "cited_contexts": [
+     "When a rate changes, there are two different ways to describe the change. A percentage-point change is the simple difference between two percentages: a conversion rate that rises from 2% to 3% has increased by 1 percentage point. A percent change is the difference relative to the starting value: the same move from 2% to 3% is a 50% increase. Reports should state which measure they use, because confusing the two can make a small change look large or a large change look small."
+    ]
+   }
+  },
+  {
+   "case_key": "F03",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.367,
+    "coverage": 0.667,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 0.8056,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9815,
+    "answer_relevancy_embed": 0.7655
+   },
+   "passed": true,
+   "output": {
+    "question": "What are some examples of variable costs?",
+    "answer": "From your course materials (quoted directly):\n\n> Variable costs change in proportion to the number of units sold, for example materials, packaging, payment fees and delivery. [S1]\n\n> Example: a workshop with a variable cost of ₹300 and an average total cost of ₹380 per unit (including allocated rent) receives a one-off order for 100 units at ₹340 each. [S2]\n\n> Fixed costs, such as rent and salaried staff, do not change with short-run volume. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "9811eda7-7b8f-49f1-aa60-80103b442a9c",
+      "page": 3,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "fe62d5d9-ed53-4192-ab9f-a9ae544b5ee7",
+      "page": 4,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 7.367
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 5.657
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.697
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.36
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 1.072
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.906
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     }
+    ],
+    "reference_answer": "Materials, packaging, payment fees and delivery.",
+    "cited_contexts": [
+     "Variable costs change in proportion to the number of units sold, for example materials, packaging, payment fees and delivery. Fixed costs, such as rent and salaried staff, do not change with short-run volume. Separating the two is the first step in understanding how a decision affects profit.",
+     "For decisions about one additional order, what matters is the marginal (incremental) cost of serving it, usually the variable cost, not the average total cost per unit, which includes fixed costs that will be paid anyway. Example: a workshop with a variable cost of ₹300 and an average total cost of ₹380 per unit (including allocated rent) receives a one-off order for 100 units at ₹340 each. If spare capacity exists and fixed costs will not change, the order adds (340 − 300) × 100 = ₹4,000 of contribution, even though ₹340 is below the average total cost."
+    ]
+   }
+  },
+  {
+   "case_key": "F04",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.796,
+    "coverage": 0.889,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 0.75,
+    "context_recall": 0.6667,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.984,
+    "answer_relevancy_embed": 0.8398
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the contribution margin ratio of a product priced at ₹500 with a variable cost of ₹300?",
+    "answer": "From your course materials (quoted directly):\n\n> Example: a product sells for ₹500 and has a variable cost of ₹300 per unit. [S1]\n\n> Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "8c8256d5-cefd-4139-971d-8c6b733e6adf",
+      "page": 3,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 4",
+      "unit_id": "6da7f2c1-8cde-422d-b598-9aab2b8b8fd4",
+      "page": null,
+      "slide": 4,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 7.796
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": 5.988
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 4.537
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.835
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.609
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.608
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     }
+    ],
+    "reference_answer": "40% (contribution of ₹200 divided by the ₹500 price).",
+    "cited_contexts": [
+     "Contribution margin per unit is the selling price minus the variable cost per unit. It is the amount each additional unit contributes towards covering fixed costs and then generating profit. Total contribution equals the contribution margin per unit multiplied by the number of units sold. The contribution margin ratio expresses contribution as a share of the selling price.\nContribution margin per unit = price − variable cost per unit\nContribution margin ratio = (price − variable cost) ÷ price\nExample: a product sells for ₹500 and has a variable cost of ₹300 per unit. Its contribution margin per unit is ₹200 and its contribution margin ratio is 40%.",
+     "Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third."
+    ]
+   }
+  },
+  {
+   "case_key": "F05",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.284,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.3333,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9672,
+    "answer_relevancy_embed": 0.7841
+   },
+   "passed": true,
+   "output": {
+    "question": "How do you calculate break-even volume?",
+    "answer": "From your course materials (quoted directly):\n\n> Break-even volume = fixed costs ÷ contribution margin per unit [S1]\n\n> With fixed costs of ₹60,000 and contribution per unit of ₹200, the business must sell 300 units to break even. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "2722280f-4200-452f-a343-f760720d6470",
+      "page": 4,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 8.284
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 2.675
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.882
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 0.243
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.447
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -1.853
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 4
+     }
+    ],
+    "reference_answer": "Break-even volume = fixed costs ÷ contribution margin per unit.",
+    "cited_contexts": [
+     "Break-even volume is the number of units at which total contribution exactly covers fixed costs. With fixed costs of ₹60,000 and contribution per unit of ₹200, the business must sell 300 units to break even.\nBreak-even volume = fixed costs ÷ contribution margin per unit"
+    ]
+   }
+  },
+  {
+   "case_key": "F06",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.328,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.25,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9784,
+    "answer_relevancy_embed": 0.7619
+   },
+   "passed": true,
+   "output": {
+    "question": "What does an incrementality test compare?",
+    "answer": "From your course materials (quoted directly):\n\n> Incrementality tests, which compare exposed and unexposed groups, give a better estimate of the causal effect. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "6466cc1f-fc15-4c03-8c66-4ccd55b57353",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 6.328
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.066
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.792
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.994
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": -7.45
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -8.685
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     }
+    ],
+    "reference_answer": "Exposed and unexposed groups, to estimate the causal effect of a campaign.",
+    "cited_contexts": [
+     "ROAS depends on how revenue is attributed to campaigns. Some attributed sales would have happened without the advertising, so ROAS can overstate the incremental effect of a campaign. Incrementality tests, which compare exposed and unexposed groups, give a better estimate of the causal effect."
+    ]
+   }
+  },
+  {
+   "case_key": "F07",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.221,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8042,
+    "context_recall": 0.8,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9779,
+    "answer_relevancy_embed": 0.8119
+   },
+   "passed": true,
+   "output": {
+    "question": "How is customer acquisition cost calculated?",
+    "answer": "From your course materials (quoted directly):\n\n> Customer acquisition cost (CAC) is the total sales and marketing spend in a period divided by the number of new customers acquired in that period. [S1]\n\n> Spending ₹300,000 to acquire 1,200 new customers gives a CAC of ₹250. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 6",
+      "unit_id": "bec0ff1f-3b47-48ba-accb-dde292a489f7",
+      "page": 6,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 9.221
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 5.457
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 2.768
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 0.865
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.769
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.132
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 6
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 9
+     }
+    ],
+    "reference_answer": "Total sales and marketing spend in a period divided by the number of new customers acquired in that period.",
+    "cited_contexts": [
+     "Customer acquisition cost (CAC) is the total sales and marketing spend in a period divided by the number of new customers acquired in that period. Spending ₹300,000 to acquire 1,200 new customers gives a CAC of ₹250.\nCAC = sales and marketing spend ÷ new customers acquired"
+    ]
+   }
+  },
+  {
+   "case_key": "F08",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 4.377,
+    "coverage": 0.667,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.3333,
+    "any_citation_correct": true,
+    "context_precision": 0.8333,
+    "context_recall": 0.4,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9709,
+    "answer_relevancy_embed": 0.8525
+   },
+   "passed": true,
+   "output": {
+    "question": "Why does a randomised A/B test help establish a causal effect?",
+    "answer": "From your course materials (quoted directly):\n\n> A randomised controlled experiment, often called an A/B test, assigns customers to groups at random so that confounders are balanced on average. [S1]\n\n> A randomized experiment with a control group is the cleanest way to measure the causal effect. [S2]\n\n> Incrementality tests, which compare exposed and unexposed groups, give a better estimate of the causal effect. [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 7",
+      "unit_id": "b405366c-dc1e-4a7f-bc03-b6c16f5d955d",
+      "page": 7,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:53",
+      "unit_id": "9d4640e9-a1e0-48a4-897e-3ab4fdfd57a1",
+      "page": null,
+      "slide": null,
+      "start": 113.14
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "6466cc1f-fc15-4c03-8c66-4ccd55b57353",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 4.377
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": 3.086
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": 1.296
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.296
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 103.0,
+      "rerank_logit": -6.327
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.142
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 7
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 10
+     }
+    ],
+    "reference_answer": "Random assignment balances confounders on average, so differences between groups can be attributed to the treatment within sampling error.",
+    "cited_contexts": [
+     "A randomised controlled experiment, often called an A/B test, assigns customers to groups at random so that confounders are balanced on average. If the treated group then behaves differently from the control group, the difference can be attributed to the treatment, within the limits of sampling error.",
+     "A randomized experiment with a control group is the cleanest way to measure the causal effect. To summarize, compare contribution, not revenue. Compute the breakeven rose before celebrating a campaign. And look for experimental evidence before claiming that a marketing action caused a result. Thanks for watching.",
+     "ROAS depends on how revenue is attributed to campaigns. Some attributed sales would have happened without the advertising, so ROAS can overstate the incremental effect of a campaign. Incrementality tests, which compare exposed and unexposed groups, give a better estimate of the causal effect."
+    ]
+   }
+  },
+  {
+   "case_key": "F09",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.143,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.6,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9829,
+    "answer_relevancy_embed": 0.8715
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the difference between sensitivity analysis and scenario analysis?",
+    "answer": "From your course materials (quoted directly):\n\n> Sensitivity analysis changes one assumption at a time to see how much the result moves. [S1]\n\n> Scenario analysis changes several assumptions together to describe a pessimistic, expected and optimistic case. [S1]\n\n> Business cases depend on assumptions such as price, variable cost, conversion rate and churn. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 8",
+      "unit_id": "c4c3df8b-2460-4023-8d81-90ec076b4cde",
+      "page": 8,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 8.143
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.967
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.048
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.569
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": -8.859
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.282
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 8
+     }
+    ],
+    "reference_answer": "Sensitivity analysis changes one assumption at a time; scenario analysis changes several assumptions together to describe pessimistic, expected and optimistic cases.",
+    "cited_contexts": [
+     "Business cases depend on assumptions such as price, variable cost, conversion rate and churn. Sensitivity analysis changes one assumption at a time to see how much the result moves. Scenario analysis changes several assumptions together to describe a pessimistic, expected and optimistic case."
+    ]
+   }
+  },
+  {
+   "case_key": "F10",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 5.62,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.2,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.99,
+    "answer_relevancy_embed": 0.6345
+   },
+   "passed": true,
+   "output": {
+    "question": "According to the decision checklist, what should you do first?",
+    "answer": "From your course materials (quoted directly):\n\n> First, state the decision and the metric that matters, which is usually contribution rather than revenue. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 8",
+      "unit_id": "c8ae434f-9a38-4ded-9ced-ecbc81a7a07d",
+      "page": 8,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 5.62
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.547
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -9.967
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.272
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.602
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.697
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 8
+     }
+    ],
+    "reference_answer": "State the decision and the metric that matters, usually contribution rather than revenue.",
+    "cited_contexts": [
+     "First, state the decision and the metric that matters, which is usually contribution rather than revenue. Second, separate correlation from causal evidence. Third, test how sensitive the conclusion is to the key assumptions. Fourth, prefer incremental measures over attributed or average measures."
+    ]
+   }
+  },
+  {
+   "case_key": "S01",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 1.783,
+    "coverage": 0.429,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9864,
+    "answer_relevancy_embed": 0.7463
+   },
+   "passed": true,
+   "output": {
+    "question": "What stages does the funnel diagram show, and how many people reach each stage?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 2",
+      "unit_id": "cd021f3e-c084-46bd-96ab-b68400e0e36c",
+      "page": null,
+      "slide": 2,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 1.783
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -6.778
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.798
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -11.315
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": -11.333
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.337
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 2
+     }
+    ],
+    "reference_answer": "Visitors 20,000; product views 6,000; add to cart 1,200; purchases 500.",
+    "cited_contexts": [
+     "Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. The overall conversion rate is purchases divided by visitors, so the paid search funnel in our example converts at 2.5 percent. The biggest drop is between product views and add to cart."
+    ]
+   }
+  },
+  {
+   "case_key": "S02",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.639,
+    "coverage": 0.429,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.6667,
+    "any_citation_correct": true,
+    "context_precision": 0.8042,
+    "context_recall": 0.8,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.962,
+    "answer_relevancy_embed": 0.8576
+   },
+   "passed": true,
+   "output": {
+    "question": "According to the slides, what is the jacket's contribution per unit after the 10% discount?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket. [S1]\n\n> Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third. [S2]\n\n> [Picture on slide 6: Where the Money Goes]\n> Text and labels read from the picture (OCR): Where the discounted jacket price goes (per unit); 1200; 21,080; 1000; 800; 600; 400; 200; Discounted price; Variable cost; Contribution [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 6",
+      "unit_id": "af1f10ac-da4f-4112-affb-60daea0708f2",
+      "page": null,
+      "slide": 6,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 4",
+      "unit_id": "6da7f2c1-8cde-422d-b598-9aab2b8b8fd4",
+      "page": null,
+      "slide": 4,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 6",
+      "unit_id": "e99b4a98-874a-40e5-bb61-4c059cb45623",
+      "page": null,
+      "slide": 6,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": 6.639
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": 4.954
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": 4.125
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 3.358
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -2.024
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -3.123
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 5
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 6
+     }
+    ],
+    "reference_answer": "₹280 (₹1,080 minus the ₹800 variable cost), down from ₹400.",
+    "cited_contexts": [
+     "Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket.",
+     "Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third.",
+     "[Picture on slide 6: Where the Money Goes]\nText and labels read from the picture (OCR): Where the discounted jacket price goes (per unit); 1200; 21,080; 1000; 800; 600; 400; 200; Discounted price; Variable cost; Contribution"
+    ]
+   }
+  },
+  {
+   "case_key": "S03",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 5.294,
+    "coverage": 0.5,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9587,
+    "answer_relevancy_embed": 0.5638
+   },
+   "passed": true,
+   "output": {
+    "question": "What are the key takeaways listed at the end of the slide deck?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 11 (Key Takeaways): Synthetic teaching material created for the Blindspot Lab demonstration. [S1]\n\n> All companies, prices and results are fictional. [S1]\n\n> Break-even ROAS = 1 ÷ contribution margin ratio [S2]\n\n> Use experiments before claiming causal effects [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 11",
+      "unit_id": "aea23463-f806-46e1-9bb6-ae8a4074412e",
+      "page": null,
+      "slide": 11,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 11",
+      "unit_id": "e8ad3ffa-26a5-4cec-a7a2-a1b47e1dce97",
+      "page": null,
+      "slide": 11,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 11,
+      "start": null,
+      "rerank_logit": 5.294
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 11,
+      "start": null,
+      "rerank_logit": 0.639
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 1,
+      "start": null,
+      "rerank_logit": -4.592
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -5.921
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -6.983
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -7.242
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 11
+     }
+    ],
+    "reference_answer": "Judge pricing and campaigns on contribution; break-even ROAS = 1 ÷ contribution margin ratio; compare CAC with contribution-based CLV; use experiments before claiming causal effects.",
+    "cited_contexts": [
+     "Speaker notes for slide 11 (Key Takeaways): Synthetic teaching material created for the Blindspot Lab demonstration. All companies, prices and results are fictional.",
+     "Key Takeaways\nJudge pricing and campaigns on contribution, not revenue\nBreak-even ROAS = 1 ÷ contribution margin ratio\nCompare CAC with contribution-based CLV\nUse experiments before claiming causal effects"
+    ]
+   }
+  },
+  {
+   "case_key": "S04",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.316,
+    "coverage": 0.818,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9821,
+    "answer_relevancy_embed": 0.8928
+   },
+   "passed": true,
+   "output": {
+    "question": "How much contribution per month does a subscription box customer paying ₹600 a month generate at a 30% margin?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 9 (Acquisition Economics): A subscription box customer paying ₹600 a month at a 30 percent contribution margin ratio generates ₹180 of contribution per month. [S1]\n\n> For example, a customer who pays ₹500 per month at a 40% contribution margin ratio generates ₹200 of contribution per month; with an expected lifetime of 18 months, CLV is ₹3,600. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 9",
+      "unit_id": "3dc888c3-2f7b-4183-97ae-472636adeed6",
+      "page": null,
+      "slide": 9,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 6",
+      "unit_id": "af0cff34-bd66-4df4-81b9-3a56ec09837b",
+      "page": 6,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 9.316
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 4.075
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.62
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.222
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.396
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.407
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 9
+     }
+    ],
+    "reference_answer": "₹180 per month.",
+    "cited_contexts": [
+     "Speaker notes for slide 9 (Acquisition Economics): A subscription box customer paying ₹600 a month at a 30 percent contribution margin ratio generates ₹180 of contribution per month. With a CAC of ₹720 the payback period is four months.",
+     "Customer lifetime value (CLV) estimates the total contribution a customer generates over their relationship with the business. A simple version multiplies the average monthly contribution per customer by the expected customer lifetime in months. Using revenue instead of contribution overstates CLV, because it ignores the cost of serving the customer. For example, a customer who pays ₹500 per month at a 40% contribution margin ratio generates ₹200 of contribution per month; with an expected lifetime of 18 months, CLV is ₹3,600.\nCLV = average monthly contribution per customer × expected lifetime in months"
+    ]
+   }
+  },
+  {
+   "case_key": "V01",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.874,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9837,
+    "answer_relevancy_embed": 0.7837
+   },
+   "passed": true,
+   "output": {
+    "question": "In the lecture, what are the price and the variable cost of the coffee pod?",
+    "answer": "From your course materials (quoted directly):\n\n> Imagine a coffee pod sold for 40 rupees with a variable cost of 25 rupees. [S1]\n\n> The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 00:28",
+      "unit_id": "cb2099b8-5f1e-4126-ad8d-1fe5b5c8ba17",
+      "page": null,
+      "slide": null,
+      "start": 28.04
+     },
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 00:41",
+      "unit_id": "939b1521-49e6-4503-9e6a-222dac1dbb9e",
+      "page": null,
+      "slide": null,
+      "start": 41.16
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 28.0,
+      "rerank_logit": 6.874
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 6.315
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 5.279
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 15.0,
+      "rerank_logit": -3.259
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 37.0,
+      "rerank_logit": -3.794
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -4.988
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 28.0,
+      "end": 37.1
+     }
+    ],
+    "reference_answer": "Forty rupees price and twenty-five rupees variable cost, so each pod contributes fifteen rupees.",
+    "cited_contexts": [
+     "Welcome to Lecture 3 of the Blindspot Lab demo unit. The short lecture uses synthetic examples to explain why a price cut usually needs much more extra volume than people expect. The narration is computer-generated. Start with Contribution margin. Contribution margin per unit is the selling price minus the variable cost of producing and delivering one unit. It is the money each sale contributes towards fixed costs and profit. Imagine a coffee pod sold for 40 rupees with a variable cost of 25 rupees. Each pod contributes 15 rupees.",
+     "Now the marketing team proposes cutting the price to 35 rupees. The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. A 12 and a half percent price cut has removed one-third of the contribution per unit. To earn the same total contribution, the business must sell 15 divided by 10, which is one and half times as many pods. That is a 50% increase in volume. If you only try to keep revenue constant, you would aim for about 14% more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before."
+    ]
+   }
+  },
+  {
+   "case_key": "V02",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.066,
+    "coverage": 0.909,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.3333,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.25,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9773,
+    "answer_relevancy_embed": 0.8133
+   },
+   "passed": true,
+   "output": {
+    "question": "According to the lecture, by how much must volume increase to keep contribution unchanged after the coffee pod price cut?",
+    "answer": "From your course materials (quoted directly):\n\n> Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n> [Figure on page 4]\n> Text and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution [S1]\n\n> If you only try to keep revenue constant, you would aim for about 14% more volume. [S2]\n\n> A 12 and a half percent price cut has removed one-third of the contribution per unit. [S2]\n\n> To keep total contribution unchanged, volume must rise by the ratio of the old to the new contribution per unit. [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "64fe3038-564c-4a45-bfa9-c6ab6bc706d9",
+      "page": 4,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:03",
+      "unit_id": "939b1521-49e6-4503-9e6a-222dac1dbb9e",
+      "page": null,
+      "slide": null,
+      "start": 63.26
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "676066c9-ef7d-469e-abb8-e5bab434ec93",
+      "page": 3,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 6.066
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 4.516
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 4.032
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.789
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 1.375
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 0.374
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 52.6,
+      "end": 63.2
+     }
+    ],
+    "reference_answer": "By 50% (15 ÷ 10 = 1.5 times as many pods).",
+    "cited_contexts": [
+     "Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n[Figure on page 4]\nText and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution",
+     "Now the marketing team proposes cutting the price to 35 rupees. The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. A 12 and a half percent price cut has removed one-third of the contribution per unit. To earn the same total contribution, the business must sell 15 divided by 10, which is one and half times as many pods. That is a 50% increase in volume. If you only try to keep revenue constant, you would aim for about 14% more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before.",
+     "A price cut reduces the contribution of every unit sold, not just the revenue. Because variable costs stay the same, the contribution per unit falls by the full amount of the price cut. To keep total contribution unchanged, volume must rise by the ratio of the old to the new contribution per unit.\nRequired volume increase = (old contribution per unit ÷ new contribution per unit) − 1\nContinuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. Volume must rise by 200 ÷ 150 − 1 = 33.3% just to earn the same total contribution. Keeping revenue constant would need only an 11.1% increase (500 ÷ 450 − 1), which is why plans that aim to 'make up the revenue' can still leave the business with less contribution to cover its fixed costs.\nPreserving revenue and preserving contribution are different goals. Revenue preservation ignores variable costs; contribution preservation accounts for them."
+    ]
+   }
+  },
+  {
+   "case_key": "V03",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 5.86,
+    "coverage": 0.875,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.7,
+    "context_recall": 0.8,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9894,
+    "answer_relevancy_embed": 0.7983
+   },
+   "passed": true,
+   "output": {
+    "question": "In the lecture, what volume increase would merely keep revenue constant for the coffee pods?",
+    "answer": "From your course materials (quoted directly):\n\n> If you only try to keep revenue constant, you would aim for about 14% more volume. [S1]\n\n> That is a 50% increase in volume. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:03",
+      "unit_id": "939b1521-49e6-4503-9e6a-222dac1dbb9e",
+      "page": null,
+      "slide": null,
+      "start": 63.26
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 5.86
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 0.699
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.742
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 28.0,
+      "rerank_logit": -3.549
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 63.0,
+      "rerank_logit": -3.852
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.192
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 63.2,
+      "end": 74.9
+     }
+    ],
+    "reference_answer": "About 14% more volume, which ignores variable costs.",
+    "cited_contexts": [
+     "Now the marketing team proposes cutting the price to 35 rupees. The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. A 12 and a half percent price cut has removed one-third of the contribution per unit. To earn the same total contribution, the business must sell 15 divided by 10, which is one and half times as many pods. That is a 50% increase in volume. If you only try to keep revenue constant, you would aim for about 14% more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before."
+    ]
+   }
+  },
+  {
+   "case_key": "V04",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 2.913,
+    "coverage": 0.5,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.75,
+    "faithfulness_nli": 0.75,
+    "faithfulness_nli_mean_entailment": 0.789,
+    "answer_relevancy_embed": 0.7408
+   },
+   "passed": true,
+   "output": {
+    "question": "What break-even ROAS does the lecture give for the coffee example?",
+    "answer": "From your course materials (quoted directly):\n\n> Blindspot Lab Lecture 3 synthetic narration 8/10 [S1]\n\n> 1 contribution margin ratio [S1]\n\n> On-screen text at 01:27: Break-even ROAS [S1]\n\n> Speaker notes for slide 8 (Break-even ROAS): Break-even ROAS is one divided by the contribution margin ratio. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:27",
+      "unit_id": "4beedfa1-1b91-4842-82c5-6b2a14da2497",
+      "page": null,
+      "slide": null,
+      "start": 87.0
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 8",
+      "unit_id": "dd6ce7c7-5c80-483c-8203-4d0fd3a72633",
+      "page": null,
+      "slide": 8,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 87.0,
+      "rerank_logit": 2.913
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 119.0,
+      "rerank_logit": 1.084
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 0.885
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 0.817
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.188
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -1.002
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 87.2,
+      "end": 103.2
+     }
+    ],
+    "reference_answer": "About 2.7, given a 37.5% contribution margin ratio.",
+    "cited_contexts": [
+     "On-screen text at 01:27: Break-even ROAS / 1 contribution margin ratio / Blindspot Lab Lecture 3 synthetic narration 8/10",
+     "Speaker notes for slide 8 (Break-even ROAS): Break-even ROAS is one divided by the contribution margin ratio. Lower margins need much higher ROAS."
+    ]
+   }
+  },
+  {
+   "case_key": "V05",
+   "category": "factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 1.517,
+    "coverage": 0.667,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.7333,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9917,
+    "answer_relevancy_embed": 0.7609
+   },
+   "passed": true,
+   "output": {
+    "question": "What does the lecture recommend for measuring whether a discount caused extra purchases?",
+    "answer": "From your course materials (quoted directly):\n\n> If customers who received a discount bought more, that correlation does not prove the discount caused the extra purchases. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:45",
+      "unit_id": "09e3a3f3-2d49-4be2-96c6-d490840dfcde",
+      "page": null,
+      "slide": null,
+      "start": 105.9
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": 1.517
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -3.652
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -7.766
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -8.92
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": -9.238
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 15.0,
+      "rerank_logit": -9.383
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 103.1,
+      "end": 118.5
+     }
+    ],
+    "reference_answer": "A randomised experiment with a control group.",
+    "cited_contexts": [
+     "So always ask which quantity you are trying to preserve. Revenue preservation and contribution preservation are different goals and for pricing decisions. Contribution is usually the one that matters. The same logic applies to advertising. A return on advertising spent above one does not mean a campaign is profitable. With a contribution margin ratio of 37.5% as in our coffee example, the breakeven rose is about 2.7. Finally, be careful with evidence. If customers who received a discount bought more, that correlation does not prove the discount caused the extra purchases."
+    ]
+   }
+  },
+  {
+   "case_key": "D01",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 5.965,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8056,
+    "context_recall": 0.75,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.971,
+    "answer_relevancy_embed": 0.7383
+   },
+   "passed": true,
+   "output": {
+    "question": "In Figure 3.1, what was the contribution after ad spend for the Search channel?",
+    "answer": "From your course materials (quoted directly):\n\n> Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n> [Figure on page 5]\n> Text and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "fe1ab60e-82b3-4562-b41f-4352153ee73b",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 5.965
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.76
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.739
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.775
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.572
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -6.842
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     }
+    ],
+    "reference_answer": "+₹60k.",
+    "cited_contexts": [
+     "Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n[Figure on page 5]\nText and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email"
+    ]
+   }
+  },
+  {
+   "case_key": "D02",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.551,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.9167,
+    "context_recall": 0.5714,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9906,
+    "answer_relevancy_embed": 0.6869
+   },
+   "passed": true,
+   "output": {
+    "question": "What ROAS does the Email channel have in the slide chart?",
+    "answer": "From your course materials (quoted directly):\n\n> Chart on slide 7 (ROAS by Channel) [column_clustered]\n> Series 'ROAS (x)': Search: 4; Social: 2; Display: 1.5; Email: 9 [S1]\n\n> Speaker notes for slide 7 (ROAS by Channel): Display and Social are above 1 but below the break-even ROAS of 2.5, so they lose money on a contribution basis. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 7",
+      "unit_id": "48f482a6-30b4-4baf-a222-6d31890080dd",
+      "page": null,
+      "slide": 7,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 7",
+      "unit_id": "c79deaf5-2d96-4c9c-9482-d78dc95be3d4",
+      "page": null,
+      "slide": 7,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": 7.551
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": 6.562
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.281
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 0.121
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -0.196
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -0.586
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 7
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     }
+    ],
+    "reference_answer": "9 (9.0x).",
+    "cited_contexts": [
+     "Chart on slide 7 (ROAS by Channel) [column_clustered]\nSeries 'ROAS (x)': Search: 4; Social: 2; Display: 1.5; Email: 9",
+     "Speaker notes for slide 7 (ROAS by Channel): Display and Social are above 1 but below the break-even ROAS of 2.5, so they lose money on a contribution basis. Search and Email are above break-even."
+    ]
+   }
+  },
+  {
+   "case_key": "D03",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.422,
+    "coverage": 0.833,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.9167,
+    "context_recall": 0.5,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9662,
+    "answer_relevancy_embed": 0.8846
+   },
+   "passed": true,
+   "output": {
+    "question": "According to Figure 2.1, how much must volume increase to preserve contribution after the price cut from ₹500 to ₹450?",
+    "answer": "From your course materials (quoted directly):\n\n> Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n> [Figure on page 4]\n> Text and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution [S1]\n\n> Continuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "64fe3038-564c-4a45-bfa9-c6ab6bc706d9",
+      "page": 4,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "676066c9-ef7d-469e-abb8-e5bab434ec93",
+      "page": 3,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 8.422
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 6.362
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 3.894
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.452
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 1.102
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 0.649
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 4
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     }
+    ],
+    "reference_answer": "+33.3%, three times the +11.1% needed to preserve revenue.",
+    "cited_contexts": [
+     "Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n[Figure on page 4]\nText and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution",
+     "A price cut reduces the contribution of every unit sold, not just the revenue. Because variable costs stay the same, the contribution per unit falls by the full amount of the price cut. To keep total contribution unchanged, volume must rise by the ratio of the old to the new contribution per unit.\nRequired volume increase = (old contribution per unit ÷ new contribution per unit) − 1\nContinuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. Volume must rise by 200 ÷ 150 − 1 = 33.3% just to earn the same total contribution. Keeping revenue constant would need only an 11.1% increase (500 ÷ 450 − 1), which is why plans that aim to 'make up the revenue' can still leave the business with less contribution to cover its fixed costs.\nPreserving revenue and preserving contribution are different goals. Revenue preservation ignores variable costs; contribution preservation accounts for them."
+    ]
+   }
+  },
+  {
+   "case_key": "D04",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.021,
+    "coverage": 0.857,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.9167,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9517,
+    "answer_relevancy_embed": 0.8612
+   },
+   "passed": true,
+   "output": {
+    "question": "In the waterfall chart on the 'Where the Money Goes' slide, what is the discounted price of the jacket?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket. [S1]\n\n> [Picture on slide 6: Where the Money Goes]\n> Text and labels read from the picture (OCR): Where the discounted jacket price goes (per unit); 1200; 21,080; 1000; 800; 600; 400; 200; Discounted price; Variable cost; Contribution [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 6",
+      "unit_id": "af1f10ac-da4f-4112-affb-60daea0708f2",
+      "page": null,
+      "slide": 6,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 6",
+      "unit_id": "e99b4a98-874a-40e5-bb61-4c059cb45623",
+      "page": null,
+      "slide": 6,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": 9.021
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": 6.528
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": -2.052
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -4.562
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -5.134
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -8.277
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 6
+     }
+    ],
+    "reference_answer": "₹1,080.",
+    "cited_contexts": [
+     "Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket.",
+     "[Picture on slide 6: Where the Money Goes]\nText and labels read from the picture (OCR): Where the discounted jacket price goes (per unit); 1200; 21,080; 1000; 800; 600; 400; 200; Discounted price; Variable cost; Contribution"
+    ]
+   }
+  },
+  {
+   "case_key": "D05",
+   "category": "diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.83,
+    "coverage": 0.5,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9875,
+    "answer_relevancy_embed": 0.6844
+   },
+   "passed": true,
+   "output": {
+    "question": "How many product views are shown in the funnel diagram?",
+    "answer": "From your course materials (quoted directly):\n\n> The biggest drop is between product views and add to cart. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 2",
+      "unit_id": "cd021f3e-c084-46bd-96ab-b68400e0e36c",
+      "page": null,
+      "slide": 2,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 6.83
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 2.444
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -7.84
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -10.618
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.047
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.075
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 2
+     }
+    ],
+    "reference_answer": "6,000.",
+    "cited_contexts": [
+     "Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. The overall conversion rate is purchases divided by visitors, so the paid search funnel in our example converts at 2.5 percent. The biggest drop is between product views and add to cart."
+    ]
+   }
+  },
+  {
+   "case_key": "N01",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.678,
+    "coverage": 0.867,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.6667,
+    "any_citation_correct": true,
+    "context_precision": 0.8767,
+    "context_recall": 0.8333,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.973,
+    "answer_relevancy_embed": 0.8747
+   },
+   "passed": true,
+   "output": {
+    "question": "A product sells for ₹500 with a ₹300 variable cost and its price is cut to ₹450. What volume increase keeps total contribution unchanged?",
+    "answer": "From your course materials (quoted directly):\n\n> Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n> [Figure on page 4]\n> Text and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution [S1]\n\n> Continuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. [S2]\n\n> Variable cost stays at ₹800 [S3]\n\n> Contribution per unit: ₹400 → ₹280 [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "64fe3038-564c-4a45-bfa9-c6ab6bc706d9",
+      "page": 4,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "676066c9-ef7d-469e-abb8-e5bab434ec93",
+      "page": 3,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 5",
+      "unit_id": "63757667-7fd3-4fa2-863d-8f78444cf269",
+      "page": null,
+      "slide": 5,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 6.678
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 5.36
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 4.881
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.947
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.214
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.263
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 4
+     }
+    ],
+    "reference_answer": "33.3% (200 ÷ 150 − 1).",
+    "cited_contexts": [
+     "Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n[Figure on page 4]\nText and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution",
+     "A price cut reduces the contribution of every unit sold, not just the revenue. Because variable costs stay the same, the contribution per unit falls by the full amount of the price cut. To keep total contribution unchanged, volume must rise by the ratio of the old to the new contribution per unit.\nRequired volume increase = (old contribution per unit ÷ new contribution per unit) − 1\nContinuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. Volume must rise by 200 ÷ 150 − 1 = 33.3% just to earn the same total contribution. Keeping revenue constant would need only an 11.1% increase (500 ÷ 450 − 1), which is why plans that aim to 'make up the revenue' can still leave the business with less contribution to cover its fixed costs.\nPreserving revenue and preserving contribution are different goals. Revenue preservation ignores variable costs; contribution preservation accounts for them.",
+     "Price Cuts Need More Volume Than You Think\nJacket price: ₹1,200 → ₹1,080 (a 10% cut)\nVariable cost stays at ₹800\nContribution per unit: ₹400 → ₹280\nVolume needed to keep contribution: 400 ÷ 280 − 1 = +42.9%\nVolume needed to keep revenue: only +11.1%"
+    ]
+   }
+  },
+  {
+   "case_key": "N02",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.396,
+    "coverage": 0.909,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.6667,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.994,
+    "answer_relevancy_embed": 0.8072
+   },
+   "passed": true,
+   "output": {
+    "question": "With fixed costs of ₹60,000 and a contribution of ₹200 per unit, how many units are needed to break even?",
+    "answer": "From your course materials (quoted directly):\n\n> With fixed costs of ₹60,000 and contribution per unit of ₹200, the business must sell 300 units to break even. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "2722280f-4200-452f-a343-f760720d6470",
+      "page": 4,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 9.396
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.907
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.681
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 2.186
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": 2.097
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.936
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 4
+     }
+    ],
+    "reference_answer": "300 units.",
+    "cited_contexts": [
+     "Break-even volume is the number of units at which total contribution exactly covers fixed costs. With fixed costs of ₹60,000 and contribution per unit of ₹200, the business must sell 300 units to break even.\nBreak-even volume = fixed costs ÷ contribution margin per unit"
+    ]
+   }
+  },
+  {
+   "case_key": "N03",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.703,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 0.8333,
+    "context_recall": 0.6667,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9821,
+    "answer_relevancy_embed": 0.8013
+   },
+   "passed": true,
+   "output": {
+    "question": "A customer pays ₹500 a month at a 40% contribution margin ratio and stays 18 months. What is their lifetime value?",
+    "answer": "From your course materials (quoted directly):\n\n> For example, a customer who pays ₹500 per month at a 40% contribution margin ratio generates ₹200 of contribution per month; with an expected lifetime of 18 months, CLV is ₹3,600. [S1]\n\n> Speaker notes for slide 9 (Acquisition Economics): A subscription box customer paying ₹600 a month at a 30 percent contribution margin ratio generates ₹180 of contribution per month. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 6",
+      "unit_id": "af0cff34-bd66-4df4-81b9-3a56ec09837b",
+      "page": 6,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 9",
+      "unit_id": "3dc888c3-2f7b-4183-97ae-472636adeed6",
+      "page": null,
+      "slide": 9,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 7.703
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 4.173
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.419
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.343
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 0.214
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": -1.593
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 6
+     }
+    ],
+    "reference_answer": "₹3,600 (₹200 contribution per month × 18).",
+    "cited_contexts": [
+     "Customer lifetime value (CLV) estimates the total contribution a customer generates over their relationship with the business. A simple version multiplies the average monthly contribution per customer by the expected customer lifetime in months. Using revenue instead of contribution overstates CLV, because it ignores the cost of serving the customer. For example, a customer who pays ₹500 per month at a 40% contribution margin ratio generates ₹200 of contribution per month; with an expected lifetime of 18 months, CLV is ₹3,600.\nCLV = average monthly contribution per customer × expected lifetime in months",
+     "Speaker notes for slide 9 (Acquisition Economics): A subscription box customer paying ₹600 a month at a 30 percent contribution margin ratio generates ₹180 of contribution per month. With a CAC of ₹720 the payback period is four months."
+    ]
+   }
+  },
+  {
+   "case_key": "N04",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.334,
+    "coverage": 0.889,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.7,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.972,
+    "answer_relevancy_embed": 0.9079
+   },
+   "passed": true,
+   "output": {
+    "question": "With a CAC of ₹900 and a monthly contribution of ₹200 per customer, how long is the payback period?",
+    "answer": "From your course materials (quoted directly):\n\n> The payback period is the number of months of contribution needed to recover CAC: with a CAC of ₹900 and monthly contribution of ₹200, payback takes 4.5 months. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 6",
+      "unit_id": "f03c5c7c-8a56-4bf2-95a7-ce8126fab9cf",
+      "page": 6,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 8.334
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 6.764
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": 3.439
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.368
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.658
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.709
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 6
+     }
+    ],
+    "reference_answer": "4.5 months.",
+    "cited_contexts": [
+     "A CLV-to-CAC ratio compares the value a customer generates with the cost of acquiring them. Many analysts look for a ratio comfortably above 1, often around 3, but the right threshold depends on the business. The payback period is the number of months of contribution needed to recover CAC: with a CAC of ₹900 and monthly contribution of ₹200, payback takes 4.5 months.\nPayback period (months) = CAC ÷ monthly contribution per customer\nA low CAC is not automatically good. Cheap customers who churn quickly can be worth less than more expensive customers who stay for years. Always compare CAC with contribution-based lifetime value."
+    ]
+   }
+  },
+  {
+   "case_key": "N05",
+   "category": "numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.624,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.2,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.97,
+    "answer_relevancy_embed": 0.8029
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the expected-scenario contribution after ad spend in the campaign scenario table?",
+    "answer": "From your course materials (quoted directly):\n\n> Table 6.1 Campaign scenarios for 50,000 visitors and ₹100,000 of advertising spend (synthetic)\n> | Assumption | Pessimistic | Expected | Optimistic |\n> | Conversion rate | 1.5% | 2.0% | 2.5% |\n> | Average order value | ₹1,800 | ₹2,000 | ₹2,200 |\n> | Contribution margin ratio | 35% | 40% | 45% |\n> | Contribution after ad spend | ₹372,500 | ₹700,000 | ₹1,137,500 | [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 8",
+      "unit_id": "4292531f-10cb-454b-86f5-3e2d075edb04",
+      "page": 8,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 6.624
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.321
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.885
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -4.364
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.633
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.284
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 8
+     }
+    ],
+    "reference_answer": "₹700,000.",
+    "cited_contexts": [
+     "Table 6.1 Campaign scenarios for 50,000 visitors and ₹100,000 of advertising spend (synthetic)\n| Assumption | Pessimistic | Expected | Optimistic |\n|---|---|---|---|\n| Conversion rate | 1.5% | 2.0% | 2.5% |\n| Average order value | ₹1,800 | ₹2,000 | ₹2,200 |\n| Contribution margin ratio | 35% | 40% | 45% |\n| Contribution after ad spend | ₹372,500 | ₹700,000 | ₹1,137,500 |"
+    ]
+   }
+  },
+  {
+   "case_key": "M01",
+   "category": "multi_source",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.201,
+    "coverage": 0.889,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 0.75,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.3571,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9822,
+    "answer_relevancy_embed": 0.8488
+   },
+   "passed": true,
+   "output": {
+    "question": "Why is a ROAS above 1 not enough for a campaign to be profitable, and what ROAS is needed at a 40% contribution margin ratio?",
+    "answer": "From your course materials (quoted directly):\n\n> A business with a 40% contribution margin ratio needs a ROAS of at least 2.5 before advertising contributes anything towards fixed costs. [S1]\n\n> Because revenue still has to pay for the variable costs of the products sold, a ROAS above 1 does not mean the campaign made money. [S1]\n\n> Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n> [Figure on page 5]\n> Text and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email [S2]\n\n> The break-even ROAS is the ROAS at which the contribution from attributed sales exactly covers the advertising spend. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "7afa572d-0ae1-401d-b371-1fc826b016e7",
+      "page": 5,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "fe1ab60e-82b3-4562-b41f-4352153ee73b",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 7.201
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.167
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": 0.645
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": 0.368
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -0.594
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 11,
+      "start": null,
+      "rerank_logit": -0.717
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 7
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 8
+     },
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 87.2,
+      "end": 103.2
+     }
+    ],
+    "reference_answer": "Revenue must also cover variable costs, so break-even ROAS is 1 ÷ contribution margin ratio: 2.5 at a 40% ratio.",
+    "cited_contexts": [
+     "ROAS compares advertising cost with revenue, not with profit. Because revenue still has to pay for the variable costs of the products sold, a ROAS above 1 does not mean the campaign made money. The break-even ROAS is the ROAS at which the contribution from attributed sales exactly covers the advertising spend. A business with a 40% contribution margin ratio needs a ROAS of at least 2.5 before advertising contributes anything towards fixed costs.\nBreak-even ROAS = 1 ÷ contribution margin ratio\nContribution after advertising = attributed revenue × contribution margin ratio − advertising spend",
+     "Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n[Figure on page 5]\nText and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email"
+    ]
+   }
+  },
+  {
+   "case_key": "M02",
+   "category": "multi_source",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.006,
+    "coverage": 0.857,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.625,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9711,
+    "answer_relevancy_embed": 0.7396
+   },
+   "passed": true,
+   "output": {
+    "question": "How do the primer, the slides and the lecture each show that price cuts need more volume to preserve contribution?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 5 (Price Cuts Need More Volume Than You Think): Students often answer with the revenue figure. [S1]\n\n> Volume needed to keep contribution: 400 ÷ 280 − 1 = +42.9% [S2]\n\n> The question is what the business keeps after variable costs, so the contribution figure of 42.9 percent is the one that protects profit. [S1]\n\n> Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n> [Figure on page 4]\n> Text and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 5",
+      "unit_id": "34f3dd71-0934-41b7-a068-ca185ff5e8dc",
+      "page": null,
+      "slide": 5,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 5",
+      "unit_id": "63757667-7fd3-4fa2-863d-8f78444cf269",
+      "page": null,
+      "slide": 5,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 4",
+      "unit_id": "64fe3038-564c-4a45-bfa9-c6ab6bc706d9",
+      "page": 4,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 6.006
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 4.776
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.918
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 3.785
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 3.78
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.411
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 4
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 5
+     },
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 37.0,
+      "end": 74.9
+     }
+    ],
+    "reference_answer": "Primer: ₹500→₹450 needs +33.3% vs +11.1% for revenue; slides: jacket ₹1,200→₹1,080 needs +42.9%; lecture: coffee pod ₹40→₹35 needs +50% vs about 14%.",
+    "cited_contexts": [
+     "Speaker notes for slide 5 (Price Cuts Need More Volume Than You Think): Students often answer with the revenue figure. The question is what the business keeps after variable costs, so the contribution figure of 42.9 percent is the one that protects profit.",
+     "Price Cuts Need More Volume Than You Think\nJacket price: ₹1,200 → ₹1,080 (a 10% cut)\nVariable cost stays at ₹800\nContribution per unit: ₹400 → ₹280\nVolume needed to keep contribution: 400 ÷ 280 − 1 = +42.9%\nVolume needed to keep revenue: only +11.1%",
+     "Figure 2.1 Volume increase required after a 10% price cut (synthetic example). Preserving contribution requires three times the volume increase needed to preserve revenue.\n[Figure on page 4]\nText and labels read from the figure (OCR): Price cut from ₹500 to ₹450 (variable cost ₹300); 40; 35; +33.3% volume; 30; 25; 20; 15; +11.1% volume; 10; Preserve revenue; Preserve contribution"
+    ]
+   }
+  },
+  {
+   "case_key": "M03",
+   "category": "multi_source",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 2.744,
+    "coverage": 0.667,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.6,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9863,
+    "answer_relevancy_embed": 0.6971
+   },
+   "passed": true,
+   "output": {
+    "question": "What do the course materials say about loyalty apps and causation?",
+    "answer": "From your course materials (quoted directly):\n\n> Customers who use a loyalty app may spend more than other customers, but loyal, high-spending customers may simply be more likely to install the app in the first place. [S1]\n\n> Speaker notes for slide 10 (Correlation Is Not Causation): In our synthetic test, the holdout group that never saw the loyalty-app promotion spent ₹1,950 per month on average, compared with ₹2,050 for the promoted group, a lift of about 5 percent. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 7",
+      "unit_id": "0f92908e-9743-4705-b1b3-2e6506340792",
+      "page": 7,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 10",
+      "unit_id": "76b41ced-a276-46d1-a504-67e747cbd3d1",
+      "page": null,
+      "slide": 10,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.744
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": 1.705
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": 1.416
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.611
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": -8.725
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 103.0,
+      "rerank_logit": -9.25
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 7
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 10
+     }
+    ],
+    "reference_answer": "App users may spend more, but loyal high spenders may be more likely to install the app (a confounder); randomised tests are needed to establish causation.",
+    "cited_contexts": [
+     "Two variables are correlated when they tend to move together. Correlation alone does not show that one causes the other. Customers who use a loyalty app may spend more than other customers, but loyal, high-spending customers may simply be more likely to install the app in the first place. A third variable that influences both, called a confounder, can create a correlation without any causal link.",
+     "Speaker notes for slide 10 (Correlation Is Not Causation): In our synthetic test, the holdout group that never saw the loyalty-app promotion spent ₹1,950 per month on average, compared with ₹2,050 for the promoted group, a lift of about 5 percent."
+    ]
+   }
+  },
+  {
+   "case_key": "M04",
+   "category": "multi_source",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.839,
+    "coverage": 0.833,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.8571,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9906,
+    "answer_relevancy_embed": 0.7938
+   },
+   "passed": true,
+   "output": {
+    "question": "Which channels lose money even though their ROAS is above 1?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 7 (ROAS by Channel): Display and Social are above 1 but below the break-even ROAS of 2.5, so they lose money on a contribution basis. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 7",
+      "unit_id": "c79deaf5-2d96-4c9c-9482-d78dc95be3d4",
+      "page": null,
+      "slide": 7,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": 7.839
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.7
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.889
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -0.223
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -3.94
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.136
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 7
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     }
+    ],
+    "reference_answer": "Social (2.0x) and Display (1.5x), because they are below the 2.5x break-even ROAS.",
+    "cited_contexts": [
+     "Speaker notes for slide 7 (ROAS by Channel): Display and Social are above 1 but below the break-even ROAS of 2.5, so they lose money on a contribution basis. Search and Email are above break-even."
+    ]
+   }
+  },
+  {
+   "case_key": "C01",
+   "category": "citation_challenge",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.879,
+    "coverage": 0.9,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8333,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9921,
+    "answer_relevancy_embed": 0.9081
+   },
+   "passed": true,
+   "output": {
+    "question": "In the synthetic loyalty-app test, how much did the holdout group spend per month on average?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 10 (Correlation Is Not Causation): In our synthetic test, the holdout group that never saw the loyalty-app promotion spent ₹1,950 per month on average, compared with ₹2,050 for the promoted group, a lift of about 5 percent. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 10",
+      "unit_id": "76b41ced-a276-46d1-a504-67e747cbd3d1",
+      "page": null,
+      "slide": 10,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": 9.879
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.038
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -5.279
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -7.812
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.235
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.288
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 10
+     }
+    ],
+    "reference_answer": "₹1,950 (versus ₹2,050 for the promoted group).",
+    "cited_contexts": [
+     "Speaker notes for slide 10 (Correlation Is Not Causation): In our synthetic test, the holdout group that never saw the loyalty-app promotion spent ₹1,950 per month on average, compared with ₹2,050 for the promoted group, a lift of about 5 percent."
+    ]
+   }
+  },
+  {
+   "case_key": "C02",
+   "category": "citation_challenge",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.926,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.75,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9869,
+    "answer_relevancy_embed": 0.8044
+   },
+   "passed": true,
+   "output": {
+    "question": "According to the speaker notes, where is the biggest drop in the funnel?",
+    "answer": "From your course materials (quoted directly):\n\n> The biggest drop is between product views and add to cart. [S1]\n\n> Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 2",
+      "unit_id": "cd021f3e-c084-46bd-96ab-b68400e0e36c",
+      "page": null,
+      "slide": 2,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 7.926
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -4.879
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -4.941
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -5.657
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -5.942
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -6.106
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 2
+     }
+    ],
+    "reference_answer": "Between product views and add to cart.",
+    "cited_contexts": [
+     "Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. The overall conversion rate is purchases divided by visitors, so the paid search funnel in our example converts at 2.5 percent. The biggest drop is between product views and add to cart."
+    ]
+   }
+  },
+  {
+   "case_key": "C03",
+   "category": "citation_challenge",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.273,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.5,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9887,
+    "answer_relevancy_embed": 0.9039
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the contribution margin ratio of the ₹1,200 jacket with an ₹800 variable cost?",
+    "answer": "From your course materials (quoted directly):\n\n> Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third. [S1]\n\n> Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 4",
+      "unit_id": "6da7f2c1-8cde-422d-b598-9aab2b8b8fd4",
+      "page": null,
+      "slide": 4,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 6",
+      "unit_id": "af1f10ac-da4f-4112-affb-60daea0708f2",
+      "page": null,
+      "slide": 6,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": 9.273
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 6.869
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 4.903
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": 4.2
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.998
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.394
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 4
+     }
+    ],
+    "reference_answer": "One third (₹400 ÷ ₹1,200).",
+    "cited_contexts": [
+     "Speaker notes for slide 4 (Contribution Margin): For a ₹1,200 jacket with an ₹800 variable cost, contribution per unit is ₹400 and the contribution margin ratio is one third.",
+     "Speaker notes for slide 6 (Where the Money Goes): The waterfall shows that after the discount most of the price goes to variable costs: only ₹280 of the ₹1,080 discounted price remains as contribution per jacket."
+    ]
+   }
+  },
+  {
+   "case_key": "C04",
+   "category": "citation_challenge",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.057,
+    "coverage": 0.7,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.4,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9912,
+    "answer_relevancy_embed": 0.8108
+   },
+   "passed": true,
+   "output": {
+    "question": "In the lecture example, what fraction of the contribution per unit did the twelve and a half percent price cut remove?",
+    "answer": "From your course materials (quoted directly):\n\n> A 12 and a half percent price cut has removed one-third of the contribution per unit. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 00:47",
+      "unit_id": "939b1521-49e6-4503-9e6a-222dac1dbb9e",
+      "page": null,
+      "slide": null,
+      "start": 47.68
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 6.057
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 2.734
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.552
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -1.408
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -1.686
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.351
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 37.0,
+      "end": 52.7
+     }
+    ],
+    "reference_answer": "One third.",
+    "cited_contexts": [
+     "Now the marketing team proposes cutting the price to 35 rupees. The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. A 12 and a half percent price cut has removed one-third of the contribution per unit. To earn the same total contribution, the business must sell 15 divided by 10, which is one and half times as many pods. That is a 50% increase in volume. If you only try to keep revenue constant, you would aim for about 14% more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before."
+    ]
+   }
+  },
+  {
+   "case_key": "U01",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -6.683,
+    "coverage": 0.25,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the formula for net present value?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 6",
+     "Marketing_Analytics_Primer.pdf — Page 9",
+     "Marketing_Analytics_Primer.pdf — Page 8"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.683
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.75
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.946
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.108
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.347
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.407
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U02",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -9.953,
+    "coverage": 0.167,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "How does Google Ads decide the cost per click in its auction?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 3",
+     "Marketing_Analytics_Primer.pdf — Page 9",
+     "Unit_Economics_for_Marketers.pptx — Slide 6"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.953
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.352
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -10.463
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.522
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.53
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -10.609
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U03",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -10.853,
+    "coverage": 0.143,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the current repo rate set by the Reserve Bank of India?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 8",
+     "Unit_Economics_for_Marketers.pptx — Slide 9",
+     "Unit_Economics_for_Marketers.pptx — Slide 6"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.853
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -10.894
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -11.003
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -11.069
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.073
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.1
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U04",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -4.448,
+    "coverage": 0.429,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is a good monthly churn rate benchmark for SaaS companies?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 6",
+     "Unit_Economics_for_Marketers.pptx — Slide 9",
+     "Unit_Economics_for_Marketers.pptx — Slide 10"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.448
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -9.28
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -9.54
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -9.591
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.116
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.179
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U05",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.23,
+    "coverage": 0.4,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "How often should a brand post on social media?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 5",
+     "Marketing_Analytics_Primer.pdf — Page 6",
+     "Marketing_Analytics_Primer.pdf — Page 5"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.23
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.232
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.239
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -11.258
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.268
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.282
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U06",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.253,
+    "coverage": 0.25,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "Explain Porter's five forces framework.",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Unit_Economics_for_Marketers.pptx — Slide 8",
+     "Unit_Economics_for_Marketers.pptx — Slide 6",
+     "Marketing_Analytics_Primer.pdf — Page 8"
+    ],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -11.253
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -11.271
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.279
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.303
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.337
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.34
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U07",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.008,
+    "coverage": 0.0,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the GDP of Brazil?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 3",
+     "Marketing_Analytics_Primer.pdf — Page 2",
+     "Marketing_Analytics_Primer.pdf — Page 5"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.008
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.046
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.099
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.104
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.134
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.178
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U08",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.259,
+    "coverage": 0.0,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "How do you train a convolutional neural network?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Unit_Economics_for_Marketers.pptx — Slide 5",
+     "Lecture_03_Price_Cuts.mp4 — 01:53",
+     "Lecture_03_Price_Cuts.mp4 — 00:00"
+    ],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -11.259
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": -11.332
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -11.373
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.392
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -11.393
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -11.395
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U09",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.147,
+    "coverage": 0.0,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What are the tax implications of employee stock options?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 3",
+     "Marketing_Analytics_Primer.pdf — Page 3",
+     "Marketing_Analytics_Primer.pdf — Page 6"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.147
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.18
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.237
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -11.245
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -11.263
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.29
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U10",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -5.886,
+    "coverage": 0.333,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "Which attribution model does Meta use by default for ad reporting?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 5",
+     "Marketing_Analytics_Primer.pdf — Page 8",
+     "Marketing_Analytics_Primer.pdf — Page 5"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.886
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.699
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.825
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.853
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.924
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.0
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U11",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -7.223,
+    "coverage": 0.6,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the median salary of a marketing analyst in India?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 8",
+     "Marketing_Analytics_Primer.pdf — Page 6",
+     "Marketing_Analytics_Primer.pdf — Page 1"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -7.223
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.394
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.68
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.781
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.789
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -10.804
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "U12",
+   "category": "unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -3.936,
+    "coverage": 0.429,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What sample size does an A/B test need for 80% statistical power?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 7",
+     "Marketing_Analytics_Primer.pdf — Page 7",
+     "Unit_Economics_for_Marketers.pptx — Slide 10"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.936
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -7.732
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -10.025
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -10.895
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -11.193
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -11.232
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "H01",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 7.691,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.5,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9863,
+    "answer_relevancy_embed": 0.7908
+   },
+   "passed": true,
+   "output": {
+    "question": "Can a business grow its revenue while still losing money?",
+    "answer": "From your course materials (quoted directly):\n\n> Revenue is a measure of scale, not of profit: a business can grow revenue while losing money on every sale. [S1]\n\n> Growing revenue can still shrink profit if each sale earns less [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 2",
+      "unit_id": "68d5044b-7d23-4057-978f-ce9cd745ef36",
+      "page": 2,
+      "slide": null,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 3",
+      "unit_id": "3c89bce1-bc48-4703-916b-1ad97d693967",
+      "page": null,
+      "slide": 3,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 7.691
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": 2.29
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 3,
+      "start": null,
+      "rerank_logit": -1.51
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.171
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.331
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": -7.251
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 2
+     },
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 3
+     }
+    ],
+    "reference_answer": "Yes: revenue measures scale, not profit; a business can grow revenue while losing money on every sale.",
+    "cited_contexts": [
+     "Revenue is the money a business takes in from sales before any costs are deducted. For a single product, revenue equals the selling price multiplied by the number of units sold. Revenue is a measure of scale, not of profit: a business can grow revenue while losing money on every sale.\nRevenue = selling price × units sold",
+     "Revenue Is Not Profit\nRevenue = price × units sold\nVariable costs rise with every unit sold\nProfit appears only after variable and fixed costs are covered\nGrowing revenue can still shrink profit if each sale earns less"
+    ]
+   }
+  },
+  {
+   "case_key": "H02",
+   "category": "holdout:diagram",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -1.359,
+    "coverage": 0.857,
+    "answered": false,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": null,
+    "any_citation_correct": false,
+    "context_precision": 0.7,
+    "context_recall": 0.5
+   },
+   "passed": false,
+   "output": {
+    "question": "Which channel in Table 1.1 has the highest average order value?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 2",
+     "Marketing_Analytics_Primer.pdf — Page 8",
+     "Marketing_Analytics_Primer.pdf — Page 8"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -1.359
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.607
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.501
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.462
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.188
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -9.212
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 2
+     }
+    ],
+    "reference_answer": "Email, at ₹2,500.",
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "H03",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 0.29,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.7,
+    "context_recall": 0.4,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9682,
+    "answer_relevancy_embed": 0.86
+   },
+   "passed": true,
+   "output": {
+    "question": "What does contribution pay for before it turns into profit?",
+    "answer": "From your course materials (quoted directly):\n\n> Contribution pays for fixed costs first, then becomes profit [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 4",
+      "unit_id": "87dd7bdd-3fa0-488c-af24-b086069c7545",
+      "page": null,
+      "slide": 4,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 4,
+      "start": null,
+      "rerank_logit": 0.29
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.201
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -2.897
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": -3.127
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.301
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": -4.247
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 4
+     },
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 3
+     }
+    ],
+    "reference_answer": "Fixed costs.",
+    "cited_contexts": [
+     "Contribution Margin\nContribution margin per unit = price − variable cost\nContribution margin ratio = contribution ÷ price\nTotal contribution = contribution per unit × units sold\nContribution pays for fixed costs first, then becomes profit"
+    ]
+   }
+  },
+  {
+   "case_key": "H04",
+   "category": "holdout:numerical",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 9.218,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8875,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.976,
+    "answer_relevancy_embed": 0.8943
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the ROAS of a campaign that spends ₹50,000 and is credited with ₹200,000 of revenue?",
+    "answer": "From your course materials (quoted directly):\n\n> A campaign that spends ₹50,000 and is credited with ₹200,000 of revenue has a ROAS of 4, often written 4x or 400%. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "8ce0ca71-9108-4f47-b451-da8b7eb34e6d",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 9.218
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.674
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.353
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.331
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.168
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 10,
+      "start": null,
+      "rerank_logit": -2.683
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 5
+     }
+    ],
+    "reference_answer": "4 (4x or 400%).",
+    "cited_contexts": [
+     "Return on advertising spend (ROAS) is the revenue attributed to advertising divided by the advertising cost. A campaign that spends ₹50,000 and is credited with ₹200,000 of revenue has a ROAS of 4, often written 4x or 400%.\nROAS = attributed revenue ÷ advertising spend"
+    ]
+   }
+  },
+  {
+   "case_key": "H05",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 2.262,
+    "coverage": 0.857,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.6667,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9934,
+    "answer_relevancy_embed": 0.8018
+   },
+   "passed": true,
+   "output": {
+    "question": "Why can cheap-to-acquire customers be worth less than expensive ones?",
+    "answer": "From your course materials (quoted directly):\n\n> Cheap customers who churn quickly can be worth less than more expensive customers who stay for years. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 6",
+      "unit_id": "f03c5c7c-8a56-4bf2-95a7-ce8126fab9cf",
+      "page": 6,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.262
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.826
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.808
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.123
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -9.367
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 9,
+      "start": null,
+      "rerank_logit": -9.561
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 6
+     }
+    ],
+    "reference_answer": "Cheap customers who churn quickly can generate less lifetime contribution than more expensive customers who stay.",
+    "cited_contexts": [
+     "A CLV-to-CAC ratio compares the value a customer generates with the cost of acquiring them. Many analysts look for a ratio comfortably above 1, often around 3, but the right threshold depends on the business. The payback period is the number of months of contribution needed to recover CAC: with a CAC of ₹900 and monthly contribution of ₹200, payback takes 4.5 months.\nPayback period (months) = CAC ÷ monthly contribution per customer\nA low CAC is not automatically good. Cheap customers who churn quickly can be worth less than more expensive customers who stay for years. Always compare CAC with contribution-based lifetime value."
+    ]
+   }
+  },
+  {
+   "case_key": "H06",
+   "category": "holdout:diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.667,
+    "coverage": 0.8,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.5,
+    "any_citation_correct": true,
+    "context_precision": 0.8333,
+    "context_recall": 0.6667,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.971,
+    "answer_relevancy_embed": 0.7434
+   },
+   "passed": true,
+   "output": {
+    "question": "In the slide deck's table, what break-even ROAS corresponds to a 60% contribution margin ratio?",
+    "answer": "From your course materials (quoted directly):\n\n> Table on slide 8 (Break-even ROAS):\n> | Contribution margin ratio | Break-even ROAS |\n> | 20% | 5.0x |\n> | 25% | 4.0x |\n> | 40% | 2.5x |\n> | 50% | 2.0x |\n> | 60% | 1.67x | [S1]\n\n> Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n> [Figure on page 5]\n> Text and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 8",
+      "unit_id": "5668393a-0d6f-4d61-b9e5-ba26c686cb76",
+      "page": null,
+      "slide": 8,
+      "start": null
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 5",
+      "unit_id": "fe1ab60e-82b3-4562-b41f-4352153ee73b",
+      "page": 5,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 8.667
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": 7.086
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": 6.973
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.875
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 11,
+      "start": null,
+      "rerank_logit": 3.75
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.682
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 8
+     }
+    ],
+    "reference_answer": "1.67x.",
+    "cited_contexts": [
+     "Table on slide 8 (Break-even ROAS):\n| Contribution margin ratio | Break-even ROAS |\n|---|---|\n| 20% | 5.0x |\n| 25% | 4.0x |\n| 40% | 2.5x |\n| 50% | 2.0x |\n| 60% | 1.67x |",
+     "Figure 3.1 ROAS and contribution after advertising by channel for Northwind Outdoor Co. (synthetic data, contribution margin ratio 40%, break-even ROAS 2.5).\n[Figure on page 5]\nText and labels read from the figure (OCR): ROAS by channel; Contribution after ad spend; Break-even ROAS 2.5x (dashed line); 10; 9.0x; +₹60k; 60; 40; +₹26k; 20; 4.0x; 1.5x; -20; -₹20k; Search; Social; Display; Email; Search; Social; Display; Email"
+    ]
+   }
+  },
+  {
+   "case_key": "H07",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.966,
+    "coverage": 0.8,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9841,
+    "answer_relevancy_embed": 0.8298
+   },
+   "passed": true,
+   "output": {
+    "question": "What overall conversion rate does the funnel slide report?",
+    "answer": "From your course materials (quoted directly):\n\n> Overall conversion rate = 500 ÷ 20,000 = 2.5% [S1]\n\n> The overall conversion rate is purchases divided by visitors, so the paid search funnel in our example converts at 2.5 percent. [S2]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 2",
+      "unit_id": "098038e7-4f21-4c4f-b8a5-b13b85ca7c09",
+      "page": null,
+      "slide": 2,
+      "start": null
+     },
+     {
+      "label": "Unit_Economics_for_Marketers.pptx — Slide 2",
+      "unit_id": "cd021f3e-c084-46bd-96ab-b68400e0e36c",
+      "page": null,
+      "slide": 2,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 8.966
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": 7.601
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 1.678
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.392
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -4.567
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.493
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Unit_Economics_for_Marketers.pptx",
+      "slide": 2
+     }
+    ],
+    "reference_answer": "2.5% (500 purchases out of 20,000 visitors).",
+    "cited_contexts": [
+     "From Visitors to Customers: The Funnel\nVisitors: 20,000\nProduct views: 6,000\nAdd to cart: 1,200\nPurchases: 500\nOverall conversion rate = 500 ÷ 20,000 = 2.5%",
+     "Speaker notes for slide 2 (From Visitors to Customers: The Funnel): Each stage of the funnel loses people. The overall conversion rate is purchases divided by visitors, so the paid search funnel in our example converts at 2.5 percent. The biggest drop is between product views and add to cart."
+    ]
+   }
+  },
+  {
+   "case_key": "H08",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 3.843,
+    "coverage": 0.833,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 0.3333,
+    "any_citation_correct": true,
+    "context_precision": 0.7,
+    "context_recall": 0.8,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9918,
+    "answer_relevancy_embed": 0.8351
+   },
+   "passed": true,
+   "output": {
+    "question": "What does the lecture say about only trying to keep revenue constant after a price cut?",
+    "answer": "From your course materials (quoted directly):\n\n> If you only try to keep revenue constant, you would aim for about 14% more volume. [S1]\n\n> The short lecture uses synthetic examples to explain why a price cut usually needs much more extra volume than people expect. [S2]\n\n> Keeping revenue constant would need only an 11.1% increase (500 ÷ 450 − 1), which is why plans that aim to 'make up the revenue' can still leave the business with less contribution to cover its fixed costs. [S3]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 01:03",
+      "unit_id": "939b1521-49e6-4503-9e6a-222dac1dbb9e",
+      "page": null,
+      "slide": null,
+      "start": 63.26
+     },
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 00:03",
+      "unit_id": "cb2099b8-5f1e-4126-ad8d-1fe5b5c8ba17",
+      "page": null,
+      "slide": null,
+      "start": 3.58
+     },
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 3",
+      "unit_id": "676066c9-ef7d-469e-abb8-e5bab434ec93",
+      "page": 3,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 36.98,
+      "rerank_logit": 3.843
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 2.843
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 5,
+      "start": null,
+      "rerank_logit": 2.736
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": 1.015
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -0.809
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.148
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 63.2,
+      "end": 74.9
+     }
+    ],
+    "reference_answer": "It would aim for about 14% more volume, which ignores variable costs and still leaves less contribution.",
+    "cited_contexts": [
+     "Now the marketing team proposes cutting the price to 35 rupees. The variable cost does not change, so the contribution per pod falls from 15 rupees to 10 rupees. A 12 and a half percent price cut has removed one-third of the contribution per unit. To earn the same total contribution, the business must sell 15 divided by 10, which is one and half times as many pods. That is a 50% increase in volume. If you only try to keep revenue constant, you would aim for about 14% more volume. That target ignores variable costs, so hitting it would still leave the business with less contribution than before.",
+     "Welcome to Lecture 3 of the Blindspot Lab demo unit. The short lecture uses synthetic examples to explain why a price cut usually needs much more extra volume than people expect. The narration is computer-generated. Start with Contribution margin. Contribution margin per unit is the selling price minus the variable cost of producing and delivering one unit. It is the money each sale contributes towards fixed costs and profit. Imagine a coffee pod sold for 40 rupees with a variable cost of 25 rupees. Each pod contributes 15 rupees.",
+     "A price cut reduces the contribution of every unit sold, not just the revenue. Because variable costs stay the same, the contribution per unit falls by the full amount of the price cut. To keep total contribution unchanged, volume must rise by the ratio of the old to the new contribution per unit.\nRequired volume increase = (old contribution per unit ÷ new contribution per unit) − 1\nContinuing the example, cutting the price from ₹500 to ₹450 lowers contribution per unit from ₹200 to ₹150. Volume must rise by 200 ÷ 150 − 1 = 33.3% just to earn the same total contribution. Keeping revenue constant would need only an 11.1% increase (500 ÷ 450 − 1), which is why plans that aim to 'make up the revenue' can still leave the business with less contribution to cover its fixed costs.\nPreserving revenue and preserving contribution are different goals. Revenue preservation ignores variable costs; contribution preservation accounts for them."
+    ]
+   }
+  },
+  {
+   "case_key": "H09",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 3.816,
+    "coverage": 0.75,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8167,
+    "context_recall": 1.0,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9803,
+    "answer_relevancy_embed": 0.729
+   },
+   "passed": true,
+   "output": {
+    "question": "In the lecture's summary, what should you do before celebrating a campaign?",
+    "answer": "From your course materials (quoted directly):\n\n> Compute the breakeven rose before celebrating a campaign. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Lecture_03_Price_Cuts.mp4 — 02:02",
+      "unit_id": "9d4640e9-a1e0-48a4-897e-3ab4fdfd57a1",
+      "page": null,
+      "slide": null,
+      "start": 122.34
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 113.14,
+      "rerank_logit": 3.816
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 119.0,
+      "rerank_logit": -7.944
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -8.327
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -8.512
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 0.0,
+      "rerank_logit": -8.546
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.0,
+      "rerank_logit": -9.157
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Lecture_03_Price_Cuts.mp4",
+      "start": 118.4,
+      "end": 132.2
+     }
+    ],
+    "reference_answer": "Compute the break-even ROAS.",
+    "cited_contexts": [
+     "A randomized experiment with a control group is the cleanest way to measure the causal effect. To summarize, compare contribution, not revenue. Compute the breakeven rose before celebrating a campaign. And look for experimental evidence before claiming that a marketing action caused a result. Thanks for watching."
+    ]
+   }
+  },
+  {
+   "case_key": "H10",
+   "category": "holdout:factual",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 8.266,
+    "coverage": 1.0,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 0.8667,
+    "context_recall": 0.6,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.9833,
+    "answer_relevancy_embed": 0.8727
+   },
+   "passed": true,
+   "output": {
+    "question": "Why does the median describe a typical order better than the mean when order values are skewed?",
+    "answer": "From your course materials (quoted directly):\n\n> The median better describes a typical order, while the mean is pulled up by the single large order. [S1]\n\n> Use the median to describe a typical customer and the mean when you need totals, because the mean multiplied by the count gives the total. [S1]\n\n> Order values often contain a few very large orders. [S1]\n\n> Averages can mislead when data are skewed. [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 8",
+      "unit_id": "b4eadb48-804f-4948-8c03-4f10a20d0e85",
+      "page": 8,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 8.266
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 0.324
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.909
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -9.878
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.333
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 7,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.004
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 8
+     }
+    ],
+    "reference_answer": "A few very large orders pull the mean up, while the median is the middle value.",
+    "cited_contexts": [
+     "Averages can mislead when data are skewed. Order values often contain a few very large orders. For the order values ₹800, ₹900, ₹1,000, ₹1,100 and ₹9,200, the mean is ₹2,600 but the median is ₹1,000. The median better describes a typical order, while the mean is pulled up by the single large order. Use the median to describe a typical customer and the mean when you need totals, because the mean multiplied by the count gives the total."
+    ]
+   }
+  },
+  {
+   "case_key": "H11",
+   "category": "holdout:diagram",
+   "metrics": {
+    "status": "grounded",
+    "top_logit": 6.803,
+    "coverage": 0.857,
+    "answered": true,
+    "retrieval_hit": true,
+    "reciprocal_rank": 1.0,
+    "source_recall": 1.0,
+    "citation_location_accuracy": 1.0,
+    "any_citation_correct": true,
+    "context_precision": 1.0,
+    "context_recall": 0.4,
+    "faithfulness_nli": 1.0,
+    "faithfulness_nli_mean_entailment": 0.97,
+    "answer_relevancy_embed": 0.691
+   },
+   "passed": true,
+   "output": {
+    "question": "What conversion rate does the pessimistic scenario in Table 6.1 assume?",
+    "answer": "From your course materials (quoted directly):\n\n> Table 6.1 Campaign scenarios for 50,000 visitors and ₹100,000 of advertising spend (synthetic)\n> | Assumption | Pessimistic | Expected | Optimistic |\n> | Conversion rate | 1.5% | 2.0% | 2.5% |\n> | Average order value | ₹1,800 | ₹2,000 | ₹2,200 |\n> | Contribution margin ratio | 35% | 40% | 45% |\n> | Contribution after ad spend | ₹372,500 | ₹700,000 | ₹1,137,500 | [S1]",
+    "status": "grounded",
+    "mode": "extractive",
+    "citations": [
+     {
+      "label": "Marketing_Analytics_Primer.pdf — Page 8",
+      "unit_id": "4292531f-10cb-454b-86f5-3e2d075edb04",
+      "page": 8,
+      "slide": null,
+      "start": null
+     }
+    ],
+    "nearest": [],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 6.803
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 8,
+      "slide": null,
+      "start": null,
+      "rerank_logit": 3.665
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.568
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.566
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.69
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -7.183
+     }
+    ],
+    "expected_sources": [
+     {
+      "file": "Marketing_Analytics_Primer.pdf",
+      "page": 8
+     }
+    ],
+    "reference_answer": "1.5%.",
+    "cited_contexts": [
+     "Table 6.1 Campaign scenarios for 50,000 visitors and ₹100,000 of advertising spend (synthetic)\n| Assumption | Pessimistic | Expected | Optimistic |\n|---|---|---|---|\n| Conversion rate | 1.5% | 2.0% | 2.5% |\n| Average order value | ₹1,800 | ₹2,000 | ₹2,200 |\n| Contribution margin ratio | 35% | 40% | 45% |\n| Contribution after ad spend | ₹372,500 | ₹700,000 | ₹1,137,500 |"
+    ]
+   }
+  },
+  {
+   "case_key": "H12",
+   "category": "holdout:unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -0.073,
+    "coverage": 0.4,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "How do you discount future cash flows when calculating customer lifetime value with a 10% discount rate?",
+    "answer": "I can't answer that from your course materials. Related material exists, but no passage states an answer to this question. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 6",
+     "Marketing_Analytics_Primer.pdf — Page 9",
+     "Marketing_Analytics_Primer.pdf — Page 6"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -0.073
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -4.325
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 6,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.687
+     },
+     {
+      "source": "Lecture_03_Price_Cuts.mp4",
+      "page": null,
+      "slide": null,
+      "start": 75.02,
+      "rerank_logit": -7.517
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 6,
+      "start": null,
+      "rerank_logit": -7.816
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -7.909
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "H13",
+   "category": "holdout:unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -6.889,
+    "coverage": 0.2,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "How do I set up conversion tracking in Google Analytics 4?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 2",
+     "Unit_Economics_for_Marketers.pptx — Slide 2",
+     "Marketing_Analytics_Primer.pdf — Page 2"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -6.889
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -9.656
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.482
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 2,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.55
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 2,
+      "start": null,
+      "rerank_logit": -10.682
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -10.915
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "H14",
+   "category": "holdout:unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -11.294,
+    "coverage": 0.0,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the Herfindahl-Hirschman index used for?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 3",
+     "Marketing_Analytics_Primer.pdf — Page 1",
+     "Marketing_Analytics_Primer.pdf — Page 4"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 3,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.294
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 1,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.366
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 4,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.391
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 8,
+      "start": null,
+      "rerank_logit": -11.396
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 11,
+      "start": null,
+      "rerank_logit": -11.409
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -11.42
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  },
+  {
+   "case_key": "H15",
+   "category": "holdout:unsupported",
+   "metrics": {
+    "status": "refused",
+    "top_logit": -2.694,
+    "coverage": 0.167,
+    "refused_correctly": true
+   },
+   "passed": true,
+   "output": {
+    "question": "What is the average ROAS achieved by Indian e-commerce brands?",
+    "answer": "I can't answer that from your course materials. The closest passages I found are not about this topic. I won't fill the gap with outside knowledge in grounded mode.",
+    "status": "refused",
+    "mode": "extractive",
+    "citations": [],
+    "nearest": [
+     "Marketing_Analytics_Primer.pdf — Page 5",
+     "Marketing_Analytics_Primer.pdf — Page 5",
+     "Marketing_Analytics_Primer.pdf — Page 5"
+    ],
+    "retrieved": [
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -2.694
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -3.979
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 5,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -5.375
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -5.466
+     },
+     {
+      "source": "Marketing_Analytics_Primer.pdf",
+      "page": 9,
+      "slide": null,
+      "start": null,
+      "rerank_logit": -8.06
+     },
+     {
+      "source": "Unit_Economics_for_Marketers.pptx",
+      "page": null,
+      "slide": 7,
+      "start": null,
+      "rerank_logit": -8.283
+     }
+    ],
+    "expected_sources": [],
+    "reference_answer": null,
+    "cited_contexts": []
+   }
+  }
+ ]
+}

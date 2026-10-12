@@ -1,0 +1,18 @@
+{"note": "Used only to choose the tutor grounding gate (GATE_LOGIT=-0.85, coverage 0.34 when the top logit < 3). Not part of any reported benchmark.",
+ "queries": [
+  {"q": "what is the formula for contribution margin ratio", "supported": true},
+  {"q": "how much extra volume is needed after a price cut", "supported": true},
+  {"q": "what does the funnel diagram show about product views", "supported": true},
+  {"q": "which channel has the highest ROAS on the chart", "supported": true},
+  {"q": "what is a confounder", "supported": true},
+  {"q": "how is payback period computed", "supported": true},
+  {"q": "what does the lecture say about coffee pods", "supported": true},
+  {"q": "what is the capital of France", "supported": false},
+  {"q": "explain photosynthesis in plants", "supported": false},
+  {"q": "how do I configure a kubernetes cluster", "supported": false},
+  {"q": "what is net promoter score", "supported": false},
+  {"q": "who won the cricket world cup in 2011", "supported": false},
+  {"q": "what is the elasticity of demand formula", "supported": false},
+  {"q": "explain the black-scholes option pricing model", "supported": false},
+  {"q": "what is a good email subject line length", "supported": false}
+ ]}

@@ -1,0 +1,5450 @@
+{
+ "id": "cc2270df-eeac-4c31-8776-58e619d778d1",
+ "kind": "personalization",
+ "dataset": "simulated_learners",
+ "dataset_version": "v1",
+ "model_info": {
+  "llm": null,
+  "python": "3.13.16",
+  "reranker": "local:Xenova/ms-marco-MiniLM-L-6-v2",
+  "embedding": "local:BAAI/bge-small-en-v1.5",
+  "llm_provider": "local",
+  "transcription": "local:base.en"
+ },
+ "prompt_version": null,
+ "seed": 2026,
+ "started_at": "2026-10-12T00:51:48.559740+00:00",
+ "finished_at": "2026-10-12T01:02:50.869456+00:00",
+ "config": {
+  "course_id": "40caee01-beb3-4574-8d61-a16a57e0beef",
+  "learners_per_profile": 15
+ },
+ "summary": {
+  "assumptions": {
+   "slip": 0.1,
+   "slip_per_difficulty": 0.03,
+   "mcq_guess": "uniform over options",
+   "numeric_guess": 0.05,
+   "p_signature_answer_if_misconception": 0.8,
+   "p_learn_after_feedback": 0.12,
+   "p_learn_without_prereqs": 0.03,
+   "p_fix_misconception_generic_feedback": 0.08,
+   "p_fix_misconception_targeted_repair": 0.6,
+   "p_learn_from_worked_example": 0.3,
+   "p_forget_per_session": 0.03,
+   "probe_consistency": 0.8,
+   "interactions_per_session": 8,
+   "learning_sessions": 5,
+   "question_types": [
+    "mcq",
+    "numerical"
+   ]
+  },
+  "profiles": {
+   "A_strong": "Learner A: strong baseline knowledge",
+   "B_mixed": "Learner B: mixed understanding with selected misconceptions",
+   "C_weak_prereq": "Learner C: weak prerequisite knowledge"
+  },
+  "learners_per_profile": 15,
+  "seed": 2026,
+  "posttest_items": 14,
+  "by_profile": {
+   "A_strong": {
+    "adaptive": {
+     "post_test_accuracy": {
+      "mean": 0.7619,
+      "sd": 0.1421,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.7286,
+      "sd": 0.1525,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.8444,
+      "sd": 0.1548,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 0.2,
+      "sd": 0.5416,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.6,
+      "sd": 0.4899,
+      "n": 5
+     },
+     "mastery_brier": {
+      "mean": 0.1371,
+      "sd": 0.1229,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.8556,
+      "sd": 0.1595,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.4444,
+      "sd": 0.4969,
+      "n": 9
+     },
+     "gap_recall": {
+      "mean": 0.7,
+      "sd": 0.4,
+      "n": 5
+     },
+     "exact_repeat_rate": {
+      "mean": 0.0217,
+      "sd": 0.0327,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.3456,
+      "sd": 0.1887,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 0.8,
+      "sd": 1.7205,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 0.4,
+      "sd": 0.8,
+      "n": 15
+     },
+     "targeting_precision": {
+      "mean": 0.8,
+      "sd": 0.2828,
+      "n": 3
+     },
+     "questions_answered": {
+      "mean": 39.6667,
+      "sd": 0.8692,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 39.8,
+      "sd": 0.7483,
+      "n": 15
+     },
+     "probes": {
+      "mean": 0.1333,
+      "sd": 0.4989,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.8111,
+      "sd": 0.1342,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 0.4667,
+      "sd": 0.718,
+      "n": 15
+     }
+    },
+    "baseline": {
+     "post_test_accuracy": {
+      "mean": 0.7286,
+      "sd": 0.1612,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.7048,
+      "sd": 0.154,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.7667,
+      "sd": 0.1805,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 0.3333,
+      "sd": 0.5963,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.3,
+      "sd": 0.4,
+      "n": 5
+     },
+     "mastery_brier": {
+      "mean": 0.0905,
+      "sd": 0.0682,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.9,
+      "sd": 0.0817,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.4,
+      "sd": 0.4359,
+      "n": 10
+     },
+     "gap_recall": {
+      "mean": 1.0,
+      "sd": 0.0,
+      "n": 5
+     },
+     "exact_repeat_rate": {
+      "mean": 0.1833,
+      "sd": 0.0506,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.3767,
+      "sd": 0.0504,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "questions_answered": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "probes": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.8111,
+      "sd": 0.1342,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 0.4667,
+      "sd": 0.718,
+      "n": 15
+     }
+    }
+   },
+   "B_mixed": {
+    "adaptive": {
+     "post_test_accuracy": {
+      "mean": 0.7048,
+      "sd": 0.13,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.6476,
+      "sd": 0.172,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.8111,
+      "sd": 0.1595,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 1.6667,
+      "sd": 1.2472,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.4833,
+      "sd": 0.357,
+      "n": 15
+     },
+     "mastery_brier": {
+      "mean": 0.2062,
+      "sd": 0.1223,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.7222,
+      "sd": 0.1988,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.9048,
+      "sd": 0.186,
+      "n": 14
+     },
+     "gap_recall": {
+      "mean": 0.5456,
+      "sd": 0.3125,
+      "n": 15
+     },
+     "exact_repeat_rate": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.4362,
+      "sd": 0.1591,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 3.6,
+      "sd": 2.5768,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 1.2667,
+      "sd": 1.1235,
+      "n": 15
+     },
+     "targeting_precision": {
+      "mean": 0.6016,
+      "sd": 0.3494,
+      "n": 12
+     },
+     "questions_answered": {
+      "mean": 38.0667,
+      "sd": 1.3888,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "probes": {
+      "mean": 1.9333,
+      "sd": 1.3888,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.5889,
+      "sd": 0.1707,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 3.1333,
+      "sd": 1.6275,
+      "n": 15
+     }
+    },
+    "baseline": {
+     "post_test_accuracy": {
+      "mean": 0.5286,
+      "sd": 0.2195,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.5762,
+      "sd": 0.1316,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.6889,
+      "sd": 0.1474,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 2.2667,
+      "sd": 1.436,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.2956,
+      "sd": 0.2888,
+      "n": 15
+     },
+     "mastery_brier": {
+      "mean": 0.1585,
+      "sd": 0.1377,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.7778,
+      "sd": 0.1988,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.9056,
+      "sd": 0.139,
+      "n": 15
+     },
+     "gap_recall": {
+      "mean": 0.8367,
+      "sd": 0.2077,
+      "n": 15
+     },
+     "exact_repeat_rate": {
+      "mean": 0.1867,
+      "sd": 0.0301,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.3867,
+      "sd": 0.0397,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "questions_answered": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "probes": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.5889,
+      "sd": 0.1707,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 3.1333,
+      "sd": 1.6275,
+      "n": 15
+     }
+    }
+   },
+   "C_weak_prereq": {
+    "adaptive": {
+     "post_test_accuracy": {
+      "mean": 0.4381,
+      "sd": 0.1984,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.4238,
+      "sd": 0.2189,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.4667,
+      "sd": 0.3055,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 1.2667,
+      "sd": 0.6799,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.369,
+      "sd": 0.2759,
+      "n": 14
+     },
+     "mastery_brier": {
+      "mean": 0.2031,
+      "sd": 0.1009,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.6444,
+      "sd": 0.1474,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.6889,
+      "sd": 0.291,
+      "n": 15
+     },
+     "gap_recall": {
+      "mean": 0.8155,
+      "sd": 0.2231,
+      "n": 14
+     },
+     "exact_repeat_rate": {
+      "mean": 0.0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.4139,
+      "sd": 0.1298,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 2,
+      "sd": 1.4142,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 1.2667,
+      "sd": 0.8537,
+      "n": 15
+     },
+     "targeting_precision": {
+      "mean": 0.9083,
+      "sd": 0.206,
+      "n": 12
+     },
+     "questions_answered": {
+      "mean": 38.2667,
+      "sd": 2.0483,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 39.6,
+      "sd": 1.4967,
+      "n": 15
+     },
+     "probes": {
+      "mean": 1.3333,
+      "sd": 1.4907,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.1333,
+      "sd": 0.1089,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 2,
+      "sd": 0.8944,
+      "n": 15
+     }
+    },
+    "baseline": {
+     "post_test_accuracy": {
+      "mean": 0.3238,
+      "sd": 0.1472,
+      "n": 15
+     },
+     "retention_accuracy": {
+      "mean": 0.2667,
+      "sd": 0.1907,
+      "n": 15
+     },
+     "true_known_end": {
+      "mean": 0.2889,
+      "sd": 0.2233,
+      "n": 15
+     },
+     "misconceptions_end": {
+      "mean": 1.7333,
+      "sd": 0.8537,
+      "n": 15
+     },
+     "misconceptions_resolved_rate": {
+      "mean": 0.125,
+      "sd": 0.2059,
+      "n": 14
+     },
+     "mastery_brier": {
+      "mean": 0.1066,
+      "sd": 0.0865,
+      "n": 15
+     },
+     "weak_concept_identification_accuracy": {
+      "mean": 0.8667,
+      "sd": 0.1388,
+      "n": 15
+     },
+     "gap_precision": {
+      "mean": 0.5778,
+      "sd": 0.2347,
+      "n": 15
+     },
+     "gap_recall": {
+      "mean": 0.9167,
+      "sd": 0.1637,
+      "n": 14
+     },
+     "exact_repeat_rate": {
+      "mean": 0.1567,
+      "sd": 0.0413,
+      "n": 15
+     },
+     "family_repeat_rate": {
+      "mean": 0.375,
+      "sd": 0.0532,
+      "n": 15
+     },
+     "blindspot_sessions": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "repairs": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "questions_answered": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "interactions": {
+      "mean": 40,
+      "sd": 0.0,
+      "n": 15
+     },
+     "probes": {
+      "mean": 0,
+      "sd": 0.0,
+      "n": 15
+     },
+     "true_known_start": {
+      "mean": 0.1333,
+      "sd": 0.1089,
+      "n": 15
+     },
+     "misconceptions_start": {
+      "mean": 2,
+      "sd": 0.8944,
+      "n": 15
+     }
+    }
+   }
+  }
+ },
+ "limitations": [
+  "Simulated learners follow explicit, hand-set response and learning assumptions; outcomes depend on them and are not evidence of learning gains for real students.",
+  "Both strategies show feedback after every answer; the baseline is a generic random quiz, not a strong commercial adaptive system.",
+  "Probe answers count against the adaptive strategy's interaction budget, which is conservative."
+ ],
+ "results": [
+  {
+   "case_key": "A_strong-00-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.3166,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.5872,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.725,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-00-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1136,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.6258,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-01-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.3324,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.9834,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.075,
+    "family_repeat_rate": 0.175,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-01-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0673,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.7727,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.45,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-02-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.0175,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.907,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3158,
+    "blindspot_sessions": 5,
+    "repairs": 2,
+    "targeting_precision": 0.4
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-02-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.181,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.6856,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.5,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "A_strong-03-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.5,
+    "true_known_end": 0.5,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.3124,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.8788,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.075,
+    "family_repeat_rate": 0.15,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-03-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.5,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1716,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.546,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-04-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 1.0,
+    "true_known_end": 1.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9988,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.025,
+    "family_repeat_rate": 0.25,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-04-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.9286,
+    "retention_accuracy": 0.9286,
+    "true_known_start": 1.0,
+    "true_known_end": 1.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.016,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9313,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.325,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-05-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.9286,
+    "true_known_start": 1.0,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1665,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.9981,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.075,
+    "family_repeat_rate": 0.275,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-05-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 1.0,
+    "true_known_end": 1.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0263,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9309,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.25,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-06-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.9286,
+    "true_known_start": 1.0,
+    "true_known_end": 1.0,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.0003,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9856,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.225,
+    "blindspot_sessions": 2,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-06-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 1.0,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.2047,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.9111,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-07-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0036,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.8059,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-07-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.9286,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0482,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.8931,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.325,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-08-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0324,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9065,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 37,
+    "interactions": 37,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2432,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "A_strong-08-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.5,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1235,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.5535,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "A_strong-09-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.9286,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0329,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9106,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.225,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-09-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.003,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.8282,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-10-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.9286,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1665,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.9996,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.075,
+    "family_repeat_rate": 0.25,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-10-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1747,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.8585,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-11-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.9286,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.205,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.5256,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.675,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-11-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.9286,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0119,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.9765,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.1,
+    "family_repeat_rate": 0.325,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-12-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 1.0,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.0305,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.8811,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 5,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-12-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0794,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.6134,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change"
+    ]
+   }
+  },
+  {
+   "case_key": "A_strong-13-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.1844,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.734,
+    "gap_precision": null,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-13-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.0125,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.721,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.1,
+    "family_repeat_rate": 0.325,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "A_strong-14-adaptive",
+   "category": "A_strong:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.2554,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.6455,
+    "gap_precision": null,
+    "gap_recall": 0.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.7,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "A_strong-14-baseline",
+   "category": "A_strong:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1239,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.6948,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "A_strong",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-00-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1929,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.7258,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-00-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.298,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.3065,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.5,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-01-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.1599,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.7824,
+    "gap_precision": null,
+    "gap_recall": 0.0,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2308,
+    "blindspot_sessions": 1,
+    "repairs": 0,
+    "targeting_precision": 0.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "B_mixed-01-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0543,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.7408,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.175,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-02-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.0606,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.8236,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.1579,
+    "blindspot_sessions": 2,
+    "repairs": 1,
+    "targeting_precision": 0.5
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "mean_vs_median",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "B_mixed-02-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.9286,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.3096,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.6815,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "mean_vs_median",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "mean_vs_median"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-03-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 3,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.0975,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.8234,
+    "gap_precision": 1.0,
+    "gap_recall": 0.3333,
+    "questions_answered": 37,
+    "interactions": 40,
+    "probes": 3,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3784,
+    "blindspot_sessions": 7,
+    "repairs": 0,
+    "targeting_precision": 0.1429
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "B_mixed-03-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 3,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.1302,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.5793,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.15,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-04-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.5,
+    "true_known_end": 1.0,
+    "misconceptions_start": 5,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.4,
+    "mastery_brier": 0.1748,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.7179,
+    "gap_precision": 1.0,
+    "gap_recall": 0.4,
+    "questions_answered": 37,
+    "interactions": 40,
+    "probes": 3,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.4324,
+    "blindspot_sessions": 6,
+    "repairs": 2,
+    "targeting_precision": 0.3333
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "pp_vs_percent_change"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-04-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.5,
+    "true_known_end": 0.5,
+    "misconceptions_start": 5,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.4,
+    "mastery_brier": 0.1134,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.5122,
+    "gap_precision": 1.0,
+    "gap_recall": 0.8,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "pp_vs_percent_change"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-05-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.6667,
+    "true_known_end": 1.0,
+    "misconceptions_start": 3,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.0298,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.894,
+    "gap_precision": 1.0,
+    "gap_recall": 0.3333,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3158,
+    "blindspot_sessions": 5,
+    "repairs": 1,
+    "targeting_precision": 0.6
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-05-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 3,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.2627,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.8218,
+    "gap_precision": 1.0,
+    "gap_recall": 0.3333,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-06-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.3298,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5035,
+    "gap_precision": 0.5,
+    "gap_recall": 0.5,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.725,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-06-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0712,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.912,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-07-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.4286,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 4,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.25,
+    "mastery_brier": 0.4138,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.7275,
+    "gap_precision": 1.0,
+    "gap_recall": 0.25,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 4,
+    "repairs": 1,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "pp_vs_percent_change"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-07-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.5,
+    "misconceptions_start": 4,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.0885,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.4101,
+    "gap_precision": 0.75,
+    "gap_recall": 0.75,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.175,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "pp_vs_percent_change"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-08-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.5,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 3,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.1544,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5735,
+    "gap_precision": 1.0,
+    "gap_recall": 0.6667,
+    "questions_answered": 37,
+    "interactions": 40,
+    "probes": 3,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5135,
+    "blindspot_sessions": 4,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change",
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-08-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.2857,
+    "true_known_start": 0.5,
+    "true_known_end": 0.5,
+    "misconceptions_start": 3,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.6667,
+    "mastery_brier": 0.0261,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.491,
+    "gap_precision": 0.6667,
+    "gap_recall": 0.6667,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-09-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.2449,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5609,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3158,
+    "blindspot_sessions": 2,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "mean_vs_median"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-09-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7857,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.0559,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.7,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "mean_vs_median"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-10-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.2143,
+    "true_known_start": 0.5,
+    "true_known_end": 0.5,
+    "misconceptions_start": 6,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1384,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.6362,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 36,
+    "interactions": 40,
+    "probes": 4,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3889,
+    "blindspot_sessions": 7,
+    "repairs": 4,
+    "targeting_precision": 0.8571
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "cac_vs_clv",
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-10-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.5,
+    "true_known_end": 0.5,
+    "misconceptions_start": 6,
+    "misconceptions_end": 5,
+    "misconceptions_resolved_rate": 0.1667,
+    "mastery_brier": 0.0935,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.4304,
+    "gap_precision": 1.0,
+    "gap_recall": 0.8333,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "cac_vs_clv",
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-11-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.8333,
+    "true_known_end": 1.0,
+    "misconceptions_start": 5,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.6,
+    "mastery_brier": 0.0515,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.8267,
+    "gap_precision": 1.0,
+    "gap_recall": 0.2,
+    "questions_answered": 36,
+    "interactions": 40,
+    "probes": 4,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3611,
+    "blindspot_sessions": 6,
+    "repairs": 2,
+    "targeting_precision": 0.5
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-11-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.8571,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.8333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 5,
+    "misconceptions_end": 4,
+    "misconceptions_resolved_rate": 0.2,
+    "mastery_brier": 0.5184,
+    "weak_concept_identification_accuracy": 0.3333,
+    "mean_estimated_mastery": 0.5533,
+    "gap_precision": 0.8333,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "correlation_vs_causation",
+     "mean_vs_median",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-12-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.3265,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.5978,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 37,
+    "interactions": 40,
+    "probes": 3,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5946,
+    "blindspot_sessions": 3,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "B_mixed-12-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.4286,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.5,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0326,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.586,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-13-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.4066,
+    "weak_concept_identification_accuracy": 0.3333,
+    "mean_estimated_mastery": 0.4959,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.725,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "mean_vs_median"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "mean_vs_median"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-13-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.6667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.045,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.6832,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "mean_vs_median"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "B_mixed-14-adaptive",
+   "category": "B_mixed:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.5,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 6,
+    "misconceptions_end": 4,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.3119,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.3898,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5789,
+    "blindspot_sessions": 7,
+    "repairs": 2,
+    "targeting_precision": 0.2857
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "roas_vs_profitability",
+     "statistical_vs_practical",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "roas_vs_profitability",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "B_mixed-14-baseline",
+   "category": "B_mixed:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.5,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 6,
+    "misconceptions_end": 5,
+    "misconceptions_resolved_rate": 0.1667,
+    "mastery_brier": 0.2785,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5053,
+    "gap_precision": 1.0,
+    "gap_recall": 0.6667,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.4,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "B_mixed",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "roas_vs_profitability",
+     "statistical_vs_practical",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute",
+     "correlation_vs_causation",
+     "statistical_vs_practical",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-00-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.1429,
+    "retention_accuracy": 0.0714,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.0,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.2117,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.3774,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.6,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-00-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.7857,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 0,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": null,
+    "mastery_brier": 0.3069,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5173,
+    "gap_precision": 0.0,
+    "gap_recall": null,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.15,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-01-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.5,
+    "misconceptions_start": 1,
+    "misconceptions_end": 0,
+    "misconceptions_resolved_rate": 1.0,
+    "mastery_brier": 0.473,
+    "weak_concept_identification_accuracy": 0.3333,
+    "mean_estimated_mastery": 0.6722,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.45,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": []
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-01-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0711,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.4728,
+    "gap_precision": 0.3333,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-02-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5714,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.0,
+    "true_known_end": 0.5,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1765,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.6036,
+    "gap_precision": 0.5,
+    "gap_recall": 0.5,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3333,
+    "blindspot_sessions": 5,
+    "repairs": 1,
+    "targeting_precision": 0.4
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "conversion_rate_vs_absolute",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-02-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.2143,
+    "true_known_start": 0.0,
+    "true_known_end": 0.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.0417,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.1667,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.1,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "conversion_rate_vs_absolute",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-03-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.7143,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.6667,
+    "misconceptions_start": 3,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.176,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.481,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 2,
+    "repairs": 1,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-03-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.5,
+    "misconceptions_start": 3,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0509,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.427,
+    "gap_precision": 0.6667,
+    "gap_recall": 0.6667,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "pp_vs_percent_change",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-04-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.6429,
+    "retention_accuracy": 0.4286,
+    "true_known_start": 0.0,
+    "true_known_end": 0.5,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.3365,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.6749,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.25,
+    "blindspot_sessions": 2,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-04-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.1429,
+    "true_known_start": 0.0,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 1,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1212,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.2294,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.175,
+    "family_repeat_rate": 0.3,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "conversion_rate_vs_absolute"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-05-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.1429,
+    "retention_accuracy": 0.2143,
+    "true_known_start": 0.0,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1421,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.4377,
+    "gap_precision": 1.0,
+    "gap_recall": 0.5,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.6,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-05-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.1429,
+    "true_known_start": 0.0,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.1288,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.1375,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.225,
+    "family_repeat_rate": 0.5,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-06-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.0714,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.0822,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.2124,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 35,
+    "interactions": 40,
+    "probes": 5,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5714,
+    "blindspot_sessions": 3,
+    "repairs": 3,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-06-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.1429,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1058,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.2389,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-07-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.4286,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1889,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.4433,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 37,
+    "interactions": 40,
+    "probes": 3,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5676,
+    "blindspot_sessions": 3,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-07-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.2857,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0125,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.2671,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.1,
+    "family_repeat_rate": 0.375,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-08-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.6429,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.2074,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5562,
+    "gap_precision": 0.5,
+    "gap_recall": 0.5,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.359,
+    "blindspot_sessions": 2,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "cac_vs_clv",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "cac_vs_clv",
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-08-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.5,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.2808,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.5379,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.175,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "cac_vs_clv",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": true,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "cac_vs_clv",
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-09-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.5,
+    "retention_accuracy": 0.5,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.2156,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.6449,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 38,
+    "interactions": 40,
+    "probes": 2,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3158,
+    "blindspot_sessions": 2,
+    "repairs": 1,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-09-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.2857,
+    "true_known_start": 0.3333,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1438,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.3409,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "initial_misconceptions": [
+     "revenue_vs_profit",
+     "roas_vs_profitability"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "roas_vs_profitability"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-10-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.8333,
+    "misconceptions_start": 3,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.3333,
+    "mastery_brier": 0.1589,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.619,
+    "gap_precision": 0.6667,
+    "gap_recall": 0.6667,
+    "questions_answered": 33,
+    "interactions": 34,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2727,
+    "blindspot_sessions": 2,
+    "repairs": 1,
+    "targeting_precision": 0.5
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-10-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 3,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.061,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.4489,
+    "gap_precision": 0.6667,
+    "gap_recall": 0.6667,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.45,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability",
+     "statistical_vs_practical"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "roas_vs_profitability",
+     "statistical_vs_practical"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-11-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.2143,
+    "true_known_start": 0.0,
+    "true_known_end": 0.1667,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.1574,
+    "weak_concept_identification_accuracy": 0.6667,
+    "mean_estimated_mastery": 0.309,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.5641,
+    "blindspot_sessions": 1,
+    "repairs": 1,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-11-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.1429,
+    "retention_accuracy": 0.0714,
+    "true_known_start": 0.0,
+    "true_known_end": 0.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0359,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.1632,
+    "gap_precision": 0.5,
+    "gap_recall": 0.5,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.2,
+    "family_repeat_rate": 0.35,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-12-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.3571,
+    "true_known_start": 0.0,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.325,
+    "weak_concept_identification_accuracy": 0.5,
+    "mean_estimated_mastery": 0.5351,
+    "gap_precision": 0.5,
+    "gap_recall": 0.5,
+    "questions_answered": 36,
+    "interactions": 40,
+    "probes": 4,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.3611,
+    "blindspot_sessions": 4,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-12-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.1429,
+    "retention_accuracy": 0.0,
+    "true_known_start": 0.0,
+    "true_known_end": 0.0,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.032,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.1648,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.125,
+    "family_repeat_rate": 0.3,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute"
+    ],
+    "final_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "contribution_vs_revenue",
+     "conversion_rate_vs_absolute"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-13-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.7143,
+    "retention_accuracy": 0.8571,
+    "true_known_start": 0.1667,
+    "true_known_end": 1.0,
+    "misconceptions_start": 4,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.117,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.7384,
+    "gap_precision": 1.0,
+    "gap_recall": 0.75,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2564,
+    "blindspot_sessions": 3,
+    "repairs": 2,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "revenue_vs_profit",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": true,
+     "cac_clv": true,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "revenue_vs_profit",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-13-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2143,
+    "retention_accuracy": 0.2857,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.5,
+    "misconceptions_start": 4,
+    "misconceptions_end": 3,
+    "misconceptions_resolved_rate": 0.25,
+    "mastery_brier": 0.1727,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.3405,
+    "gap_precision": 1.0,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.15,
+    "family_repeat_rate": 0.425,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": false,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "pp_vs_percent_change",
+     "revenue_vs_profit",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": true,
+     "decision_assumptions": true
+    },
+    "final_misconceptions": [
+     "pp_vs_percent_change",
+     "roas_vs_profitability",
+     "total_vs_marginal_cost"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-14-adaptive",
+   "category": "C_weak_prereq:adaptive",
+   "metrics": {
+    "post_test_accuracy": 0.3571,
+    "retention_accuracy": 0.5714,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 1,
+    "misconceptions_resolved_rate": 0.5,
+    "mastery_brier": 0.0782,
+    "weak_concept_identification_accuracy": 0.8333,
+    "mean_estimated_mastery": 0.2885,
+    "gap_precision": 0.5,
+    "gap_recall": 1.0,
+    "questions_answered": 39,
+    "interactions": 40,
+    "probes": 1,
+    "exact_repeat_rate": 0.0,
+    "family_repeat_rate": 0.2821,
+    "blindspot_sessions": 1,
+    "repairs": 1,
+    "targeting_precision": 1.0
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "adaptive",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation"
+    ]
+   }
+  },
+  {
+   "case_key": "C_weak_prereq-14-baseline",
+   "category": "C_weak_prereq:baseline",
+   "metrics": {
+    "post_test_accuracy": 0.2857,
+    "retention_accuracy": 0.0714,
+    "true_known_start": 0.1667,
+    "true_known_end": 0.3333,
+    "misconceptions_start": 2,
+    "misconceptions_end": 2,
+    "misconceptions_resolved_rate": 0.0,
+    "mastery_brier": 0.0345,
+    "weak_concept_identification_accuracy": 1.0,
+    "mean_estimated_mastery": 0.4136,
+    "gap_precision": 0.6667,
+    "gap_recall": 1.0,
+    "questions_answered": 40,
+    "interactions": 40,
+    "probes": 0,
+    "exact_repeat_rate": 0.1,
+    "family_repeat_rate": 0.325,
+    "blindspot_sessions": 0,
+    "repairs": 0,
+    "targeting_precision": null
+   },
+   "passed": null,
+   "output": {
+    "profile": "C_weak_prereq",
+    "arm": "baseline",
+    "initial_known": {
+     "revenue_conversion": true,
+     "contribution_margin": false,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "initial_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ],
+    "final_known": {
+     "revenue_conversion": true,
+     "contribution_margin": true,
+     "roas": false,
+     "cac_clv": false,
+     "correlation_causation": false,
+     "decision_assumptions": false
+    },
+    "final_misconceptions": [
+     "correlation_vs_causation",
+     "revenue_vs_profit"
+    ]
+   }
+  }
+ ]
+}

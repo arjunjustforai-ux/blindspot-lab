@@ -1,0 +1,450 @@
+{
+ "version": "v1",
+ "note": "Drafts fed to the question verifier. 'expect' is the outcome a correct verifier should produce. Template drafts are generated at run time from the listed seed; 'tamper' replaces the computed key with a wrong value.",
+ "items": [
+  {
+   "key": "VS1",
+   "expect": "verified",
+   "kind": "template",
+   "template": "price_cut_volume",
+   "seed": 101
+  },
+  {
+   "key": "VS2",
+   "expect": "verified",
+   "kind": "template",
+   "template": "campaign_contribution",
+   "seed": 102
+  },
+  {
+   "key": "VS3",
+   "expect": "verified",
+   "kind": "template",
+   "template": "mean_median",
+   "seed": 103
+  },
+  {
+   "key": "VS4",
+   "expect": "verified",
+   "kind": "draft",
+   "concept_key": "roas",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "Which formula gives the break-even ROAS?",
+    "options": [
+     {
+      "id": "a",
+      "text": "1 ÷ contribution margin ratio"
+     },
+     {
+      "id": "b",
+      "text": "Contribution margin ratio ÷ 2"
+     },
+     {
+      "id": "c",
+      "text": "ROAS − 1"
+     },
+     {
+      "id": "d",
+      "text": "Revenue ÷ profit"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Break-even ROAS = 1 ÷ contribution margin ratio.",
+    "source_anchors": [
+     "Break-even ROAS = 1 ÷ contribution margin ratio"
+    ]
+   }
+  },
+  {
+   "key": "VS5",
+   "expect": "verified",
+   "kind": "draft",
+   "concept_key": "correlation_causation",
+   "draft": {
+    "question_type": "short_answer",
+    "difficulty": 2,
+    "origin": "bank",
+    "stem": "Explain why a correlation between app usage and spending does not prove the app causes higher spending.",
+    "rubric": {
+     "key_points": [
+      {
+       "id": "k1",
+       "text": "Correlation alone does not show causation.",
+       "keyword_groups": [
+        [
+         "correlation"
+        ],
+        [
+         "causation",
+         "cause"
+        ]
+       ]
+      },
+      {
+       "id": "k2",
+       "text": "A confounder such as loyalty could drive both app installs and spending.",
+       "keyword_groups": [
+        [
+         "confounder",
+         "loyal",
+         "third variable"
+        ]
+       ]
+      }
+     ],
+     "pass_threshold": 0.7
+    },
+    "explanation": "Correlation alone does not show that one causes the other; confounders can create the association.",
+    "source_anchors": [
+     "Correlation alone does not show that one causes the other"
+    ]
+   }
+  },
+  {
+   "key": "VS6",
+   "expect": "verified",
+   "kind": "draft",
+   "concept_key": "roas",
+   "draft": {
+    "question_type": "numerical",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "A campaign spends ₹20,000 and is credited with ₹70,000 of revenue. What is its ROAS?",
+    "numeric_answer": 3.5,
+    "numeric_tolerance": 0.05,
+    "answer_unit": "x",
+    "explanation": "ROAS = 70,000 ÷ 20,000 = 3.5.",
+    "source_anchors": [
+     "ROAS = attributed revenue ÷ advertising spend"
+    ]
+   }
+  },
+  {
+   "key": "VF1",
+   "expect": "rejected",
+   "flaw": "wrong numeric key (revenue-preservation value)",
+   "kind": "template",
+   "template": "price_cut_volume",
+   "seed": 104,
+   "tamper": "signature"
+  },
+  {
+   "key": "VF2",
+   "expect": "rejected",
+   "flaw": "wrong numeric key (+10%)",
+   "kind": "template",
+   "template": "break_even_volume",
+   "seed": 105,
+   "tamper": "plus10pct"
+  },
+  {
+   "key": "VF3",
+   "expect": "rejected",
+   "flaw": "wrong numeric key (revenue-based CLV)",
+   "kind": "template",
+   "template": "clv_contribution",
+   "seed": 106,
+   "tamper": "signature"
+  },
+  {
+   "key": "VF4",
+   "expect": "rejected",
+   "flaw": "duplicate options",
+   "kind": "draft",
+   "concept_key": "revenue_conversion",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "How is the conversion rate calculated?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Conversions ÷ visitors"
+     },
+     {
+      "id": "b",
+      "text": "Conversions ÷ visitors"
+     },
+     {
+      "id": "c",
+      "text": "Visitors ÷ conversions"
+     },
+     {
+      "id": "d",
+      "text": "Revenue ÷ visitors"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Conversions divided by visitors.",
+    "source_anchors": [
+     "Conversion rate = conversions ÷ visitors"
+    ]
+   }
+  },
+  {
+   "key": "VF5",
+   "expect": "rejected",
+   "flaw": "keyed answer not among options",
+   "kind": "draft",
+   "concept_key": "cac_clv",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "What does CAC stand for in the course materials?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Customer acquisition cost"
+     },
+     {
+      "id": "b",
+      "text": "Cost after conversion"
+     },
+     {
+      "id": "c",
+      "text": "Contribution after costs"
+     },
+     {
+      "id": "d",
+      "text": "Customer average contribution"
+     }
+    ],
+    "correct_option_id": "e",
+    "explanation": "Customer acquisition cost.",
+    "source_anchors": [
+     "CAC = sales and marketing spend ÷ new customers acquired"
+    ]
+   }
+  },
+  {
+   "key": "VF6",
+   "expect": "rejected",
+   "flaw": "premise not supported by the sources (NPS)",
+   "kind": "draft",
+   "concept_key": "revenue_conversion",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 2,
+    "origin": "bank",
+    "stem": "How is Net Promoter Score calculated?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Percentage of promoters minus percentage of detractors"
+     },
+     {
+      "id": "b",
+      "text": "Promoters divided by detractors"
+     },
+     {
+      "id": "c",
+      "text": "Average satisfaction score"
+     },
+     {
+      "id": "d",
+      "text": "Detractors minus passives"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "NPS = % promoters − % detractors.",
+    "source_anchors": [
+     "Net Promoter Score is the percentage of promoters minus detractors"
+    ]
+   }
+  },
+  {
+   "key": "VF7",
+   "expect": "rejected",
+   "flaw": "cites a source unit that does not exist",
+   "kind": "draft",
+   "concept_key": "roas",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 2,
+    "origin": "llm",
+    "stem": "What ROAS did the Display channel achieve in the 2025 campaign report?",
+    "options": [
+     {
+      "id": "a",
+      "text": "3.1x"
+     },
+     {
+      "id": "b",
+      "text": "1.2x"
+     },
+     {
+      "id": "c",
+      "text": "5.0x"
+     },
+     {
+      "id": "d",
+      "text": "0.8x"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "From the 2025 report.",
+    "source_unit_ids": [
+     "00000000-0000-0000-0000-000000000000"
+    ]
+   }
+  },
+  {
+   "key": "VF8",
+   "expect": "rejected",
+   "flaw": "exact duplicate of an existing bank question",
+   "kind": "draft",
+   "concept_key": "revenue_conversion",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "Which formula defines the conversion rate?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Conversions ÷ visitors"
+     },
+     {
+      "id": "b",
+      "text": "Visitors ÷ conversions"
+     },
+     {
+      "id": "c",
+      "text": "Revenue ÷ visitors"
+     },
+     {
+      "id": "d",
+      "text": "Conversions × average order value"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "The conversion rate is the share of visitors who complete the desired action: conversions divided by visitors.",
+    "source_anchors": [
+     "Conversion rate = conversions ÷ visitors"
+    ]
+   }
+  },
+  {
+   "key": "VF9",
+   "expect": "rejected",
+   "flaw": "unclear stem",
+   "kind": "draft",
+   "concept_key": "roas",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "ROAS",
+    "options": [
+     {
+      "id": "a",
+      "text": "Revenue ÷ spend"
+     },
+     {
+      "id": "b",
+      "text": "Spend ÷ revenue"
+     },
+     {
+      "id": "c",
+      "text": "Profit"
+     },
+     {
+      "id": "d",
+      "text": "Cost"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "ROAS = revenue ÷ spend.",
+    "source_anchors": [
+     "ROAS = attributed revenue ÷ advertising spend"
+    ]
+   }
+  },
+  {
+   "key": "VF10",
+   "expect": "rejected",
+   "flaw": "numerical question without a tolerance",
+   "kind": "draft",
+   "concept_key": "contribution_margin",
+   "draft": {
+    "question_type": "numerical",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "A product sells for ₹500 with a ₹300 variable cost. What is its contribution margin per unit in rupees?",
+    "numeric_answer": 200,
+    "numeric_tolerance": 0,
+    "explanation": "₹500 − ₹300 = ₹200.",
+    "source_anchors": [
+     "Contribution margin per unit is the selling price minus the variable cost per unit"
+    ]
+   }
+  },
+  {
+   "key": "VF11",
+   "expect": "rejected",
+   "flaw": "MCQ with only two options",
+   "kind": "draft",
+   "concept_key": "decision_assumptions",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "bank",
+    "stem": "Which statistic is pulled upwards by a single very large order?",
+    "options": [
+     {
+      "id": "a",
+      "text": "The mean"
+     },
+     {
+      "id": "b",
+      "text": "The median"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "The mean.",
+    "source_anchors": [
+     "the mean is pulled up by the single large order"
+    ]
+   }
+  },
+  {
+   "key": "VF12",
+   "expect": "rejected",
+   "flaw": "off-topic premise with no supporting source",
+   "kind": "draft",
+   "concept_key": "decision_assumptions",
+   "draft": {
+    "question_type": "mcq",
+    "difficulty": 1,
+    "origin": "llm",
+    "stem": "Which pigment absorbs light energy during photosynthesis?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Chlorophyll"
+     },
+     {
+      "id": "b",
+      "text": "Haemoglobin"
+     },
+     {
+      "id": "c",
+      "text": "Keratin"
+     },
+     {
+      "id": "d",
+      "text": "Melanin"
+     }
+    ],
+    "correct_option_id": "a",
+    "explanation": "Chlorophyll.",
+    "source_query": "Which pigment absorbs light energy during photosynthesis?"
+   }
+  }
+ ]
+}
