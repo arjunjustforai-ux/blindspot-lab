@@ -1,0 +1,154 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      e2e:
+        description: "Also run the Playwright end-to-end workflow"
+        type: boolean
+        default: true
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  MODEL_CACHE_DIR: ${{ github.workspace }}/.models
+  PYTHON_VERSION: "3.13"
+
+jobs:
+  backend:
+    name: API (lint, unit, integration)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: blindspot
+          POSTGRES_PASSWORD: blindspot
+          POSTGRES_DB: blindspot_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U blindspot -d blindspot_test"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    defaults:
+      run:
+        working-directory: services/api
+    steps:
+      - uses: actions/checkout@v4
+      - name: System packages (OCR, ffmpeg)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends tesseract-ocr ffmpeg
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: astral-sh/setup-uv@v5
+      - name: Install
+        run: |
+          uv venv .venv
+          uv pip install --python .venv/bin/python -e ".[dev]"
+      - name: Lint
+        run: .venv/bin/ruff check app tests
+      - name: Unit tests
+        run: .venv/bin/python -m pytest tests/unit -p no:logging
+      - name: Cache local models
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.MODEL_CACHE_DIR }}
+          key: models-bge-small-minilm-whisper-base-en-v1
+      - name: Download models
+        run: .venv/bin/python -m app.cli warm-models
+      - name: Integration tests (real ingestion of the demo pack)
+        env:
+          TEST_DATABASE_URL: postgresql+psycopg://blindspot:blindspot@localhost:5432/blindspot_test
+        run: .venv/bin/python -m pytest tests/integration -p no:logging
+
+  web:
+    name: Web (typecheck, unit, build)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci --no-audit --no-fund
+      - run: npx tsc --noEmit
+      - run: npx vitest run
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+
+  e2e:
+    name: End-to-end (Playwright)
+    if: github.event_name == 'workflow_dispatch' && inputs.e2e
+    needs: [backend, web]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: blindspot
+          POSTGRES_PASSWORD: blindspot
+          POSTGRES_DB: blindspot
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U blindspot -d blindspot"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://blindspot:blindspot@localhost:5432/blindspot
+      JWT_SECRET: ci-only-secret-0123456789abcdef0123456789
+      LOCAL_STORAGE_DIR: ${{ github.workspace }}/.storage
+      RUN_WORKER_IN_PROCESS: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends tesseract-ocr ffmpeg
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.MODEL_CACHE_DIR }}
+          key: models-bge-small-minilm-whisper-base-en-v1
+      - name: API, migrations and demo course
+        working-directory: services/api
+        run: |
+          uv venv .venv && uv pip install --python .venv/bin/python -e ".[dev]"
+          .venv/bin/alembic upgrade head
+          .venv/bin/python -m app.cli seed-demo
+          nohup .venv/bin/uvicorn app.main:app --port 8000 > ../../api.log 2>&1 &
+      - name: Web build and start
+        working-directory: apps/web
+        run: |
+          npm ci --no-audit --no-fund && npm run build
+          nohup npx next start -p 3000 > ../../web.log 2>&1 &
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:8000
+      - name: Playwright
+        working-directory: tests/e2e
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          for i in $(seq 1 60); do curl -sf localhost:8000/api/ready && curl -sf localhost:3000 >/dev/null && break; sleep 2; done
+          npx playwright test
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report
+          path: |
+            tests/e2e/playwright-report
+            docs/screenshots
+            api.log
+            web.log

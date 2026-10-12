@@ -10,10 +10,11 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, field_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
+DEV_JWT_SECRET = "dev-only-change-me-please-0123456789abcdef"
 
 
 class Settings(BaseSettings):
@@ -31,7 +32,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://blindspot:blindspot@localhost:5432/blindspot"
 
     # --- Auth -------------------------------------------------------------
-    jwt_secret: str = "dev-only-change-me-please-0123456789abcdef"
+    jwt_secret: str = DEV_JWT_SECRET
     jwt_expire_minutes: int = 60 * 24 * 7
     media_url_ttl_seconds: int = 60 * 60 * 6
     # Optional: accept Supabase-issued access tokens (HS256 project JWT secret).
@@ -93,6 +94,23 @@ class Settings(BaseSettings):
     run_worker_in_process: bool = True
     worker_poll_seconds: float = 2.0
     demo_enabled: bool = True
+
+    @model_validator(mode="after")
+    def _production_secrets(self) -> Settings:
+        if self.environment == "production" and (
+            self.jwt_secret == DEV_JWT_SECRET or len(self.jwt_secret) < 32
+        ):
+            raise ValueError("JWT_SECRET must be set to a random value of at least 32 characters in production")
+        return self
+
+    @field_validator("database_url", mode="after")
+    @classmethod
+    def _psycopg_driver(cls, v: str) -> str:
+        """Hosting providers hand out postgres:// or postgresql:// URLs; SQLAlchemy needs the psycopg driver."""
+        for prefix in ("postgres://", "postgresql://"):
+            if v.startswith(prefix):
+                return "postgresql+psycopg://" + v[len(prefix):]
+        return v
 
     @field_validator("cors_origins", mode="before")
     @classmethod

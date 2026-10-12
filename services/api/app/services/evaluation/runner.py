@@ -160,7 +160,7 @@ def export_run(out: dict[str, Any]) -> Path:
     return path
 
 
-def create_and_execute(kind: str, *, learners_per_profile: int = 15) -> dict[str, Any]:
+def create_and_execute(kind: str, *, learners_per_profile: int = 15, export: bool = True) -> dict[str, Any]:
     with SessionLocal() as db:
         c = db.scalar(select(Course).where(Course.is_demo.is_(True)))
         # Created as already running so a background worker never claims the same run concurrently.
@@ -168,4 +168,4 @@ def create_and_execute(kind: str, *, learners_per_profile: int = 15) -> dict[str
         db.add(r)
         db.commit()
         rid = r.id
-    return execute_run(rid, learners_per_profile=learners_per_profile)
+    return execute_run(rid, learners_per_profile=learners_per_profile, export=export)

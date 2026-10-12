@@ -15,7 +15,7 @@ import uuid
 
 from sqlalchemy import delete, select
 
-from app.config import REPO_ROOT
+from app.config import REPO_ROOT, get_settings
 from app.db import SessionLocal
 from app.logging_setup import configure_logging
 from app.models import Course, IngestionJob, SourceFile, User
@@ -86,6 +86,20 @@ def reset_demo() -> None:
     print(f"deleted {n} demo learner account(s) and their activity")
 
 
+def warm_models() -> None:
+    """Instantiate every local model once so it is downloaded and cached (no database needed)."""
+    from app.services.ai.embeddings import get_embedder
+    from app.services.ai.reranker import get_reranker
+    from app.services.ai.transcription import get_transcriber
+
+    get_embedder().embed_query("warm up")
+    rr = get_reranker()
+    if rr is not None:
+        rr.score("warm up", ["warm up"])
+    get_transcriber()
+    print("local models cached in", get_settings().model_cache_dir)
+
+
 def main(argv: list[str] | None = None) -> None:
     configure_logging()
     ap = argparse.ArgumentParser(prog="blindspot")
@@ -97,6 +111,7 @@ def main(argv: list[str] | None = None) -> None:
     p = sub.add_parser("rebuild")
     p.add_argument("course_id")
     sub.add_parser("reset-demo")
+    sub.add_parser("warm-models", help="download local models into MODEL_CACHE_DIR (used in image builds)")
     args = ap.parse_args(argv)
     if args.cmd == "seed-demo":
         seed_demo(process=not args.no_process)
@@ -114,6 +129,8 @@ def main(argv: list[str] | None = None) -> None:
         print(rebuild_course_knowledge(uuid.UUID(args.course_id)))
     elif args.cmd == "reset-demo":
         reset_demo()
+    elif args.cmd == "warm-models":
+        warm_models()
 
 
 if __name__ == "__main__":
