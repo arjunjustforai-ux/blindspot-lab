@@ -155,7 +155,7 @@ scripts/start_dev.sh        # API on :8000 (worker in-process), web on :3000
 docker compose up --build   # Postgres + pgvector, API, worker, web
 ```
 
-Tests: `scripts/run_tests.sh` (lint, 150 unit + 15 integration tests, typecheck, Vitest) and `cd tests/e2e && npx playwright test` (9 browser tests; app must be running).
+Tests: `scripts/run_tests.sh` (lint, 151 unit + 15 integration tests, typecheck, Vitest) and `cd tests/e2e && npx playwright test` (9 browser tests; app must be running).
 
 ## 15. Demo instructions
 
